@@ -4,10 +4,12 @@ Creating Account
 2. User enters values for fields:
     a. Username
     b. Password
+	i. Password conformation
     c. Age
-    d. Games interested in
+    d. Favorite Game
+	i. From drop down
 3. User selects create account button on create account page
-4. User is redirected to interface 
+4. User is redirected to main interface 
 
 Variation 1
 1. User completes step 3
@@ -25,7 +27,7 @@ Logging In
 1. User enters username
 2. User enters password 
 3. User selects login button on login page
-4. User is redirected to Interface
+4. User is redirected to main interface
 
 Variation 1
 1. User completes step 3
@@ -41,10 +43,25 @@ Variation 1
 
 Sending a message
 //we could have the user enter a friend's username to message in a search bar but that could include 
-//complications such as invalid entries and the creation of a search bar. Instead we could populate a list with all available usernames and display these as selectable options.
+//complications such as invalid entries and the creation of a search bar. Instead we could 
+//populate a list with all available usernames and display these as selectable options.
 
 1. User selects username of friend to message from list
 2. User is redirected to messaging interface which consists of list of sent and received messages (read from file) and bar to type message
 3. User types message into bar (can be blank)
 4. User presses enter to send
 5. Message is displayed on interface as most recent message in message list (Message is added to end of file containing sent and received messages between users)
+
+
+Add Friend
+1. User selects username from available friends list
+	a. Creates file for holding messages between user and friend
+	b. User messages potential new friend 
+2. if (potentialFriend.messageBack())
+	{
+		Friends = True;
+	}
+
+Log out
+1. Clicks log out button
+2. returns to login screen
