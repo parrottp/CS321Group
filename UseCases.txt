@@ -1,0 +1,50 @@
+Use Cases
+Creating Account
+1. User selects create account button from login page
+2. User enters values for fields:
+    a. Username
+    b. Password
+    c. Age
+    d. Games interested in
+3. User selects create account button on create account page
+4. User is redirected to interface 
+
+Variation 1
+1. User completes step 3
+2. User has left one or more fields blank
+3. System displays:
+    "One or more fields are empty. Please enter information for each field"
+
+Variation 2
+1. User completes step 3
+2. User has chosen username that is already taken
+3. System displays:
+    "Username not available. Please try another"
+
+Logging In
+1. User enters username
+2. User enters password 
+3. User selects login button on login page
+4. User is redirected to Interface
+
+Variation 1
+1. User completes step 3
+2. User has entered username that does not exist
+3. System displays:
+    "Invalid username. Please try again"
+
+Variation 1
+1. User completes step 3
+2. User has entered password that does correspond to valid username
+3. System displays:
+    "Invalid password. Please try again"
+
+Sending a message
+//we could have the user enter a friend's username to message in a search bar but that could include 
+//complications such as invalid entries and the creation of a search bar. Instead we could populate a list with all available usernames and display these as selectable options.
+
+1. User selects username of friend to message from list
+2. User is redirected to messaging interface which consists of list of sent and received messages (read from file) and bar to type message
+3. User types message into bar (can be blank)
+4. User presses enter to send
+5. Message is displayed on interface as most recent message in message list (Message is added to end of file containing sent and received messages between users)
