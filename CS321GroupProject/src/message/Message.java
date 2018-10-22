@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Message;
+package message;
 import java.util.*;
 
-public class GetMessage 
+public class Message 
 {
     private String message;
+    private String user;
+   
     public void setMessage(String m)
     {
         message = m;
@@ -19,10 +21,20 @@ public class GetMessage
         return message;
     }
     
+    public void setUser (String u)
+    {
+        user = u;
+    }
+    
     public Date timeStamp()
     {
         Date timeStamp = new Date();
         return timeStamp;
+    }
+    
+    public void writeMessage()
+    {
+        
     }
     
     public void creatMessage()
