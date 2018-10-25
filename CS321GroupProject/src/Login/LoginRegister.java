@@ -1,0 +1,110 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package login;
+import java.io.File;
+import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+/**
+ *
+ * @author Taquito Jr
+ */
+public class LoginRegister {
+    private File loginFile;
+    private String username = "";
+    private String password = "";
+    
+    public LoginRegister()
+    {
+        getInfo();
+        loginFile = new File("RegisteredLogins.txt");
+        int registerAttempt = 2;
+        while(registerAttempt > 0)
+        {
+            registerAttempt = registerNewLogin();
+            if(registerAttempt == 0)
+            {
+                System.out.println("Registered Successfully");
+                break;
+            }
+            else if(registerAttempt == 1)
+            {
+                System.out.println("This username is already taken. Please try again.");
+                getInfo();
+            }
+            else
+            {
+                System.out.println("Your password must be at least 8 characters long.");
+                getInfo();
+            }
+        }
+    }
+    
+    private void getInfo()
+    {
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.println("Username:");
+        username = inputScanner.next();
+        
+        System.out.println("Password:");
+        password = inputScanner.next();
+    }
+    
+    public int registerNewLogin()
+    {
+        LoginInfoChecker loginCheck = new LoginInfoChecker(username, password);
+        boolean takenUsername = false;
+        
+        try
+        {
+            takenUsername = loginCheck.findUsername(username);
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Login info file not found. Exiting program.");
+            System.exit(0);
+        }
+        
+        if(takenUsername)
+        {
+            return 1;
+        }
+        
+        if((password.length() >7)){
+            try
+            {
+                addLogin();
+            }
+            catch(IOException e)
+            {
+                System.out.println("IOException encountered while registering.");
+                System.exit(0);
+            }
+            return 0;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+    
+    private void addLogin()
+    throws IOException{
+        FileWriter fw = new FileWriter(loginFile, true);
+        BufferedWriter writer = new BufferedWriter(fw);
+        writer.append("\n");
+        writer.close();
+        writer = new BufferedWriter(fw);
+        writer.append("u:"+username+"\n");
+        writer.close();
+        writer = new BufferedWriter(fw);
+        //writer.append("u"+password+"\n");
+        //writer.close();
+    }
+}
