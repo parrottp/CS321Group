@@ -8,68 +8,63 @@ package Login;
 import java.util.*;
 import java.io.FileNotFoundException;
 /**
- *
- * @author Taquito Jr
+ *  Class to control the process of logging in
+ * @author Nick Burns
  */
 public class Login {
     
     /**
-     * @param args the command line arguments
+     * method for testing the functionality of the login classes
      */
-    public static void main(String[] args) {
+    public static void login() {
         // TODO code application logic here
-        Scanner inputScanner = new Scanner(System.in);
         boolean loggedIn = false;
-        while(!loggedIn)
-        {
-            System.out.println("Enter L to login or enter R to register.");
-            String response = inputScanner.next();
+            System.out.println("*Testing login for known valid login:*");
+            System.out.println("Username: catsanddogs");
+            System.out.println("Password: applesandoranges");
             
-            if(response.equalsIgnoreCase("L"))
-            {
-                login();
-            }
-            else if(response.equalsIgnoreCase("r"))
-            {
-                register();
-            }
-        
-        }
+            login("catsanddogs", "applesandoranges");
+            
+            System.out.print("\n");
+            System.out.println("*Testing login for known invalid login:*");
+            System.out.println("Username: notarealusername");
+            System.out.println("password: notarealpassword");
+            
+            login("notarealusername", "notarealpassword");
     }
-    private static void login()
+    
+    /**
+     * Called with parameters to attempt a login by the user
+     * @param username
+     * @param password 
+     */
+    private static void login(String username, String password)
     {
         boolean loggedIn = false;
-        Scanner inputScanner = new Scanner(System.in);
-        while(!loggedIn)
+        LoginInfoChecker loginCheck = new LoginInfoChecker(username, password);
+        try
         {
-            System.out.println("Please input your username:\n");
-            String username = inputScanner.nextLine();
-            
-            System.out.println("Please input your password:\n");
-            String password = inputScanner.nextLine();
-            
-            LoginInfoChecker loginCheck = new LoginInfoChecker(username, password);
-            try
-            {
-                loggedIn = loginCheck.validateLogin();
-            }
-            catch(FileNotFoundException e)
-            {
-                System.out.println("Login file not found. Exiting program.");
-                System.exit(0);
-            }
+            loggedIn = loginCheck.validateLogin();
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+            System.exit(0);
+        }
         
-            if(loggedIn)
-            {
-                System.out.println("Login successful");
-            }
-            else
-            {
-                System.out.println("Login unsuccessful. Please try again");
-            }
+        if(loggedIn)
+        {
+            System.out.println("Login successful");
+        }
+        else
+        {
+            System.out.println("Login unsuccessful. Please try again");
         }
     }
     
+    /**
+     * will be implemented to give the user the option to register from login screen
+     */
     private static void register()
     {
         LoginRegister lrg = new LoginRegister();

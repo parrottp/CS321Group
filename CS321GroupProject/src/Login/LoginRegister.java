@@ -12,7 +12,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 /**
- *
+ *  A class that when implemented,
+ * will allow users to create a new user profile
  * @author Taquito Jr
  */
 public class LoginRegister {
@@ -20,6 +21,9 @@ public class LoginRegister {
     private String username = "";
     private String password = "";
     
+    /**
+     * login Register constructor which controls the process of registering
+     */
     public LoginRegister()
     {
         getInfo();
@@ -46,6 +50,9 @@ public class LoginRegister {
         }
     }
     
+    /**
+     * Method which asks for the intended username and password
+     */
     private void getInfo()
     {
         Scanner inputScanner = new Scanner(System.in);
@@ -56,6 +63,10 @@ public class LoginRegister {
         password = inputScanner.next();
     }
     
+    /**
+     * determines whether username has already been taken
+     * @return 
+     */
     public int registerNewLogin()
     {
         LoginInfoChecker loginCheck = new LoginInfoChecker(username, password);
@@ -94,6 +105,11 @@ public class LoginRegister {
         }
     }
     
+    /**
+     * upon a successful registration, this will add the new login info
+     * to the list of registered usernames and passwords
+     * @return 
+     */
     private void addLogin()
     throws IOException{
         FileWriter fw = new FileWriter(loginFile, true);

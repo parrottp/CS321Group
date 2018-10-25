@@ -5,8 +5,8 @@
  */
 package Login;
 /**
- *
- * @author Taquito Jr
+ *  Class that verifies login credentials against file of known logins
+ * @author Nick Burns
  */
 import java.util.*;
 import java.io.*;
@@ -16,6 +16,12 @@ public class LoginInfoChecker {
     private String password = "";
     private File loginFile;
     
+    /**
+     * LoginChecker object holds the username and password for the 
+     * login attempt
+     * @param username
+     * @param password 
+     */
     public LoginInfoChecker(String username, String password)
     {
         this.username = username;
@@ -23,10 +29,15 @@ public class LoginInfoChecker {
         loginFile = new File("RegisteredLogins.txt");
     }
     
+    /**
+     * verifies the login information attributes against the file
+     * containing known login info
+     * @return
+     * @throws FileNotFoundException 
+     */
     public boolean validateLogin() throws FileNotFoundException
     {
         boolean uTrue = false;
-        boolean pTrue = false;
         String line = null;
         Scanner loginScanner;
         
@@ -62,6 +73,13 @@ public class LoginInfoChecker {
         }
     }
     
+    /**
+     * When registering is implemented this method tests whether
+     * a username is taken
+     * @param username
+     * @return
+     * @throws FileNotFoundException 
+     */
     public Boolean findUsername(String username) throws FileNotFoundException
     {
         Scanner loginScanner;
