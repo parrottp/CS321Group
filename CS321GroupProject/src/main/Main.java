@@ -21,7 +21,6 @@ public class Main {
         // TODO code application logic here
         Login.login();
         
-        Message.main(args);
         
        
             
