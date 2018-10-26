@@ -7,13 +7,14 @@ package Login;
 
 import java.util.*;
 import java.io.FileNotFoundException;
+
 /**
- *
- * @author Taquito Jr
+ * 
+ * @author Nicholas Burns
  */
 public class Login {
-    
     /**
+     * Tests function of package: prompts User to login OR register
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -33,10 +34,11 @@ public class Login {
             {
                 register();
             }
-        
         }
     }
-    private static void login()
+    
+    
+    public static void login()
     {
         boolean loggedIn = false;
         Scanner inputScanner = new Scanner(System.in);
@@ -62,6 +64,7 @@ public class Login {
             if(loggedIn)
             {
                 System.out.println("Login successful");
+                loggedIn = true;
             }
             else
             {

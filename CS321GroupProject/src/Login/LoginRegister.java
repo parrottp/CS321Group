@@ -63,7 +63,7 @@ public class LoginRegister {
         
         try
         {
-            takenUsername = loginCheck.findUsername(username);
+            takenUsername = loginCheck.isUsernameTaken(username);
         }
         catch(FileNotFoundException e)
         {

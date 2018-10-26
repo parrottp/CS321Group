@@ -4,6 +4,10 @@
  */
 package main;
 
+import java.util.Scanner;
+import Login.*;
+import message.*;
+
 /**
  *
  * @author parro
@@ -15,6 +19,19 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Login.login();
+        
+        Message.main(args);
+        
+       
+            
+            
+            
+            
+            
+            
+            
+        
     }
     
 }
