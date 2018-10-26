@@ -34,6 +34,7 @@ public class UserInput extends DataLoader
             System.out.println("Enter Password");
             System.out.println("Enter Game Interested in");
             System.out.println("Enter Age");
+            System.out.println("\n");
 
             //Read data from user
             DataLoader data = new DataLoader();
