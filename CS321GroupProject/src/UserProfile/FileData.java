@@ -6,19 +6,18 @@ package UserProfile;
  */
 import java.io.*;
 
-public class FileData extends DataLoader 
-    {
+public class FileData extends DataLoader {
     
         /**  
         * Create new file, file named with username.
         */ 
-        String FileCreate(String user)
+        public String FileCreate(String fileName)
         {
             BufferedReader aReader = null;
             try 
             {
                 //Create new file
-                PrintWriter aWriter = new PrintWriter(user +".txt", "UTF-8");
+                PrintWriter aWriter = new PrintWriter(fileName, "UTF-8");
                 aWriter.close();
             }
             catch (IOException e)
@@ -34,20 +33,18 @@ public class FileData extends DataLoader
         * Write string to file.
         *
         */ 
-        String FileWrite(String sVar, String user)
-        {
+        public String FileWrite(String sVar, String fileName)
+        { 
+            BufferedWriter writer;
             try 
             {
-                //Create new file
-                PrintWriter aWriter = new PrintWriter(user +".txt", "UTF-8");
-                
-                //Print data to file
-                aWriter.println(sVar + "\n");
-                aWriter.close();
+                writer = new BufferedWriter(new FileWriter(fileName, true));
+                writer.write(sVar);
+                writer.newLine();
+                writer.close();
             }
             catch (IOException e)
             {
-
                 e.printStackTrace();
             }
                 
@@ -58,13 +55,13 @@ public class FileData extends DataLoader
         * Read string from file and return. 
         *
         */ 
-        String FileLoad(String user)
+        public String FileLoad(String fileName)
         {
             BufferedReader aReader = null;
             try 
             {
                 //Read file
-                aReader = new BufferedReader(new FileReader(user +".txt"));
+                aReader = new BufferedReader(new FileReader(fileName));
                 
                 //Split string by whitespace
                 String userData = aReader.readLine();

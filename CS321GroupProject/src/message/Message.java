@@ -5,6 +5,8 @@
  */
 package message;
 
+import UserProfile.FileData;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Message 
+public class Message extends FileData
 {
     private String message;
     private String user;
@@ -75,18 +77,10 @@ public class Message
     
     
     /**
-     * Uses FileWriter wrapped with BufferedWriter to write Message to File.
+     * Uses FileData to write message to File
      */
     public void writeMessage()  {
-        BufferedWriter writer;
-        try {
-            writer = new BufferedWriter(new FileWriter(fileName, true));            //Creates FileWriter wrapped with BufferedWriter
-            writer.write(createMessage());                                          //Writes the formatted message to File
-            writer.newLine();                                                       //Ends line
-            writer.close();                                                         //Closes BufferedWriter
-        }
-        catch (IOException ex) {                                                    //Handles IOException
-            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FileData fd = new FileData();
+        String s = fd.FileWrite(createMessage(), fileName);
     }
 }
