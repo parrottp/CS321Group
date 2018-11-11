@@ -1,11 +1,13 @@
 package UserProfile;
 
+import java.text.ParseException;
+
 /**
  *
  * @author livweaver
  */
 public class Driver {
-    public static void main(String[] args) 
+    public static void main(String[] args) throws ParseException
     {
         //View supplemented here
         //System.out.println("Enter Username");
@@ -28,12 +30,15 @@ public class Driver {
         //file.FileWrite(data.getString(),data.getString());
         //}
         
+        //Tests functions of CalculateAge
         String inputDate = "01/01/1999";
         
-        CalculateAge calc = new CalculateAge(inputDate);
-        
-        String age = calc.getAge();
-        System.out.println(age);
+        CalculateAge input = new CalculateAge(inputDate);
+        CalculateAge calc = new CalculateAge();
+       
+        calc.happyBirthday();
+        String age = input.getAge();
+        System.out.println("Age: " + age);
     }
     
 }

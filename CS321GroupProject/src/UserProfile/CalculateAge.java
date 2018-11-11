@@ -7,7 +7,9 @@ package UserProfile;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -16,47 +18,94 @@ import java.util.concurrent.TimeUnit;
  * @author noahe
  */
 public class CalculateAge {
-    //private Scanner console;
-    private String inputDate;
+    private Scanner console;
+    private String inputDate;           //INPUT FROM GUI
     private Date currentDay;
     private Date birthDay;
+    private Calendar calendar;
     private SimpleDateFormat sdf;
     private long timeDiff;
     private String age;
 
-
-    public CalculateAge(String inputDate) throws ParseException {
-        //this.console = new Scanner(System.in);      //INPUT FROM GUI
+    /**
+     * Constructor
+     * @param inputDate
+     * @throws ParseException 
+     */
+    public CalculateAge(String inputDate) throws ParseException {       //INPUT COMES FROM GUI, CALLED BY VIEW WITH INPUT PARAMETER
         this.inputDate = inputDate;
         this.currentDay = new Date();
+        this.calendar = new GregorianCalendar();
+        this.sdf = new SimpleDateFormat("MM/dd/yyyy");
+       
+        this.setBirthDate();     //Locally calls setBirthDay method
+        this.processAge();   //Locally calls printTimeDiff method
+    }
+    
+    /**
+     * TESTS USE CASE WITH CONSOLE INPUT
+     * @throws ParseException 
+     */
+    public CalculateAge() throws ParseException {
+        this.console = new Scanner(System.in);     
+        this.currentDay = new Date();
+        this.calendar = new GregorianCalendar();
         this.sdf = new SimpleDateFormat("MM/dd/yyyy");
         
         System.out.println("Please input your date of birth in this format (mm/dd/yyyy): ");
-       
-        this.setBirthDay();     //Locally calls setBirthDay method
-        this.printTimeDiff();   //Locally calls printTimeDiff method
+        this.inputDate = console.nextLine();
+        
+        this.setBirthDate();     //Locally calls setBirthDay method
+        this.processAge();   //Locally calls printTimeDiff method
     }
     
-    private void setBirthDay() throws ParseException {
+    /**
+     * Turns input birthDate String into Date object
+     * @throws ParseException 
+     */
+    private void setBirthDate() throws ParseException {
         Date birthDay = sdf.parse(inputDate);
         
         this.birthDay = birthDay;                       //Sets local variable
     }
     
-    private void setTimeDiff() {
-        long timeDiff = this.currentDay.getTime() - this.birthDay.getTime();    //Calculates different between birth date and current date
+    /**
+     * Turns birthDate and currentDate into String age
+     */
+    private void processAge() {
+        //Calculates time difference between birth date and current date
+        long timeDiff = this.currentDay.getTime() - this.birthDay.getTime();    
         
-        this.timeDiff = timeDiff;                                               //Sets local variable for time difference
-    }
-    
-    private void printTimeDiff() {
-        this.setTimeDiff();     //Locally calls setTimeDiff() method
+        //Sets local variable for time difference
+        this.timeDiff = timeDiff;                                               
         
-        System.out.println("Years: " + (TimeUnit.DAYS.convert(this.timeDiff, TimeUnit.MILLISECONDS))/365);  
+        //Changes time difference into years, and converts it into a String  
         this.age = Long.toString((TimeUnit.DAYS.convert(this.timeDiff, TimeUnit.MILLISECONDS))/365);
     }
     
+    /**
+     * Accessor for User age
+     * @return User age
+     */
     public String getAge() {
         return this.age;
+    }
+    
+    /**
+     * Outputs message on User's birthday
+     */
+    public void happyBirthday() {
+        Calendar bday = new GregorianCalendar();
+        Calendar cday = new GregorianCalendar();
+        
+        bday.setTime(this.birthDay);
+        cday.setTime(this.currentDay);
+        
+        
+        if(bday.get(Calendar.MONTH) == cday.get(Calendar.MONTH)) {         
+            if (bday.get(Calendar.DAY_OF_MONTH) == cday.get(Calendar.DAY_OF_MONTH)) {
+                System.out.println("HAPPY BIRTHDAY!");                                              //SEND TO GUI
+            }
+        }
     }
 }
