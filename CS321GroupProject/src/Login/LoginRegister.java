@@ -24,9 +24,10 @@ public class LoginRegister {
     /**
      * login Register constructor which controls the process of registering
      */
-    public LoginRegister()
+    public LoginRegister(String username, String password)
     {
-        getInfo();
+        this.username = username;
+        this.password = password;
         loginFile = new File("RegisteredLogins.txt");
         int registerAttempt = 2;
         while(registerAttempt > 0)
@@ -114,12 +115,11 @@ public class LoginRegister {
     throws IOException{
         FileWriter fw = new FileWriter(loginFile, true);
         BufferedWriter writer = new BufferedWriter(fw);
-        writer.append("\n");
+        writer.newLine();
+        writer.append("u:"+username);
+        writer.newLine();
+        writer.append("p" + password);
         writer.close();
-        writer = new BufferedWriter(fw);
-        writer.append("u:"+username+"\n");
-        writer.close();
-        writer = new BufferedWriter(fw);
         //writer.append("u"+password+"\n");
         //writer.close();
     }

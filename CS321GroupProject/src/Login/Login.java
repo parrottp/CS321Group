@@ -31,6 +31,13 @@ public class Login {
             System.out.println("password: notarealpassword");
             
             login("notarealusername", "notarealpassword");
+            
+            System.out.print("\n");
+            System.out.println("*Testing registration:*");
+            System.out.println("Username: notarealusername");
+            System.out.println("password: notarealpassword");
+            
+            register("notarealusername", "notarealpassword");
     }
     
     /**
@@ -60,13 +67,15 @@ public class Login {
         {
             System.out.println("Login unsuccessful. Please try again");
         }
+        
+        
     }
     
     /**
      * will be implemented to give the user the option to register from login screen
      */
-    private static void register()
+    private static void register(String username, String password)
     {
-        LoginRegister lrg = new LoginRegister();
+        LoginRegister lrg = new LoginRegister(username, password);
     }
 }
