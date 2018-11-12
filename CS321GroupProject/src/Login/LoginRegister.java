@@ -116,6 +116,7 @@ public class LoginRegister {
         FileWriter fw = new FileWriter(loginFile, true);
         BufferedWriter writer = new BufferedWriter(fw);
         writer.newLine();
+        writer.newLine();
         writer.append("u:"+username);
         writer.newLine();
         writer.append("p" + password);
