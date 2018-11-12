@@ -1,4 +1,4 @@
-package UserProfile;
+package Model;
 
 import java.text.ParseException;
 
@@ -37,7 +37,7 @@ public class Driver {
         CalculateAge calc = new CalculateAge();
        
         calc.happyBirthday();
-        String age = input.getAge();
+        String age = calc.getAge();
         System.out.println("Age: " + age);
     }
     

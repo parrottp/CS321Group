@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Login;
+
+package Model;
+
+import Model.LoginInfoChecker;
 import java.io.File;
 import java.util.*;
 import java.io.BufferedWriter;
@@ -11,18 +9,23 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+
 /**
  *
- * @author Taquito Jr
+ * @author Nicholas Burns
  */
 public class LoginRegister {
     private File loginFile;
     private String username = "";
     private String password = "";
     
-    public LoginRegister()
+    /**
+     * login Register constructor which controls the process of registering
+     */
+    public LoginRegister(String username, String password)
     {
-        getInfo();
+        this.username = username;
+        this.password = password;
         loginFile = new File("RegisteredLogins.txt");
         int registerAttempt = 2;
         while(registerAttempt > 0)
@@ -46,6 +49,10 @@ public class LoginRegister {
         }
     }
     
+    
+    /**
+     * Method which asks for the intended username and password
+     */
     private void getInfo()
     {
         Scanner inputScanner = new Scanner(System.in);
@@ -56,6 +63,11 @@ public class LoginRegister {
         password = inputScanner.next();
     }
     
+    
+    /**
+     * Determines whether username has already been taken
+     * @return 
+     */
     public int registerNewLogin()
     {
         LoginInfoChecker loginCheck = new LoginInfoChecker(username, password);
@@ -63,7 +75,7 @@ public class LoginRegister {
         
         try
         {
-            takenUsername = loginCheck.isUsernameTaken(username);
+            takenUsername = loginCheck.findUsername(username);
         }
         catch(FileNotFoundException e)
         {
@@ -94,17 +106,19 @@ public class LoginRegister {
         }
     }
     
-    private void addLogin()
-    throws IOException{
+    
+    /**
+     * Upon a successful registration, this will add the new login info to the list of registered usernames and passwords
+     */
+    private void addLogin() throws IOException{
         FileWriter fw = new FileWriter(loginFile, true);
         BufferedWriter writer = new BufferedWriter(fw);
-        writer.append("\n");
+        writer.newLine();
+        writer.append("u:" + username);
+        writer.newLine();
+        writer.append("p" + password);
         writer.close();
-        writer = new BufferedWriter(fw);
-        writer.append("u:"+username+"\n");
-        writer.close();
-        writer = new BufferedWriter(fw);
-        //writer.append("u"+password+"\n");
-        //writer.close();
+        
+        //REGISTERED WITH USERNAME AND PASSWORD. CREATE NEW USER DATA FILE. POPULATE FILE WITH USER DATA FROM GUI
     }
 }

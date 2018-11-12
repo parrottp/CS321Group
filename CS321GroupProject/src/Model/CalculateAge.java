@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserProfile;
+package Model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,6 +37,7 @@ public class CalculateAge {
         this.currentDay = new Date();
         this.calendar = new GregorianCalendar();
         this.sdf = new SimpleDateFormat("MM/dd/yyyy");
+        this.sdf.setLenient(false);
        
         this.setBirthDate();     //Locally calls setBirthDay method
         this.processAge();   //Locally calls printTimeDiff method
@@ -51,12 +52,13 @@ public class CalculateAge {
         this.currentDay = new Date();
         this.calendar = new GregorianCalendar();
         this.sdf = new SimpleDateFormat("MM/dd/yyyy");
+        this.sdf.setLenient(false);
         
         System.out.println("Please input your date of birth in this format (mm/dd/yyyy): ");
         this.inputDate = console.nextLine();
         
         this.setBirthDate();     //Locally calls setBirthDay method
-        this.processAge();   //Locally calls printTimeDiff method
+        this.processAge();       //Locally calls printTimeDiff method
     }
     
     /**
@@ -64,9 +66,14 @@ public class CalculateAge {
      * @throws ParseException 
      */
     private void setBirthDate() throws ParseException {
-        Date birthDay = sdf.parse(inputDate);
-        
-        this.birthDay = birthDay;                       //Sets local variable
+        try {
+            Date birthDay = sdf.parse(inputDate);
+            this.birthDay = birthDay;                       //Sets local variable
+        }
+        catch (ParseException e) {
+            System.out.println("Input Date is invalid.  (This error is caught in the CalculateAge class.)");
+            System.exit(0);
+        }
     }
     
     /**
@@ -74,10 +81,10 @@ public class CalculateAge {
      */
     private void processAge() {
         //Calculates time difference between birth date and current date
-        long timeDiff = this.currentDay.getTime() - this.birthDay.getTime();    
+        long time = this.currentDay.getTime() - this.birthDay.getTime();    
         
         //Sets local variable for time difference
-        this.timeDiff = timeDiff;                                               
+        this.timeDiff = time;                                               
         
         //Changes time difference into years, and converts it into a String  
         this.age = Long.toString((TimeUnit.DAYS.convert(this.timeDiff, TimeUnit.MILLISECONDS))/365);
