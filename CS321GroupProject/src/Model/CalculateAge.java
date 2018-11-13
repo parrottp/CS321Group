@@ -40,7 +40,7 @@ public class CalculateAge {
         this.sdf.setLenient(false);
        
         this.setBirthDate();     //Locally calls setBirthDay method
-        this.processAge();   //Locally calls printTimeDiff method
+        this.processAge();       //Locally calls printTimeDiff method
     }
     
     /**
@@ -101,7 +101,9 @@ public class CalculateAge {
     /**
      * Outputs message on User's birthday
      */
-    public void happyBirthday() {
+    public boolean happyBirthday() {
+        boolean check = false;
+        
         Calendar bday = new GregorianCalendar();
         Calendar cday = new GregorianCalendar();
         
@@ -111,8 +113,10 @@ public class CalculateAge {
         
         if(bday.get(Calendar.MONTH) == cday.get(Calendar.MONTH)) {         
             if (bday.get(Calendar.DAY_OF_MONTH) == cday.get(Calendar.DAY_OF_MONTH)) {
-                System.out.println("HAPPY BIRTHDAY!");                                              //SEND TO GUI
+                check = true;                                                                   //SEND TO GUI
             }
         }
+        
+        return check;
     }
 }

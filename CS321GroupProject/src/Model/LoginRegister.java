@@ -116,7 +116,7 @@ public class LoginRegister {
         writer.newLine();
         writer.append("u:" + username);
         writer.newLine();
-        writer.append("p" + password);
+        writer.append("p:" + password);
         writer.close();
         
         //REGISTERED WITH USERNAME AND PASSWORD. CREATE NEW USER DATA FILE. POPULATE FILE WITH USER DATA FROM GUI

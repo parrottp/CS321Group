@@ -41,7 +41,7 @@ public class Login {
      * @param username
      * @param password 
      */
-    private static void login(String username, String password)
+    public static void login(String username, String password)
     {
         boolean loggedIn = false;
         LoginInfoChecker loginCheck = new LoginInfoChecker(username, password);
@@ -69,7 +69,7 @@ public class Login {
     /**
      * Will be implemented to give the user the option to register from login screen
      */
-    private static void register(String username, String password)
+    public static void register(String username, String password)
     {
         LoginRegister lrg = new LoginRegister(username, password);
     }

@@ -49,4 +49,5 @@ public class Model {
         input.happyBirthday();
         this.userAge = input.getAge();
     }
+    
 }
