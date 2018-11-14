@@ -26,6 +26,8 @@ public class CalculateAge {
     private SimpleDateFormat sdf;
     private long timeDiff;
     private String age;
+    
+    private boolean invalidDate = false;
 
     /**
      * Constructor
@@ -40,7 +42,7 @@ public class CalculateAge {
         this.sdf.setLenient(false);
        
         this.setBirthDate();     //Locally calls setBirthDay method
-        this.processAge();       //Locally calls printTimeDiff method
+        //this.processAge();       //Locally calls printTimeDiff method
     }
     
     /**
@@ -58,7 +60,7 @@ public class CalculateAge {
         this.inputDate = console.nextLine();
         
         this.setBirthDate();     //Locally calls setBirthDay method
-        this.processAge();       //Locally calls printTimeDiff method
+        //this.processAge();       //Locally calls printTimeDiff method
     }
     
     /**
@@ -72,14 +74,18 @@ public class CalculateAge {
         }
         catch (ParseException e) {
             System.out.println("Input Date is invalid.  (This error is caught in the CalculateAge class.)");
-            System.exit(0);
+            this.invalidDate = true;
         }
+    }
+    
+    public boolean getInvalidDate() {
+        return this.invalidDate;
     }
     
     /**
      * Turns birthDate and currentDate into String age
      */
-    private void processAge() {
+    public void processAge() {
         //Calculates time difference between birth date and current date
         long time = this.currentDay.getTime() - this.birthDay.getTime();    
         

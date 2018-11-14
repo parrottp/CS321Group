@@ -1,5 +1,5 @@
 
-package Model;
+package Graveyard;
 
 import java.util.*;
 import java.io.*;

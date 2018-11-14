@@ -1,5 +1,7 @@
-package Model;
+package Graveyard;
 
+import Model.CalculateAge;
+import Model.FileData;
 import java.io.File;
 import java.text.ParseException;
 
@@ -7,7 +9,7 @@ import java.text.ParseException;
  *
  * @author livweaver
  */
-public class UserProfileModel {
+public class GUIModel {
     private String fileName;
     
     private String firstname;
@@ -20,7 +22,7 @@ public class UserProfileModel {
     private String age;
     
 //Constructor 
-public UserProfileModel(String firstname, String lastname, String aUsername, String aPassword, String aBirthday, String aGameInterest)
+public GUIModel(String firstname, String lastname, String aUsername, String aPassword, String aBirthday, String aGameInterest)
 {
     this.firstname = firstname;
     this.lastname = lastname;

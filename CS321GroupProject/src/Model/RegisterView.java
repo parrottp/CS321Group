@@ -2,10 +2,11 @@ package Model;
 
 /**
  *
- * @author livweaver
+ * @author livweaver, noahe
  */
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -15,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class UserProfileView 
+public class RegisterView 
 {
  //Labels
  private JFrame frame;
@@ -43,7 +44,7 @@ public class UserProfileView
   * @param title used for frame title
   *
   */
- public UserProfileView(String title) 
+ public RegisterView(String title) 
  {
      
   // Create the principal frame
@@ -55,8 +56,8 @@ public class UserProfileView
   frame.setVisible(true);
 
   // Create labels
-  firstnameLabel = new JLabel("Firstname: ");
-  lastnameLabel = new JLabel("Lastname: ");
+  firstnameLabel = new JLabel("First name: ");
+  lastnameLabel = new JLabel("Last name: ");
   usernameLabel = new JLabel("Username: ");
   passwordLabel = new JLabel("Password: ");
   birthdayLabel = new JLabel("Birthday: ");
@@ -127,6 +128,11 @@ public class UserProfileView
   frame.getContentPane().setLayout(layout);
  }
 
+ //Closes the JFrame
+ public void close() {
+     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+ }
+ 
  public JFrame getFrame() 
  {
   return frame;

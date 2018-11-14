@@ -1,7 +1,7 @@
 
-package Model;
+package Graveyard;
 
-import Model.LoginInfoChecker;
+import Graveyard.LoginInfoChecker;
 import java.io.File;
 import java.util.*;
 import java.io.BufferedWriter;

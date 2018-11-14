@@ -7,17 +7,17 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author livweaver
+ * @author livweaver, noahe
  */
-public class UserProfileController 
+public class RegisterController 
 {
     
-    private UserProfileModel model;
-    private UserProfileView view;
+    private Model model;
+    private RegisterView view;
     
     
     //constructor
-    public UserProfileController(UserProfileModel m, UserProfileView v)
+    public RegisterController(Model m, RegisterView v)
     {
         model = m;
         view = v;
@@ -40,7 +40,7 @@ public class UserProfileController
             try {
                 createProfile();
             } catch (ParseException ex) {
-                Logger.getLogger(UserProfileController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -56,6 +56,10 @@ public class UserProfileController
         if (model.processBirthdate()) {                                                 //Processes birthDate in Model into age
             happyBirthday();                                                            //Prints happy birthday message if birthday
         }
+        if (model.getInvalidDateInput()) {
+            invalidDate();
+        }
+        
         
         model.setGameInterest(view.getGameTextfield().getText());                       //Loads gameInterest into Model from GUI input
         
@@ -64,7 +68,12 @@ public class UserProfileController
         }
         else {
             JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Profile Created", JOptionPane.INFORMATION_MESSAGE);
+            view.close();
         }
+    }
+    
+    public void invalidDate() {
+        JOptionPane.showMessageDialog(null, "Please input Date of Birth in the following format: MM/dd/yyyy", "Invalid Date", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public void happyBirthday() {
