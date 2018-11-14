@@ -1,10 +1,11 @@
-package Model;
+package Graveyard;
 
 /**
  *
  * @author livweaver
  */
 
+import Model.DataLoader;
 import java.io.*;
 import java.util.*;
 import java.util.Scanner;
