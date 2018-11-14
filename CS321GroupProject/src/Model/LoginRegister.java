@@ -111,14 +111,20 @@ public class LoginRegister {
      * Upon a successful registration, this will add the new login info to the list of registered usernames and passwords
      */
     private void addLogin() throws IOException{
-        FileWriter fw = new FileWriter(loginFile, true);
-        BufferedWriter writer = new BufferedWriter(fw);
-        writer.newLine();
-        writer.append("u:" + username);
-        writer.newLine();
-        writer.append("p:" + password);
-        writer.close();
+        //FileWriter fw = new FileWriter(loginFile, true);
+        //BufferedWriter writer = new BufferedWriter(fw);
+        //writer.newLine();
+        //writer.append("u:" + username);
+        //writer.newLine();
+        //writer.append("p:" + password);
+        //writer.close();
         
+        BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile, true));
+        writer.newLine();
+        writer.write("u:" + username);
+        writer.newLine();
+        writer.write("p:" + password);
+        writer.close();
         //REGISTERED WITH USERNAME AND PASSWORD. CREATE NEW USER DATA FILE. POPULATE FILE WITH USER DATA FROM GUI
     }
 }

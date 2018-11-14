@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.File;
 import java.text.ParseException;
 
 /**
@@ -145,25 +146,53 @@ public void setLastname(String last)
         return input.happyBirthday();
     }
    
+    public boolean login() {
+        boolean accountExists = true;
+        
+        this.fileName = this.username + ".txt";
+        File temp = new File(fileName);
+        if(temp.exists()) {
+            FileData file = new FileData();         //Initializes FileData object
+            String line = file.FileLoad(fileName);  //Stores password for the username into String line
+            if(line.equals(this.password)) {
+                //Login successful. Open chat client
+                System.out.println("Login successful!");
+            }
+        }
+        else {
+            accountExists = false;
+        }
+        
+        return accountExists;
+    }
     
-    public void registerLoginInfo() {
-        Login reg = new Login();
-        reg.register(this.username, this.password);
-        newUserFile();
+    public boolean register() {
+        boolean usernameTaken = false;
+        
+        this.fileName = this.username + ".txt";
+        File temp = new File(fileName);
+        if(!temp.exists()) {    //If the User File does not exist
+            newUserFile();
+        }
+        else {                  //If the User File does exist
+            usernameTaken = true;
+        }
+        
+        return usernameTaken;
     }
     
     
     public void newUserFile() {
         //Create profile data file
         FileData file = new FileData();
-        this.fileName = this.username + ".txt";
         file.FileCreate(fileName);                  //file name is username.txt
-        file.FileWrite(this.username, fileName);
         file.FileWrite(this.password, fileName);
+        file.FileWrite(this.username, fileName);
         file.FileWrite(this.firstname, fileName);
         file.FileWrite(this.lastname, fileName);
         file.FileWrite(this.birthday, fileName);
         file.FileWrite(this.gameInterest, fileName);
+        file.FileWrite(this.username, "MasterList.txt");
     }
     
     

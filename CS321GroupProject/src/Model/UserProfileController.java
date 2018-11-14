@@ -47,27 +47,32 @@ public class UserProfileController
     
     private void createProfile() throws ParseException
     {
-        model.setFirstname(view.getFirstnameTextfield().getText());     //Loads firstName into Model from GUI input
-        model.setLastname(view.getLastnameTextfield().getText());       //Loads lastName into Model from GUI input
-        model.setUsername(view.getUsernameTextfield().getText());       //Loads username into Model from GUI input
-        model.setPassword(view.getPasswordTextfield().getText());       //Loads password into Model from GUI input
-        model.setBirthday(view.getBirthdayTextfield().getText());       //Loads birthDate into Model from GUI input
-        if (model.processBirthdate()) {                                 //Processes birthDate in Model into age
-            happyBirthday();                                            //Prints happy birthday message if birthday
+        model.setFirstname(view.getFirstnameTextfield().getText());                     //Loads firstName into Model from GUI input
+        model.setLastname(view.getLastnameTextfield().getText());                       //Loads lastName into Model from GUI input
+        model.setUsername(view.getUsernameTextfield().getText());                       //Loads username into Model from GUI input
+        model.setPassword(new String(view.getPasswordTextfield().getPassword()));       //Loads password into Model from GUI input
+        
+        model.setBirthday(view.getBirthdayTextfield().getText());                       //Loads birthDate into Model from GUI input
+        if (model.processBirthdate()) {                                                 //Processes birthDate in Model into age
+            happyBirthday();                                                            //Prints happy birthday message if birthday
         }
-        model.setGameInterest(view.getGameTextfield().getText());       //Loads gameInterest into Model from GUI input
         
+        model.setGameInterest(view.getGameTextfield().getText());                       //Loads gameInterest into Model from GUI input
         
-        model.registerLoginInfo();
-        
-        
-        //model.newUserFile();
-        
-        JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Profile Created", JOptionPane.INFORMATION_MESSAGE);
+        if (model.register()) {
+            usernameTaken();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Profile Created", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     
     public void happyBirthday() {
         JOptionPane.showMessageDialog(null, "Happy " + model.getAge() + "th Birthday!", "Happy Birthday!", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void usernameTaken() {
+        JOptionPane.showMessageDialog(null, "I'm sorry, this username is taken.", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
     }
     
 }

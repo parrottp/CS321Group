@@ -11,6 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -29,7 +30,7 @@ public class UserProfileView
  private JTextField firstnameTextfield;
  private JTextField lastnameTextfield;
  private JTextField usernameTextfield;
- private JTextField passwordTextfield;
+ private JPasswordField passwordTextfield;
  private JTextField birthdayTextfield;
  private JTextField gameTextfield;
  
@@ -65,14 +66,14 @@ public class UserProfileView
   firstnameTextfield = new JTextField();
   lastnameTextfield = new JTextField();
   usernameTextfield = new JTextField();
-  passwordTextfield = new JTextField();
+  passwordTextfield = new JPasswordField();
   birthdayTextfield = new JTextField();
   gameTextfield = new JTextField();
   
   //Create buttons
   createProfile = new JButton("Create Profile");
   
-  // Add UI element to frame
+  //Add UI element to frame
   GroupLayout layout = new GroupLayout(frame.getContentPane());
   layout.setAutoCreateGaps(true);
   layout.setHorizontalGroup(layout.createSequentialGroup()
@@ -186,12 +187,12 @@ public class UserProfileView
   this.usernameTextfield = usernameTextfield;
  }
  
- public JTextField getPasswordTextfield() 
+ public JPasswordField getPasswordTextfield() 
  {
-  return passwordTextfield;
+  return this.passwordTextfield;
  }
 
- public void setPasswordTextfield(JTextField usernameTextfield) 
+ public void setPasswordTextfield(JPasswordField usernameTextfield) 
  {
   this.passwordTextfield = usernameTextfield;
  }
@@ -221,7 +222,7 @@ public class UserProfileView
      return createProfile;
  }
  
- public void setCreateProfilButton(JButton createProfile)
+ public void setCreateProfileButton(JButton createProfile)
  {
      this.createProfile = createProfile;
  }
