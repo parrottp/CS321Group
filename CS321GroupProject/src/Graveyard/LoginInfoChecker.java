@@ -1,3 +1,4 @@
+<<<<<<< HEAD:CS321GroupProject/src/Login/LoginInfoChecker.java
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,9 +9,18 @@ package Login;
  *  Class that verifies login credentials against file of known logins
  * @author Nick Burns
  */
+=======
+
+package Graveyard;
+
+>>>>>>> noah_development:CS321GroupProject/src/Graveyard/LoginInfoChecker.java
 import java.util.*;
 import java.io.*;
 
+/**
+ * Checks User login info by scanning File of User data to see if input credentials match stored values
+ * @author Nicholas Burns
+ */
 public class LoginInfoChecker {
     private String username = "";
     private String password = "";
@@ -102,6 +112,4 @@ public class LoginInfoChecker {
         loginScanner.close();
         return false;
     }
-    
-    
 }

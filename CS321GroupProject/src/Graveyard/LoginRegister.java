@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Login;
+
+package Graveyard;
+
+import Graveyard.LoginInfoChecker;
 import java.io.File;
 import java.util.*;
 import java.io.BufferedWriter;
@@ -11,10 +9,16 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+
 /**
+<<<<<<< HEAD:CS321GroupProject/src/Login/LoginRegister.java
  *  A class that when implemented,
  * will allow users to create a new user profile
  * @author Taquito Jr
+=======
+ *
+ * @author Nicholas Burns
+>>>>>>> noah_development:CS321GroupProject/src/Graveyard/LoginRegister.java
  */
 public class LoginRegister {
     private File loginFile;
@@ -51,6 +55,10 @@ public class LoginRegister {
         }
     }
     
+<<<<<<< HEAD:CS321GroupProject/src/Login/LoginRegister.java
+=======
+    
+>>>>>>> noah_development:CS321GroupProject/src/Graveyard/LoginRegister.java
     /**
      * Method which asks for the intended username and password
      */
@@ -64,8 +72,14 @@ public class LoginRegister {
         password = inputScanner.next();
     }
     
+<<<<<<< HEAD:CS321GroupProject/src/Login/LoginRegister.java
     /**
      * determines whether username has already been taken
+=======
+    
+    /**
+     * Determines whether username has already been taken
+>>>>>>> noah_development:CS321GroupProject/src/Graveyard/LoginRegister.java
      * @return 
      */
     public int registerNewLogin()
@@ -106,6 +120,7 @@ public class LoginRegister {
         }
     }
     
+<<<<<<< HEAD:CS321GroupProject/src/Login/LoginRegister.java
     /**
      * upon a successful registration, this will add the new login info
      * to the list of registered usernames and passwords
@@ -122,6 +137,27 @@ public class LoginRegister {
         writer.append("p" + password);
         writer.close();
         //writer.append("u"+password+"\n");
+=======
+    
+    /**
+     * Upon a successful registration, this will add the new login info to the list of registered usernames and passwords
+     */
+    private void addLogin() throws IOException{
+        //FileWriter fw = new FileWriter(loginFile, true);
+        //BufferedWriter writer = new BufferedWriter(fw);
+        //writer.newLine();
+        //writer.append("u:" + username);
+        //writer.newLine();
+        //writer.append("p:" + password);
+>>>>>>> noah_development:CS321GroupProject/src/Graveyard/LoginRegister.java
         //writer.close();
+        
+        BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile, true));
+        writer.newLine();
+        writer.write("u:" + username);
+        writer.newLine();
+        writer.write("p:" + password);
+        writer.close();
+        //REGISTERED WITH USERNAME AND PASSWORD. CREATE NEW USER DATA FILE. POPULATE FILE WITH USER DATA FROM GUI
     }
 }
