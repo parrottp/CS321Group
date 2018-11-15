@@ -38,6 +38,10 @@ public class LoginController {
         view.getLoginButton().addActionListener(e -> {
             login();
         });
+        
+        view.getRegisterButton().addActionListener(e -> {
+            register();
+        });
     }
     
     public void login() {
@@ -57,6 +61,11 @@ public class LoginController {
         else {
             invalidUsername();
         }
+    }
+    
+    public void register()
+    {
+        
     }
     
     public void invalidUsername() {

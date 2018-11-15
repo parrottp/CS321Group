@@ -29,6 +29,7 @@ public class LoginView
  
  //Profile button
  private JButton loginButton;
+ private JButton registerButton;
 
  /**
   * View Constructor
@@ -57,6 +58,7 @@ public class LoginView
   
   //Create buttons
   loginButton = new JButton("Login");
+  registerButton = new JButton("Register Account");
   
   //Add UI element to frame
   GroupLayout layout = new GroupLayout(frame.getContentPane());
@@ -72,6 +74,9 @@ public class LoginView
           
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
         .addComponent(loginButton))
+    
+    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+        .addComponent(registerButton))
   );
   layout.setVerticalGroup(layout.createSequentialGroup()
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -84,6 +89,9 @@ public class LoginView
           
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
         .addComponent(loginButton))
+            
+    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+        .addComponent(registerButton))
   );
 
   layout.linkSize(SwingConstants.HORIZONTAL, loginButton);
@@ -130,9 +138,19 @@ public class LoginView
      return loginButton;
  }
  
+ public JButton getRegisterButton()
+ {
+     return registerButton;
+ }
+ 
  public void setLoginButton(JButton loginButton)
  {
      this.loginButton = loginButton;
+ }
+ 
+ public void setRegisterButton(JButton registerButton)
+ {
+     this.registerButton = registerButton;
  }
 
 }
