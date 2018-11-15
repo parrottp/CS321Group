@@ -26,16 +26,20 @@ public class Friends
         return potentialFriends;
     }
     
-    public ArrayList<String> pFriendsRemove(ArrayList<String> pFriends)
-    {
-        //If statements
-        potentialFriends.remove(User);
-        return potentialFriends;
-    }
-    
     public ArrayList<String> FriendListAdd(String user)
     {
         Friends.add(user);
         return Friends;
     }
+    
+    public ArrayList<String> pFriendsRemove(ArrayList<String> pFriends)
+    {
+        potentialFriends = pFriends;
+        String temp;
+    
+        
+        return potentialFriends;
+    }
+    
+   
 }
