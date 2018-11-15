@@ -64,7 +64,6 @@ public class FileData extends DataLoader {
                 
             //Split string by whitespace
             String userData = aReader.readLine();
-                
             aReader.close();
                 
             return userData;
