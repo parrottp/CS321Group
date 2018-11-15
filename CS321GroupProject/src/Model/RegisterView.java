@@ -130,7 +130,7 @@ public class RegisterView
 
  //Closes the JFrame
  public void close() {
-     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+    frame.dispose();
  }
  
  public JFrame getFrame() 

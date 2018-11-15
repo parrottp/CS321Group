@@ -65,6 +65,7 @@ public void setLastname(String last)
     this.lastname = last;
 }
 
+
     /**
       Set username
       @param newUsername the new password
@@ -74,6 +75,7 @@ public void setLastname(String last)
       username = newUsername;
    }
    
+   
    /**
       Get username.
    */
@@ -82,6 +84,7 @@ public void setLastname(String last)
       return username;
    }
    
+   
     /**
       Get password.
    */
@@ -89,6 +92,7 @@ public void setLastname(String last)
    {
       return password;
    }
+   
    
    /**
       Set password
@@ -99,6 +103,7 @@ public void setLastname(String last)
       password = newPassword;
    }
 
+   
     /**
       Set gameInterest
       @param newGameInterest the new game interest title
@@ -108,6 +113,7 @@ public void setLastname(String last)
       gameInterest = newGameInterest;
    }
    
+   
    /**
       Get gameInterest.
    */
@@ -115,6 +121,7 @@ public void setLastname(String last)
    {
       return gameInterest;
    }
+   
    
     /**
       Set birthday.
@@ -125,6 +132,7 @@ public void setLastname(String last)
       birthday = newBirthday;
    }
    
+   
    /**
       Get birthday.
    */
@@ -133,13 +141,16 @@ public void setLastname(String last)
       return birthday;
    }
     
+   
    public void setAge(String age) {
        this.age = age;
    }
    
+   
    public String getAge() {
        return age;
    }
+   
    
    /**
      * Called by Controller when the User inputs DoB into JTextField. Sets this.userAge = User's age.
@@ -160,19 +171,11 @@ public void setLastname(String last)
         }
     }
     
+    
     public boolean getInvalidDateInput() {
         return this.invalidDateInput;
     }
-   
-    //Opens main client
-    public void login() {
-        
-        
-        
-        
-        
-        
-    }
+    
     
     //Returns true if account exists
     public boolean checkUsername() {
@@ -187,6 +190,7 @@ public void setLastname(String last)
         
         return accountExists;
     }
+    
     
     //Returns true if password is correct
     public boolean checkPassword() {
@@ -203,13 +207,14 @@ public void setLastname(String last)
         return correctPassword;
     }
     
+    
     public boolean register() {
-        boolean usernameTaken = false;
+        boolean usernameTaken;
         
         this.fileName = this.username + ".txt";
         File temp = new File(fileName);
         if(!temp.exists()) {    //If the User File does not exist
-            newUserFile();
+            usernameTaken = false;
         }
         else {                  //If the User File does exist
             usernameTaken = true;
@@ -229,19 +234,22 @@ public void setLastname(String last)
         file.FileWrite(this.lastname, fileName);
         file.FileWrite(this.birthday, fileName);
         file.FileWrite(this.gameInterest, fileName);
-        file.FileWrite(this.username, "MasterList.txt");
+        //file.FileWrite(this.username, "MasterList.txt");
     }
     
     
-   /**
-   Check if the password is correct.
-   @param aPassword a password to check
-   @return true if the supplied password matches the user entered password.
-   */
-   public boolean checkPassword(String aPassword)
-   {
-      return aPassword.equals(password);
-   }
+    public void deleteFile() {
+        File file = new File(fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+    
+    
+    public void updateMasterList() {
+        FileData file = new FileData();
+        file.FileWrite(this.username, "MasterList.txt");
+    }
    
-   
+ 
 }

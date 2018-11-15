@@ -29,7 +29,7 @@ public class LoginView
  
  //Profile button
  private JButton loginButton;
- //private JButton registerButton;
+ private JButton registerButton;
 
  /**
   * View Constructor
@@ -44,7 +44,7 @@ public class LoginView
   frame = new JFrame(title);
   frame.getContentPane().setLayout(new BorderLayout());
   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  frame.setSize(400, 120);
+  frame.setSize(600, 400);
   frame.setLocationRelativeTo(null);
   frame.setVisible(true);
 
@@ -58,7 +58,7 @@ public class LoginView
   
   //Create buttons
   loginButton = new JButton("Login");
-  //registerButton = new JButton("Register Account");
+  registerButton = new JButton("Register Account");
   
   //Add UI element to frame
   GroupLayout layout = new GroupLayout(frame.getContentPane());
@@ -73,10 +73,11 @@ public class LoginView
         .addComponent(passwordTextfield))
           
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-        .addComponent(loginButton))
+        .addComponent(loginButton)
+        .addComponent(registerButton))
     
-    //.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-    //   .addComponent(registerButton))
+    //.addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+        
   );
   layout.setVerticalGroup(layout.createSequentialGroup()
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -89,9 +90,10 @@ public class LoginView
           
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
         .addComponent(loginButton))
+        
             
-    //.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-    //    .addComponent(registerButton))
+    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+        .addComponent(registerButton))
   );
 
   layout.linkSize(SwingConstants.HORIZONTAL, loginButton);
@@ -100,7 +102,7 @@ public class LoginView
  
  //Closes the JFrame
  public void close() {
-     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+     frame.dispose();
  }
 
  public JFrame getFrame() 
@@ -138,20 +140,20 @@ public class LoginView
      return loginButton;
  }
  
- //public JButton getRegisterButton()
- //{
- //    return registerButton;
- //}
+ public JButton getRegisterButton()
+ {
+     return registerButton;
+ }
  
  public void setLoginButton(JButton loginButton)
  {
      this.loginButton = loginButton;
  }
  
- //public void setRegisterButton(JButton registerButton)
- //{
- //    this.registerButton = registerButton;
- //}
+ public void setRegisterButton(JButton registerButton)
+ {
+     this.registerButton = registerButton;
+ }
 
 }
 

@@ -18,12 +18,25 @@ public class LoginController {
     private Model model;
     private LoginView view;
     
+    //boolean loggedIn = false;
+    boolean gotoRegister;
+    boolean viewIsOpen;
+    
+    //RegisterController stuff
+    private Model rm;
+    private RegisterView rv;
+    private RegisterController rc;
+    
     
     //constructor
     public LoginController(Model m, LoginView v)
     {
         model = m;
         view = v;
+        
+        gotoRegister = false;
+        viewIsOpen = true;
+        
         initialView();
     }
     
@@ -39,9 +52,9 @@ public class LoginController {
             login();
         });
         
-        //view.getRegisterButton().addActionListener(e -> {
-        //    register();
-        //});
+        view.getRegisterButton().addActionListener(e -> {
+            register();
+        });
     }
     
     public void login() {
@@ -51,8 +64,12 @@ public class LoginController {
         if (model.checkUsername()) {
             if (model.checkPassword()) {
                 //login();
+                
                 JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+                this.viewIsOpen = false;
                 view.close();       //Closes the login window
+                
+                //this.loggedIn = true;
             }
             else {
                 invalidPassword();
@@ -63,10 +80,20 @@ public class LoginController {
         }
     }
     
-    //public void register()
-    //{
-    //    
-    //}
+    public void register()
+    {
+        view.close();
+        
+        this.rm = new Model("Please enter first name", "Please enter last name", "Please enter username", "Please enter password", "MM/DD/YYYY", "Please enter game");
+        this.rv =  new RegisterView("Create Profile");
+        this.rc = new RegisterController(rm, rv);
+        rc.initialController();
+        //System.out.println("testing");
+        //this.gotoRegister = true;
+        //this.viewIsOpen = false;
+        //
+        
+    }
     
     public void invalidUsername() {
         JOptionPane.showMessageDialog(null, "I'm sorry, this username does not exist.", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
@@ -74,5 +101,13 @@ public class LoginController {
     
     public void invalidPassword() {
         JOptionPane.showMessageDialog(null, "I'm sorry, the password is incorrect.", "Incorrect Password", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public boolean getGotoRegister() {
+        return this.gotoRegister;
+    }
+    
+    public boolean getViewIsOpen() {
+        return this.viewIsOpen;
     }
 }

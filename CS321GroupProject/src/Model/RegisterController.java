@@ -15,6 +15,14 @@ public class RegisterController
     private Model model;
     private RegisterView view;
     
+    private boolean isBirthday;
+    
+    //login() Stuff
+    Model lm;
+    LoginView lv;
+    LoginController lc;
+    
+    
     
     //constructor
     public RegisterController(Model m, RegisterView v)
@@ -51,25 +59,38 @@ public class RegisterController
         model.setLastname(view.getLastnameTextfield().getText());                       //Loads lastName into Model from GUI input
         model.setUsername(view.getUsernameTextfield().getText());                       //Loads username into Model from GUI input
         model.setPassword(new String(view.getPasswordTextfield().getPassword()));       //Loads password into Model from GUI input
-        
+        model.setGameInterest(view.getGameTextfield().getText());                       //Loads gameInterest into Model from GUI input
         model.setBirthday(view.getBirthdayTextfield().getText());                       //Loads birthDate into Model from GUI input
+        
+        
         if (model.processBirthdate()) {                                                 //Processes birthDate in Model into age
-            happyBirthday();                                                            //Prints happy birthday message if birthday
+            this.isBirthday = true;                                                     //Updates based on birthay check in processBirthdate()
         }
         if (model.getInvalidDateInput()) {
             invalidDate();
+            return;
         }
-        
-        
-        model.setGameInterest(view.getGameTextfield().getText());                       //Loads gameInterest into Model from GUI input
-        
         if (model.register()) {
             usernameTaken();
+            return;
         }
+        
         else {
-            JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Profile Created", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Welcome " + model.getUsername() + "!", "Profile Created", JOptionPane.INFORMATION_MESSAGE);
+            happyBirthday();
+            model.newUserFile();
+            model.updateMasterList();
             view.close();
+            
+            login();
         }
+    }
+    
+    public void login() {
+        this.lm = new Model("Please enter username", "Please enter password");
+        this.lv = new LoginView("Login");
+        this.lc = new LoginController(lm, lv);
+        lc.initialController();
     }
     
     public void invalidDate() {

@@ -11,11 +11,14 @@ package Model;
  */
 public class GUIDriver {
     
+    //private boolean loggedIn;
+    
     public static void main(String[]args)
     {
         login();
-        //register();
     }
+        
+       
     
     public static void login() {
         Model m = new Model("Please enter username", "Please enter password");
