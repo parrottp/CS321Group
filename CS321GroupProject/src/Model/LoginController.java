@@ -39,9 +39,9 @@ public class LoginController {
             login();
         });
         
-        view.getRegisterButton().addActionListener(e -> {
-            register();
-        });
+        //view.getRegisterButton().addActionListener(e -> {
+        //    register();
+        //});
     }
     
     public void login() {
@@ -63,10 +63,10 @@ public class LoginController {
         }
     }
     
-    public void register()
-    {
-        
-    }
+    //public void register()
+    //{
+    //    
+    //}
     
     public void invalidUsername() {
         JOptionPane.showMessageDialog(null, "I'm sorry, this username does not exist.", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
