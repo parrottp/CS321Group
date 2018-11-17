@@ -33,6 +33,7 @@ public class Model {
      * @param aPassword
      * @param aBirthday
      * @param aGameInterest 
+     * @param userLevel
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
