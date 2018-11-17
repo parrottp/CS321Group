@@ -54,6 +54,19 @@ public class Model {
         this.password = password;
     }
 
+        /**
+     * Model constructor for a HomePageController.
+     * @param aUsername
+     * @param aBirthday
+     * @param aGameInterest 
+     * PRECONDITION: Parameter Strings are initialized.
+     * POSTCONDITION: Model object constructed for use by RegisterController.
+     */
+    public Model(String aUsername, String aBirthday, String aGameInterest) {
+        username = aUsername;
+        birthday = aBirthday;
+        gameInterest = aGameInterest;
+    }
     
     /**
      * Called by RegisterController when the User inputs DoB into JTextField. 
