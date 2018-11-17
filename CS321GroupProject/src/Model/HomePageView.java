@@ -23,6 +23,7 @@ public class HomePageView
  private JLabel usernameLabel;
  private JLabel birthdayLabel;
  private JLabel gameLabel;
+ private JLabel levelLabel;
 
  /**
   * View Constructor
@@ -45,6 +46,7 @@ public class HomePageView
   usernameLabel = new JLabel("Username: ");
   birthdayLabel = new JLabel("Birthday: ");
   gameLabel = new JLabel("I'm currently playing: ");
+  levelLabel = new JLabel("Level");
   
   //Add UI element to frame
   GroupLayout layout = new GroupLayout(frame.getContentPane());
@@ -53,6 +55,7 @@ public class HomePageView
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
         .addComponent(usernameLabel)
         .addComponent(birthdayLabel)
+        .addComponent(levelLabel)
         .addComponent(gameLabel))
   );
   layout.setVerticalGroup(layout.createSequentialGroup()
@@ -64,6 +67,9 @@ public class HomePageView
             
     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
         .addComponent(gameLabel))
+          
+    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+        .addComponent(levelLabel))
   );
 
   frame.getContentPane().setLayout(layout);
@@ -112,6 +118,16 @@ public class HomePageView
  public void setGameInterestLabel(JLabel gameLabel) 
  {
   this.gameLabel = gameLabel;
+ }
+ 
+  public JLabel getLevelLabel() 
+ {
+  return levelLabel;
+ }
+
+ public void setLevelLabel(JLabel levelLabel) 
+ {
+  this.levelLabel = levelLabel;
  }
 
 }

@@ -52,7 +52,7 @@ public class RegisterController
         view.getBirthdayTextfield().setText(model.getBirthday());       //Updates RegisterView to display "MM/dd/yyyy" in JTextField for birth date
         view.getGameTextfield().setText(model.getGameInterest());       //Updates RegisterView to display "Please enter game" in JTextField for game interest
         
-        String stringLevel = new Integer(model.getLevel()).toString();
+        String stringLevel = new Integer(model.getLevel()).toString();  //Updates RegisterView to display "Level + level" in JTextField for level
         view.getLevelLabel().setText("Level " + stringLevel);
     }
     

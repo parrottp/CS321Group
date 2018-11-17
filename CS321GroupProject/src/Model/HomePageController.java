@@ -30,6 +30,9 @@ public class HomePageController
         view.getUsernameLabel().setText(model.getUsername());
         view.getBirthdayLabel().setText(model.getBirthday());
         view.getGameInterestLabel().setText(model.getGameInterest());
+        
+        String stringLevel = new Integer(model.getLevel()).toString();
+        view.getLevelLabel().setText("Level " + stringLevel);
     }
     
     public void initialController() 
