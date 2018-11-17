@@ -28,14 +28,6 @@ public class GUIDriver {
         c.initialController();
     }
     
-    //CURRENTLY UNUSED
-    public static void register() {
-        Model m = new Model("Please enter first name", "Please enter last name", "Please enter username", "Please enter password", "MM/DD/YYYY", "Please enter game");
-        RegisterView v = new RegisterView("Create Profile");
-        RegisterController c = new RegisterController(m,v);
-        c.initialController();
-    }
-    
     public static void home() {
     Model m = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
     HomePageView v = new HomePageView("Profile");

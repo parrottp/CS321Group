@@ -102,7 +102,7 @@ public class LoginController {
     {
         view.close();
         
-        this.rm = new Model("Please enter first name", "Please enter last name", "Please enter username", "Please enter password", "MM/DD/YYYY", "Please enter game");
+        this.rm = new Model("Please enter first name", "Please enter last name", "Please enter username", "Please enter password", "MM/DD/YYYY", "Please enter game", 1);
         this.rv =  new RegisterView("Create Profile");
         this.rc = new RegisterController(rm, rv);
         rc.initialController();

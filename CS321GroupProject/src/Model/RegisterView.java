@@ -24,6 +24,7 @@ public class RegisterView {
     private JLabel passwordLabel;
     private JLabel birthdayLabel;
     private JLabel gameLabel;
+    private JLabel levelLabel;
  
     //JTextFields
     private JTextField firstnameTextfield;
@@ -57,6 +58,7 @@ public class RegisterView {
         passwordLabel = new JLabel("Password: ");
         birthdayLabel = new JLabel("Birthday: ");
         gameLabel = new JLabel("I'm currently playing: ");
+        levelLabel = new JLabel("Level 1");
   
         //Create JTextFields for User input
         firstnameTextfield = new JTextField();
@@ -79,7 +81,8 @@ public class RegisterView {
                 .addComponent(usernameLabel)
                 .addComponent(passwordLabel)
                 .addComponent(birthdayLabel)
-                .addComponent(gameLabel))
+                .addComponent(gameLabel)
+                .addComponent(levelLabel))
           
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addComponent(firstnameTextfield)
@@ -117,6 +120,9 @@ public class RegisterView {
                 .addComponent(gameLabel)
                 .addComponent(gameTextfield)
                 .addComponent(createProfile))
+                
+                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(levelLabel))
         );
         layout.linkSize(SwingConstants.HORIZONTAL, createProfile);
         frame.getContentPane().setLayout(layout);
@@ -255,6 +261,23 @@ public class RegisterView {
      */
     public void setGameTextfield(JTextField gameTextField) {
         this.gameTextfield = gameTextField;
+    }
+    
+        /**
+     * Accessor for levelLabel
+     * @return current levelLabel
+     */
+    public JLabel getLevelLabel() {
+        return levelLabel;
+    }
+
+    
+    /**
+     * Mutator for levelLabel
+     * @param levelLabel new levelLabel
+     */
+    public void setLevelLabel(JLabel levelLabel) {
+        this.levelLabel = levelLabel;
     }
 
     

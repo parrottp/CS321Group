@@ -17,6 +17,7 @@ public class Model {
     private String birthday;
     private String gameInterest;
     private String age;
+    private int level;
     
     //Used by Controller to check input Dates
     private boolean invalidDateInput = false;
@@ -34,13 +35,14 @@ public class Model {
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
-    public Model(String firstname, String lastname, String aUsername, String aPassword, String aBirthday, String aGameInterest) {
+    public Model(String firstname, String lastname, String aUsername, String aPassword, String aBirthday, String aGameInterest, int userLevel) {
         this.firstname = firstname;
         this.lastname = lastname;
         username = aUsername;
         password = aPassword;
         birthday = aBirthday;
         gameInterest = aGameInterest;
+        level = userLevel;
         
         file = file.getInstance();
     }
@@ -160,6 +162,10 @@ public class Model {
         file.FileWrite(this.lastname, fileName);
         file.FileWrite(this.birthday, fileName);
         file.FileWrite(this.gameInterest, fileName);
+        
+        //Convert level to string 
+        String stringLevel = new Integer(level).toString();
+        file.FileWrite(stringLevel, fileName);
     }
     
     
@@ -324,6 +330,23 @@ public class Model {
      */
     public void setAge(String age) {
         this.age = age;
+    }
+    
+     /**
+     * Accessor for level
+     * @return current level
+     */
+    public int getLevel() {
+        return level;
+    }
+    
+    
+    /**
+     * Mutator for age
+     * @param level new level
+     */
+    public void setLevel(int level) {
+        this.level = level;
     }
    
 }
