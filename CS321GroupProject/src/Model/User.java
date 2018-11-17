@@ -1,4 +1,4 @@
-package Graveyard;
+package Model;
 
 /**
  *
@@ -7,7 +7,7 @@ package Graveyard;
 
 import java.util.*;
 
-public class UserData
+public class User
 {
     /**
       Creates UserData object.
@@ -16,7 +16,7 @@ public class UserData
       @param aGameInterest game title string
       @param aAge age string
    */
-    public UserData(String aUsername, String aPassword, String aGameInterest, String aAge)
+    public User(String aUsername, String aPassword, String aGameInterest, String aAge)
     {
        username = aUsername;
        password = aPassword;
