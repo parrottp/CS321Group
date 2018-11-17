@@ -85,7 +85,11 @@ public class FileData extends DataLoader {
                 
         return null;
     }
-    
+   /**
+    * Loads file and stores each line into an ArrayList<>
+    * @param fileName
+    * @return 
+    */ 
    public ArrayList<String> FileLoadList (String fileName)
    {
        ArrayList<String> StringList = new ArrayList<>();

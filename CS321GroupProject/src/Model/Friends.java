@@ -16,25 +16,43 @@ public class Friends
     ArrayList<String> potentialFriends;
     ArrayList<String> Friends;
     String User;
-    
-    public ArrayList<String> pFriendsAdd() throws IOException
+    /**
+     * Stores master list of users into potential friends list
+     * PRECONDITIONS: MasterList is populated
+     * POSTCONDITIONS: potentialFriends is initialized
+     * @return potentialFriends
+     */
+    public ArrayList<String> pFriendsAdd()
     {        
-        
+        potentialFriends = fileData.FileLoadList("MasterList.txt");
         return potentialFriends;
     }
     
+    /**
+     * Adds user to Friends ArrayList<>
+     * PRECONDTIONS: selecting user
+     * POSTCONDITIONS: selected user is added to Friends
+     * @param user String
+     * @return Friends 
+     */
     public ArrayList<String> FriendListAdd(String user)
     {
         Friends.add(user);
         return Friends;
     }
-    
-    public ArrayList<String> pFriendsRemove(ArrayList<String> pFriends)
+    /**
+     * Removes user from potential friends list
+     * PRECONDITIONS: potentialFriends is populated and user has been added to 
+     * Friends List
+     * POSTCONDITION: Selected user has been removed from potential friends
+     * @param pFriends ArrayList<>
+     * @param user String
+     * @return potentialFriends
+     */
+    public ArrayList<String> pFriendsRemove(ArrayList<String> pFriends, String user)
     {
         potentialFriends = pFriends;
-        String temp;
-    
-        
+        potentialFriends.remove(user);
         return potentialFriends;
     }
     

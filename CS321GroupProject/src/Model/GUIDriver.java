@@ -14,12 +14,10 @@ public class GUIDriver {
      */
     public static void main(String[]args)
     {
-        ArrayList<String> help = new ArrayList<>();
-        //login();
-        FileData file = new FileData();
+        login();
         
-        help = file.FileLoadList("MasterList.txt");
-        System.out.print(help);
+        
+        
     }
         
     /**
