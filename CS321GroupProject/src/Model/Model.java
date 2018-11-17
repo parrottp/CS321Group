@@ -10,6 +10,7 @@ import java.text.ParseException;
 public class Model {
     //User data
     private String fileName;
+    
     private String firstname;
     private String lastname;
     private String username;
@@ -60,7 +61,7 @@ public class Model {
         file = file.getInstance();
     }
 
-        /**
+    /**
      * Model constructor for a HomePageController.
      * @param aUsername
      * @param aBirthday
@@ -152,7 +153,6 @@ public class Model {
      */
     public void newUserFile() {
         //Create profile data file
-        //FileData file = new FileData();
         file.FileCreate(fileName);                  //file name is username.txt
         file.FileWrite(this.password, fileName);
         file.FileWrite(this.username, fileName);
@@ -169,7 +169,6 @@ public class Model {
      * POSTCONDITION: MasterList updated with new username.
      */
     public void updateMasterList() {
-        //FileData file = new FileData();
         file.FileWrite(this.username, "MasterList.txt");
     }
    

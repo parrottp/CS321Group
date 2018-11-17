@@ -13,7 +13,7 @@ public class GUIDriver {
     public static void main(String[]args)
     {
         login();
-        home();
+        //home();
     }
         
     /**
@@ -37,9 +37,9 @@ public class GUIDriver {
     }
     
     public static void home() {
-    Model m = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
-    HomePageView v = new HomePageView("Profile");
-    HomePageController c = new HomePageController(m,v);
+        Model m = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
+        HomePageView v = new HomePageView("Profile");
+        HomePageController c = new HomePageController(m,v);
     }
     
 }

@@ -16,6 +16,11 @@ public class LoginController {
     private RegisterView rv;
     private RegisterController rc;
     
+    //Model, View, and Controller for HomePageController called by LoginController
+    private Model hm;
+    private HomePageView hv;
+    private HomePageController hc;
+    
     
     /**
      * Constructs LoginController with input Model and LoginView.
@@ -82,6 +87,7 @@ public class LoginController {
                 JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
                 view.close();      
                 //Opens Main Chat Client GUI here
+                launchClient();
             }
             else {
                 invalidPassword();  //Displays error message if input password is invalid
@@ -106,6 +112,14 @@ public class LoginController {
         this.rv =  new RegisterView("Create Profile");
         this.rc = new RegisterController(rm, rv);
         rc.initialController();
+    }
+    
+    private void launchClient() {
+        this.hm = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
+        this.hv = new HomePageView("Profile");
+        this.hc = new HomePageController(hm, hv);
+        //hc.initialController();           UNCOMMENT WHEN initialController
+        
     }
     
     

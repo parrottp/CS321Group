@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * 
  * @author livweaver, noahe
  */
 public class HomePageController 
@@ -21,6 +21,7 @@ public class HomePageController
     {
         model = m;
         view = v;
+        
         initialView();
     }
     
@@ -29,6 +30,13 @@ public class HomePageController
         view.getUsernameLabel().setText(model.getUsername());
         view.getBirthdayLabel().setText(model.getBirthday());
         view.getGameInterestLabel().setText(model.getGameInterest());
+    }
+    
+    public void initialController() 
+    {
+        
+        
+        
     }
     
 }
