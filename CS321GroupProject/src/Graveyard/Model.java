@@ -5,6 +5,7 @@
  */
 package Graveyard;
 
+import Model.User;
 import Model.CalculateAge;
 import java.text.ParseException;
 
@@ -13,7 +14,7 @@ import java.text.ParseException;
  * @author noahe
  */
 public class Model {
-    private UserData user;
+    private User user;
     public boolean userLoaded;
     
     private String userAge;             //unsure 
@@ -30,7 +31,7 @@ public class Model {
     }
     
     //CALLED AFTER USER DATA IS READ FROM FILE
-    public void setUser(UserData user) {
+    public void setUser(User user) {
         this.user = user;
         this.userLoaded = true;
     }
