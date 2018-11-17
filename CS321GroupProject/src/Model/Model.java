@@ -72,9 +72,9 @@ public class Model {
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
-    public Model(String aUsername, String aBirthday, String aGameInterest) {
+    public Model(String aUsername, String age, String aGameInterest) {
         username = aUsername;
-        birthday = aBirthday;
+        this.age = age;
         gameInterest = aGameInterest;
     }
     

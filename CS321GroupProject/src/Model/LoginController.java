@@ -115,7 +115,7 @@ public class LoginController {
     }
     
     private void launchClient() {
-        this.hm = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
+        this.hm = new Model(model.getUsername(), model.getAge(), model.getGameInterest());
         this.hv = new HomePageView("Profile");
         this.hc = new HomePageController(hm, hv);
         //hc.initialController();           UNCOMMENT WHEN initialController
