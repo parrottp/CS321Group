@@ -14,9 +14,14 @@ public class GUIDriver {
      */
     public static void main(String[]args)
     {
-        login();
+        //login();
+        String user = " ";
+        Friends friends = new Friends(user);
+        ArrayList<String> help = new ArrayList<>();
+        friends.FriendsListLoad("friendsfile.txt");
+        help = friends.pFriendsLoad();
         
-        
+        System.out.print(help);
         
     }
         

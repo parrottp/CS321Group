@@ -32,7 +32,8 @@ public class Model {
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
-    public Model(String firstname, String lastname, String aUsername, String aPassword, String aBirthday, String aGameInterest) {
+    public Model(String firstname, String lastname, String aUsername, 
+                 String aPassword, String aBirthday, String aGameInterest) {
         this.firstname = firstname;
         this.lastname = lastname;
         username = aUsername;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Graveyard;
+package Model;
 
 import Model.FileData;
 import Model.FileData;
@@ -20,6 +20,7 @@ public class Message extends FileData
     private String message;
     private String user;
     private final String fileName;
+    ArrayList<String> messageList = new ArrayList<>();
    
     /**
      * Constructs new Message object
@@ -85,9 +86,8 @@ public class Message extends FileData
         String s = fd.FileWrite(createMessage(), fileName);
     }
     
-    public ArrayList<String> messageQue (String filename)
+    public ArrayList<String> messageLoad (String filename)
     {
-        ArrayList<String> messageList = new ArrayList<>();
         FileData fileData = new FileData();
         messageList = fileData.FileLoadList(filename);
         

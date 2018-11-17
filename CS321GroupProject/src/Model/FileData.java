@@ -102,8 +102,6 @@ public class FileData extends DataLoader {
            while((userData = aReader.readLine()) != null)
            {
                StringList.add(userData);
-               
-               System.out.print(userData);
            }
            aReader.close();
            return StringList;

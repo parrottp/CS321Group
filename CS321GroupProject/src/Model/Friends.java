@@ -15,21 +15,48 @@ public class Friends
     FileData fileData = new FileData();
     ArrayList<String> potentialFriends;
     ArrayList<String> Friends;
+    ArrayList<String> MasterList;
+    String username;
     String User;
+    String friendsFile;
+   
+    
     /**
+     * When User class is implemented change input to User
+     * @param username 
+     */
+    public Friends (String username)
+    {
+        this.username = username;
+    }
+
+     /**
      * Stores master list of users into potential friends list
      * PRECONDITIONS: MasterList is populated
      * POSTCONDITIONS: potentialFriends is initialized
      * @return potentialFriends
      */
-    public ArrayList<String> pFriendsAdd()
+    public ArrayList<String> pFriendsLoad()
     {        
-        potentialFriends = fileData.FileLoadList("MasterList.txt");
+        MasterList = fileData.FileLoadList("MasterList.txt");
+        potentialFriends = (ArrayList<String>)MasterList.clone(); 
+        potentialFriends.removeAll(Friends);
         return potentialFriends;
     }
-    
     /**
-     * Adds user to Friends ArrayList<>
+     * Stores friends list into ArrayList<>
+     * PRECONDITIONS: Friends is populated
+     * POSTCONDITIONS: Friends is initialized
+     * @return Friends
+     * 
+     */
+    public ArrayList<String> FriendsListLoad (String filename)
+    {
+        this.Friends = fileData.FileLoadList(filename);
+        return this.Friends;
+    }
+    /**
+     * Adds user to Friends ArrayList<> and writes to a file
      * PRECONDTIONS: selecting user
      * POSTCONDITIONS: selected user is added to Friends
      * @param user String
@@ -37,7 +64,9 @@ public class Friends
      */
     public ArrayList<String> FriendListAdd(String user)
     {
+        
         Friends.add(user);
+        fileData.FileWrite(user, friendsFile);
         return Friends;
     }
     /**
