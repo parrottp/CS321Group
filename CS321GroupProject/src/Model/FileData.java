@@ -1,15 +1,17 @@
 package Model;
 
-/**
- *
- * @author livweaver
- */
 import java.io.*;
 
+/**
+ * Creates, writes, and reads a String from a File.
+ * @author livweaver
+ */
 public class FileData extends DataLoader {
     
     /**  
     * Create new file, file named with username.
+    * PRECONDITIONS: String fileName initialized.
+    * POSTCONDITIONS: Creates new File named fileName. 
     */ 
     public String FileCreate(String fileName)
     {
@@ -28,9 +30,11 @@ public class FileData extends DataLoader {
         return null;
     }
         
+    
     /**  
     * Write string to file.
-    *
+    * PRECONDITIONS: sVar and fileName initialized.
+    * POSTCONDITIONS: String sVar appended to File fileName.
     */ 
     public String FileWrite(String sVar, String fileName)
     { 
@@ -50,10 +54,14 @@ public class FileData extends DataLoader {
         return null;
     }
 
-    /**  
-    * Read string from file and return. 
-    *
-    */ 
+    
+    /**
+     * Read String from File and return.
+     * @param fileName input fileName
+     * @return userData if read from file, or null otherwise
+     * PRECONDITIONS: fileName initialized.
+     * POSTCONDITIONS: If first line of File read, it is returned. 
+     */
     public String FileLoad(String fileName)
     {
         BufferedReader aReader = null;
@@ -76,4 +84,5 @@ public class FileData extends DataLoader {
                 
         return null;
     }
+    
 }
