@@ -3,10 +3,24 @@ package Model;
 import java.io.*;
 
 /**
- * Creates, writes, and reads a String from a File.
- * @author livweaver
+ * Creates, writes, and reads a String from a File. Uses Singleton design pattern. 
+ * @author livweaver, noahe
  */
 public class FileData extends DataLoader {
+    
+    //Private instance of FileData
+    private static FileData fd;
+    
+    //Constructor is private so FileData can only be initialied from getInstance()
+    private FileData() {}
+    
+    //Initializes only instance of FileData
+    public static FileData getInstance() {
+        if (fd == null) {
+            fd = new FileData();
+        }
+        return fd;
+    }
     
     /**  
     * Create new file, file named with username.

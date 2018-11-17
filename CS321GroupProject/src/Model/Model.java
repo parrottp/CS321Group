@@ -21,6 +21,8 @@ public class Model {
     //Used by Controller to check input Dates
     private boolean invalidDateInput = false;
     
+    FileData file;
+    
     /**
      * Model constructor for a RegisterController.
      * @param firstname 
@@ -39,6 +41,8 @@ public class Model {
         password = aPassword;
         birthday = aBirthday;
         gameInterest = aGameInterest;
+        
+        file = file.getInstance();
     }
     
     
@@ -52,6 +56,8 @@ public class Model {
     public Model(String username, String password) {
         this.username = username;
         this.password = password;
+        
+        file = file.getInstance();
     }
 
     
@@ -113,7 +119,7 @@ public class Model {
         boolean correctPassword = false;
         
         //Reads first line from User data file
-        FileData file = new FileData();
+        //FileData file = new FileData();
         String line = file.FileLoad(fileName);
         
         //Checks if the stored User password is the same as the input password
@@ -133,7 +139,7 @@ public class Model {
      */
     public void newUserFile() {
         //Create profile data file
-        FileData file = new FileData();
+        //FileData file = new FileData();
         file.FileCreate(fileName);                  //file name is username.txt
         file.FileWrite(this.password, fileName);
         file.FileWrite(this.username, fileName);
@@ -150,7 +156,7 @@ public class Model {
      * POSTCONDITION: MasterList updated with new username.
      */
     public void updateMasterList() {
-        FileData file = new FileData();
+        //FileData file = new FileData();
         file.FileWrite(this.username, "MasterList.txt");
     }
    
