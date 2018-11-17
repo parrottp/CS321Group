@@ -1,86 +1,104 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Controller for Login process of program
  * @author livweaver, noahe
  */
 public class LoginController {
-    private Model model;
-    private LoginView view;
+    //Model and View for this instance of LoginController
+    private final Model model;
+    private final LoginView view;
     
-    //boolean loggedIn = false;
-    boolean gotoRegister;
-    boolean viewIsOpen;
-    
-    //RegisterController stuff
+    //Model, View, and Controller for RegisterController called by LoginController
     private Model rm;
     private RegisterView rv;
     private RegisterController rc;
     
     
-    //constructor
+    /**
+     * Constructs LoginController with input Model and LoginView.
+     * @param m input Model
+     * @param v input LoginView
+     * PRECONDITIONS: Model m and LoginView v must be initialized. 
+     * POSTCONDITIONS: Login GUI is displayed with initial values. 
+     */
     public LoginController(Model m, LoginView v)
     {
-        model = m;
-        view = v;
+        this.model = m;
+        this.view = v;
         
-        gotoRegister = false;
-        viewIsOpen = true;
-        
+        //Initializes LoginView with initial values of input Model
         initialView();
     }
     
-    public void initialView()
+    
+    /**
+     * Initializes the LoginView with the initial values of username and password in Model, which are prompts for user input.
+     * PRECONDITIONS: this.model and this.view must be initialized.
+     * POSTCONDITIONS: LoginView updated with initial values.
+     */
+    private void initialView()
     {
-        view.getUsernameTextfield().setText(model.getUsername());
-        view.getPasswordTextfield().setText(model.getPassword());
+        view.getUsernameTextfield().setText(model.getUsername());   //Updates LoginView to display "Please enter username" in JTextField for username
+        view.getPasswordTextfield().setText(model.getPassword());   //Updates LoginView to display "Please enter password" in JPasswordField for password, which is hidden
     }
     
+    
+    /**
+     * Initializes the LoginController to read action listeners for Login button and Register button on Login page.
+     * PRECONDITIONS: this.model and this.view must be initialized. 
+     * POSTCONDITIONS: Login and Register buttons in Login GUI are functional.
+     */
     public void initialController()
     {
+        //Action Listener for Login button
         view.getLoginButton().addActionListener(e -> {
             login();
         });
         
+        //Action Listener for Register button
         view.getRegisterButton().addActionListener(e -> {
             register();
         });
     }
     
-    public void login() {
-        model.setUsername(view.getUsernameTextfield().getText());                       //Loads username into Model from GUI input
-        model.setPassword(new String(view.getPasswordTextfield().getPassword()));       //Loads password into Model from GUI input
+    
+    /**
+     * Attempts to Login the User with the input information. Displays error messages until login is successful, then closes Login window.
+     * PRECONDITIONS: None.
+     * POSTCONDITIONS: Logged in successfully. Main Chat Client opened for logged in User.
+     */
+    private void login() {
+        //Loads username and password into Model from User input in GUI
+        model.setUsername(view.getUsernameTextfield().getText());                       
+        model.setPassword(new String(view.getPasswordTextfield().getPassword()));       
         
+        //Checks if input Username exists in list of Registered Users
         if (model.checkUsername()) {
+            //Checks if input Password is correct for input Username
             if (model.checkPassword()) {
-                //login();
-                
                 JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-                this.viewIsOpen = false;
-                view.close();       //Closes the login window
-                
-                //this.loggedIn = true;
+                view.close();      
+                //Opens Main Chat Client GUI here
             }
             else {
-                invalidPassword();
+                invalidPassword();  //Displays error message if input password is invalid
             }
         }
         else {
-            invalidUsername();
+            invalidUsername();  //Displays error message if input username is invalid
         }
     }
     
-    public void register()
+    
+    /**
+     * Closes Login page and opens Register page.
+     * PRECONDITIONS: None.
+     * POSTCONDITIONS: Register page is opened, and Login page is closed. 
+     */
+    private void register()
     {
         view.close();
         
@@ -88,26 +106,25 @@ public class LoginController {
         this.rv =  new RegisterView("Create Profile");
         this.rc = new RegisterController(rm, rv);
         rc.initialController();
-        //System.out.println("testing");
-        //this.gotoRegister = true;
-        //this.viewIsOpen = false;
-        //
-        
     }
     
-    public void invalidUsername() {
+    
+    /**
+     * Displays error message for Invalid Username to Login GUI
+     * PRECONDITIONS: None.
+     * POSTCONDITIONS: Invalid Username message displayed in Login GUI.
+     */
+    private void invalidUsername() {
         JOptionPane.showMessageDialog(null, "I'm sorry, this username does not exist.", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    public void invalidPassword() {
+    
+    /**
+     * Displays error message for Invalid Password to Login GUI
+     * PRECONDITIONS: None.
+     * POSTCONDITIONS: Invalid Password message displayed in Login GUI.
+     */
+    private void invalidPassword() {
         JOptionPane.showMessageDialog(null, "I'm sorry, the password is incorrect.", "Incorrect Password", JOptionPane.INFORMATION_MESSAGE);
-    }
-    
-    public boolean getGotoRegister() {
-        return this.gotoRegister;
-    }
-    
-    public boolean getViewIsOpen() {
-        return this.viewIsOpen;
     }
 }
