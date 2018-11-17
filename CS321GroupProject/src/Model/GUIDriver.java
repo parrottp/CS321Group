@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 /**
  * Driver that launches GUI.
  * @author livweaver, noahe
@@ -12,7 +14,12 @@ public class GUIDriver {
      */
     public static void main(String[]args)
     {
-        login();
+        ArrayList<String> help = new ArrayList<>();
+        //login();
+        FileData file = new FileData();
+        
+        help = file.FileLoadList("MasterList.txt");
+        System.out.print(help);
     }
         
     /**

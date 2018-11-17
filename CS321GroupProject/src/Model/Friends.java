@@ -5,6 +5,9 @@
  */
 package Model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Friends 
@@ -14,14 +17,8 @@ public class Friends
     ArrayList<String> Friends;
     String User;
     
-    public ArrayList<String> pFriendsAdd()
-    {
-        User = fileData.FileLoad("MasterList.txt");
-        
-        while(User != null)
-        {
-            potentialFriends.add(User);
-        }
+    public ArrayList<String> pFriendsAdd() throws IOException
+    {        
         
         return potentialFriends;
     }

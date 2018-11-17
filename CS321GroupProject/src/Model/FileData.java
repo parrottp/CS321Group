@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Creates, writes, and reads a String from a File.
@@ -84,5 +85,31 @@ public class FileData extends DataLoader {
                 
         return null;
     }
+    
+   public ArrayList<String> FileLoadList (String fileName)
+   {
+       ArrayList<String> StringList = new ArrayList<>();
+       BufferedReader aReader = null;
+       try
+       {
+           //Read file
+           aReader = new BufferedReader(new FileReader(fileName));
+           String userData;
+           while((userData = aReader.readLine()) != null)
+           {
+               StringList.add(userData);
+               
+               System.out.print(userData);
+           }
+           aReader.close();
+           return StringList;
+       }
+       catch (IOException e)
+       {
+           e.printStackTrace();
+       }
+       
+       return null;       
+   }
     
 }
