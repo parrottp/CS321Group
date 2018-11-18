@@ -17,8 +17,8 @@ public class HomePageView extends javax.swing.JFrame{
     private final JTextField friendsSearchBar; //textfield for username search input
     
     //Buttons
-    private final JButton addFriendButton;
-    private final JButton sendButton; 
+    private JButton addFriendButton;
+    private JButton sendButton; 
     
     //Labels
     private JLabel usernameLabel;
@@ -140,5 +140,36 @@ public class HomePageView extends javax.swing.JFrame{
         this.levelLabel = levelLabel;
     }
     
+    /**
+     * Accessor for addFriendButton button
+     * @return current addFriendButton button
+     */
+    public JButton getAddFriendButton() {
+        return addFriendButton;
+    }
+ 
+    /**
+     * Mutator for addFriendButton button
+     * @param addFriendButton new addFriendButton button
+     */
+    public void setAddFriendButton(JButton addFriendButton) {
+        this.addFriendButton = addFriendButton;
+    }
+    
+     /**
+     * Accessor for sendButton button
+     * @return current sendButton button
+     */
+    public JButton getSendButton() {
+        return sendButton;
+    }
+ 
+    /**
+     * Mutator for sendButton button
+     * @param sendButton new sendButton button
+     */
+    public void setSendButton(JButton sendButton) {
+        this.sendButton = sendButton;
+    }
       
 }

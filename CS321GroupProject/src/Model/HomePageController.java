@@ -1,6 +1,5 @@
 package Model;
 
-
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,12 +38,21 @@ public class HomePageController
     
     public void initialController() 
     {
-        //Add Friend Button Action Listener
-        //addFriend();
+        //Action Listener for Add Friend button
+        view.getAddFriendButton().addActionListener(e -> {
+            addFriend();
+        });
         
-        
+        //Action Listener for Send Message button
+        view.getSendButton().addActionListener(e -> {
+            sendMessage();
+        });
     }
     
+    //Send Message function for >> Button in HomePageView
+    public void sendMessage(){
+        
+    }
     
     //Add Friend function for the String in JTextField
     public void addFriend() {
