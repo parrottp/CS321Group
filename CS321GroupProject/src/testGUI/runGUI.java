@@ -11,6 +11,9 @@ package testGUI;
  */
 public class runGUI {
     public static void main(String args[]){
-    new HomePageView("homepage").setVisible(true);
+        HomePageView hv = new HomePageView("homepage");
+        hv.setVisible(true);
+    
+    
     }
 }

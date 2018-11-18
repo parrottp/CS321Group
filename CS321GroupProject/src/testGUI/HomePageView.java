@@ -1,3 +1,4 @@
+package testGUI;
 
 import java.awt.*;
 import javax.swing.*;
@@ -126,8 +127,6 @@ public class HomePageView extends javax.swing.JFrame{
     {
         this.levelLabel = levelLabel;
     }
-        public static void main(String args[]){
-        new HomePageView("homepage").setVisible(true);
-    }
+    
       
 }
