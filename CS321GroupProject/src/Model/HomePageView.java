@@ -12,10 +12,10 @@ public class HomePageView extends javax.swing.JFrame{
     
     private final JSplitPane splitPane;
     private final JScrollPane scrollPane;
-    private  JTextArea textArea;
+    private JTextArea messageOutput; //area for correspondance output
     
     //Textfields
-    private  JTextField textField;   // textfield for inputBar
+    private  JTextField messageInputField;   //textfield for messageInputField in inputBar
     private  JTextField friendsSearchBar; //textfield for username search input
     
     //Buttons
@@ -27,6 +27,7 @@ public class HomePageView extends javax.swing.JFrame{
     private JLabel birthdayLabel;
     private JLabel gameLabel;
     private JLabel levelLabel;
+    private JLabel chatWithLabel;
 
     /**
     * View Constructor
@@ -41,21 +42,26 @@ public class HomePageView extends javax.swing.JFrame{
         bottomPanel = new JPanel();
 
         scrollPane = new JScrollPane();
-        textArea = new JTextArea();
+        messageOutput = new JTextArea();
 
         //inputBar panel
         inputBar = new JPanel();
-        textField = new JTextField();  
+        messageInputField = new JTextField();  
         friendsSearchBar = new JTextField();
         addFriendButton = new JButton("Add Friend");
         sendButton = new JButton(">>");
         
+        //Create font styles
+        Font boldFont = new Font("Helvetica", Font.BOLD,20);
         
         // Create labels
         usernameLabel = new JLabel("Username: ");
+        usernameLabel.setFont(boldFont);
+        
         birthdayLabel = new JLabel("Birthday: ");
         gameLabel = new JLabel("I'm currently playing: ");
         levelLabel = new JLabel("Level");
+        chatWithLabel = new JLabel("Chat with:");
 
         setPreferredSize(new Dimension(600, 400));
 
@@ -64,7 +70,7 @@ public class HomePageView extends javax.swing.JFrame{
 
         //SplitPane
         splitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT); //split horizontally
-        splitPane.setDividerLocation(100);
+        splitPane.setDividerLocation(200);
         splitPane.setLeftComponent(userDataPanel);             //userDataPanel to the left 
         splitPane.setBottomComponent(bottomPanel);
         
@@ -72,6 +78,9 @@ public class HomePageView extends javax.swing.JFrame{
         userDataPanel.setVisible(true);
         bottomPanel.setVisible(true);
         inputBar.setVisible(true);
+        
+        //Set textarea to be un-editable
+        messageOutput.setEditable(false);
 
         //Display userDataPanel labels vertically
         userDataPanel.setLayout(new BoxLayout(userDataPanel, BoxLayout.Y_AXIS));
@@ -79,13 +88,19 @@ public class HomePageView extends javax.swing.JFrame{
         userDataPanel.add(birthdayLabel);
         userDataPanel.add(gameLabel);
         userDataPanel.add(levelLabel);
+        
+        userDataPanel.add(chatWithLabel);
+        String[] friends = { "Liv", "Noah", "Nick", "Payton" };
+        JComboBox currentFriendList = new JComboBox(friends);
+        userDataPanel.add(currentFriendList);
+        
         userDataPanel.add(friendsSearchBar);
         userDataPanel.add(addFriendButton);
 
         //bottomPanel
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS)); //arranges vertically 
         bottomPanel.add(scrollPane);                
-        scrollPane.setViewportView(textArea);     //makes textarea scrollable 
+        scrollPane.setViewportView(messageOutput);     //makes textarea scrollable 
         bottomPanel.add(inputBar);                // add inputBar to bottomPanel so it under the scrollPane / textArea
 
         //Set maximum value on inputBar
@@ -96,7 +111,7 @@ public class HomePageView extends javax.swing.JFrame{
         friendsSearchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
         friendsSearchBar.setLayout(new BoxLayout(friendsSearchBar, BoxLayout.X_AXIS));     //arranges horizontally
 
-        inputBar.add(textField);        // textfield on left
+        inputBar.add(messageInputField);// textfield on left
         inputBar.add(sendButton);       // >> button on right
         
         pack();
@@ -181,7 +196,6 @@ public class HomePageView extends javax.swing.JFrame{
     public JTextField getfriendsSearchBar() {
         return friendsSearchBar;
     }
-
     
     /**
      * Mutator for friendsSearchBar
@@ -190,5 +204,36 @@ public class HomePageView extends javax.swing.JFrame{
     public void setfriendsSearchBar(JTextField friendsSearchBar) {
         this.friendsSearchBar = friendsSearchBar;
     }
-      
+    
+    /**
+     * Accessor for messageInputField
+     * @return current messageInputField
+     */
+    public JTextField getMessageInputField() {
+        return messageInputField;
+    }
+    
+    /**
+     * Mutator for messageInputField
+     * @param messageInputField new messageInputField
+     */
+    public void setMessageInputField(JTextField messageInputField) {
+        this.messageInputField = messageInputField;
+    }
+    
+     /**
+     * Accessor for messageInputField
+     * @return current messageInputField
+     */
+    public JTextArea getMessageOutput() {
+        return messageOutput;
+    }
+    
+    /**
+     * Mutator for messageOutput
+     * @param messageOutput new messageOutput
+     */
+    public void setMessageOutput(JTextArea messageOutput) {
+        this.messageOutput = messageOutput;
+    }
 }
