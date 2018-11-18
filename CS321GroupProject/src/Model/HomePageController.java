@@ -37,9 +37,24 @@ public class HomePageController
     
     public void initialController() 
     {
+        //Add Friend Button Action Listener
+            //addFriend();
         
         
+    }
+    
+    
+    //Add Friend function for the String in JTextField
+    public void addFriend() {
+        //Read the name of potential friend from JTextField
+        //model.setPotentialFriend(view.getFriendTextField().getText());
         
+        if(model.verifyUser(model.getPotentialFriend())) {
+            model.updateFriendsList(model.getPotentialFriend());
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "User does not exist or you are already friends. Please try again.", "Invalid Friend Request", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     
 }

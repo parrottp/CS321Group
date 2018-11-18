@@ -10,6 +10,10 @@ import java.text.ParseException;
 public class Model {
     //User data
     private String fileName;
+    private String friendsList;
+    private String pFriendsList;
+    private String potentialFriend;
+    private Friends f;
     
     private String firstname;
     private String lastname;
@@ -46,7 +50,9 @@ public class Model {
         gameInterest = aGameInterest;
         level = userLevel;
         
-        file = file.getInstance();
+        file = FileData.getInstance();
+        f = Friends.getInstance();
+        f.setUsername(this.username);
     }
     
     
@@ -61,13 +67,15 @@ public class Model {
         this.username = username;
         this.password = password;
         
-        file = file.getInstance();
+        file = FileData.getInstance();
+        f = Friends.getInstance();
+        f.setUsername(this.username);
     }
 
     /**
      * Model constructor for a HomePageController.
      * @param aUsername
-     * @param aBirthday
+     * @param age
      * @param aGameInterest 
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
@@ -76,6 +84,10 @@ public class Model {
         username = aUsername;
         this.age = age;
         gameInterest = aGameInterest;
+        
+        file = FileData.getInstance();
+        f = Friends.getInstance();
+        f.setUsername(this.username);
     }
     
     /**
@@ -115,6 +127,8 @@ public class Model {
         
         //Reads File path for User data file for input username
         this.fileName = this.username + ".txt";
+        this.friendsList = this.username + "friends.txt";
+        
         File temp = new File(fileName);
         
         //Returns false if the File path does not exist
@@ -178,7 +192,26 @@ public class Model {
     public void updateMasterList() {
         file.FileWrite(this.username, "MasterList.txt");
     }
+    
+    
+    //Returns true if pFriend is valid
+    public boolean verifyUser(String pFriend) {
+        this.potentialFriend = pFriend;
+        
+        return f.isNewFriendValid(this.potentialFriend);
+    }
+    
+    
    
+    public void updateFriendsList(String newFriend) {
+        //Adds new User name to Friends List
+        file.FileWrite(newFriend, friendsList);
+
+        //Deletes User name from Potential Friends List
+        f.pFriendsRemove(newFriend);
+    }
+    
+  
     
     /**
      * Accessor for invalidDateInput. Returns true if Date is invalid.
@@ -348,5 +381,16 @@ public class Model {
     public void setLevel(int level) {
         this.level = level;
     }
+    
+    
+    
+    public String getPotentialFriend() {
+        return this.potentialFriend;
+    }
    
+    
+    
+    public void setPotentialFriend(String pFriend) {
+        this.potentialFriend = pFriend;
+    }
 }

@@ -1,10 +1,11 @@
 package Model;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Creates, writes, and reads a String from a File. Uses Singleton design pattern. 
- * @author livweaver, noahe
+ * @author livweaver, noahe, pparrott
  */
 public class FileData extends DataLoader {
     
@@ -21,6 +22,7 @@ public class FileData extends DataLoader {
         }
         return fd;
     }
+    
     
     /**  
     * Create new file, file named with username.
@@ -97,6 +99,35 @@ public class FileData extends DataLoader {
             e.printStackTrace();
         }
                 
+        return null;
+    }
+    
+    
+    /**
+     * Loads File and stores each line into an ArrayList<>
+     * @param fileName name of loaded file
+     * @return null if File not read
+     * PRECONDITIONS: String fileName is the name of a File
+     * POSTCONDITIONS: ArrayList<String> StringList is populated and returned if File successfully read
+     */
+    public ArrayList<String> FileLoadList(String fileName) {
+        ArrayList<String> StringList = new ArrayList<>();
+        BufferedReader aReader = null;
+        
+        try {
+            //Read file
+            aReader = new BufferedReader(new FileReader(fileName));
+            String userData;
+            while((userData = aReader.readLine()) != null) {
+                StringList.add(userData);
+            }
+            aReader.close();
+            return StringList;
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         return null;
     }
     
