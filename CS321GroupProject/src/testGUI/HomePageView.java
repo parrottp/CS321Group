@@ -66,7 +66,8 @@ public class HomePageView extends javax.swing.JFrame{
         bottomPanel.setVisible(true);
         inputBar.setVisible(true);
 
-        //userDataPanel
+        //Display userDataPanel labels vertically
+        userDataPanel.setLayout(new BoxLayout(userDataPanel, BoxLayout.Y_AXIS));
         userDataPanel.add(usernameLabel);
         userDataPanel.add(birthdayLabel);
         userDataPanel.add(gameLabel);
