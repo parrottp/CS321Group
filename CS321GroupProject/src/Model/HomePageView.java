@@ -14,6 +14,7 @@ public class HomePageView extends javax.swing.JFrame{
     private final JScrollPane scrollPane;
     private final JTextArea textArea;
     private final JTextField textField;   // textfield for inputBar
+    private final JTextField friendsSearchBar; //textfield for username search input
     private final JButton sendButton; 
     
     //Labels
@@ -42,7 +43,9 @@ public class HomePageView extends javax.swing.JFrame{
         //inputBar panel
         inputBar = new JPanel();
         textField = new JTextField();  
+        friendsSearchBar = new JTextField();
         sendButton = new JButton(">>");
+        
         
         // Create labels
         usernameLabel = new JLabel("Username: ");
@@ -66,11 +69,13 @@ public class HomePageView extends javax.swing.JFrame{
         bottomPanel.setVisible(true);
         inputBar.setVisible(true);
 
-        //userDataPanel
+        //Display userDataPanel labels vertically
+        userDataPanel.setLayout(new BoxLayout(userDataPanel, BoxLayout.Y_AXIS));
         userDataPanel.add(usernameLabel);
         userDataPanel.add(birthdayLabel);
         userDataPanel.add(gameLabel);
         userDataPanel.add(levelLabel);
+        userDataPanel.add(friendsSearchBar);
 
         //bottomPanel
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS)); //arranges vertically 
@@ -81,6 +86,10 @@ public class HomePageView extends javax.swing.JFrame{
         //Set maximum value on inputBar
         inputBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));     //set  max height to 75 and the max width to unlimited
         inputBar.setLayout(new BoxLayout(inputBar, BoxLayout.X_AXIS));     //arranges horizontally
+
+        //Set maximum value on friendsSearchBar
+        friendsSearchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+        friendsSearchBar.setLayout(new BoxLayout(friendsSearchBar, BoxLayout.X_AXIS));     //arranges horizontally
 
         inputBar.add(textField);        // textfield on left
         inputBar.add(sendButton);       // >> button on right
