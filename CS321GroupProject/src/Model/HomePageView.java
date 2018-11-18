@@ -6,6 +6,7 @@ package Model;
  */
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.WindowEvent;
 
 import javax.swing.GroupLayout;
@@ -41,12 +42,22 @@ public class HomePageView
   frame.setSize(300, 400);
   frame.setLocationRelativeTo(null);
   frame.setVisible(true);
+  
+  frame.getContentPane().setLayout(new BorderLayout());
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setSize(300, 400);
+  frame.setLocationRelativeTo(null);
+  frame.setVisible(true);
 
   // Create labels
   usernameLabel = new JLabel("Username: ");
   birthdayLabel = new JLabel("Birthday: ");
   gameLabel = new JLabel("I'm currently playing: ");
   levelLabel = new JLabel("Level");
+  
+  //Update label font
+  Font font = new Font("Consolas", Font.BOLD,20);
+  usernameLabel.setFont(font);
   
   //Add UI element to frame
   GroupLayout layout = new GroupLayout(frame.getContentPane());
