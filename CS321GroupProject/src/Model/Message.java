@@ -15,11 +15,12 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Message extends FileData
+public class Message
 {
     private String message;
     private String user;
     private final String fileName;
+    private FileData fd;
    
     /**
      * Constructs new Message object
@@ -27,6 +28,7 @@ public class Message extends FileData
      */
     public Message(String fileName) 
     {
+        this.fd = FileData.getInstance();
         this.fileName = fileName;
     }
     
@@ -81,7 +83,7 @@ public class Message extends FileData
      * Uses FileData to write message to File
      */
     public void writeMessage()  {
-        FileData fd = new FileData();
+        FileData fd = FileData.getInstance();
         String s = fd.FileWrite(createMessage(), fileName);
     }
 }
