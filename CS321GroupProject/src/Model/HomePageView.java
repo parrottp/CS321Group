@@ -1,144 +1,132 @@
 package Model;
 
-/**
- *
- * @author livweaver, noahe
- */
+import java.awt.*;
+import javax.swing.*;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.event.WindowEvent;
+public class HomePageView extends javax.swing.JFrame{
 
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+    //Panels
+    private final JPanel userDataPanel;
+    private final JPanel bottomPanel;
+    private final JPanel inputBar;
+    
+    private final JSplitPane splitPane;
+    private final JScrollPane scrollPane;
+    private final JTextArea textArea;
+    private final JTextField textField;   // textfield for inputBar
+    private final JButton sendButton; 
+    
+    //Labels
+    private JLabel usernameLabel;
+    private JLabel birthdayLabel;
+    private JLabel gameLabel;
+    private JLabel levelLabel;
+    
+    private JFrame frame;
 
-public class HomePageView 
-{
- //Labels
- private JFrame frame;
- private JLabel usernameLabel;
- private JLabel birthdayLabel;
- private JLabel gameLabel;
- private JLabel levelLabel;
-
- /**
-  * View Constructor
-  * 
-  * @param title used for frame title
-  *
-  */
- public HomePageView(String title) 
- {
-     
-  // Create the principal frame
-  frame = new JFrame(title);
-  frame.getContentPane().setLayout(new BorderLayout());
-  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  frame.setSize(300, 400);
-  frame.setLocationRelativeTo(null);
-  frame.setVisible(true);
+    /**
+    * View Constructor
+    * 
+    * @param title used for frame title
+    *
+    */
+    public HomePageView(String title) {
   
-  frame.getContentPane().setLayout(new BorderLayout());
-  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  frame.setSize(300, 400);
-  frame.setLocationRelativeTo(null);
-  frame.setVisible(true);
+        splitPane = new JSplitPane();
+        userDataPanel = new JPanel();        
+        bottomPanel = new JPanel();
 
-  // Create labels
-  usernameLabel = new JLabel("Username: ");
-  birthdayLabel = new JLabel("Birthday: ");
-  gameLabel = new JLabel("I'm currently playing: ");
-  levelLabel = new JLabel("Level");
-  
-  //Update label font
-  Font font = new Font("Consolas", Font.BOLD,20);
-  usernameLabel.setFont(font);
-  
-  //Add UI element to frame
-  GroupLayout layout = new GroupLayout(frame.getContentPane());
-  layout.setAutoCreateGaps(true);
-  layout.setHorizontalGroup(layout.createSequentialGroup()
-    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-        .addComponent(usernameLabel)
-        .addComponent(birthdayLabel)
-        .addComponent(levelLabel)
-        .addComponent(gameLabel))
-  );
-  layout.setVerticalGroup(layout.createSequentialGroup()
-    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-       .addComponent(usernameLabel))
-            
-    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-        .addComponent(birthdayLabel))
-            
-    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-        .addComponent(gameLabel))
-          
-    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-        .addComponent(levelLabel))
-  );
+        scrollPane = new JScrollPane();
+        textArea = new JTextArea();
 
-  frame.getContentPane().setLayout(layout);
- }
+        //inputBar panel
+        inputBar = new JPanel();
+        textField = new JTextField();  
+        sendButton = new JButton(">>");
+        
+        // Create labels
+        usernameLabel = new JLabel("Username: ");
+        birthdayLabel = new JLabel("Birthday: ");
+        gameLabel = new JLabel("I'm currently playing: ");
+        levelLabel = new JLabel("Level");
 
- //Closes the JFrame
- public void close() {
-     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
- }
- 
- public JFrame getFrame() 
- {
-  return frame;
- }
+        setPreferredSize(new Dimension(600, 400));
 
- public void setFrame(JFrame frame) 
- {
-  this.frame = frame;
- }
+        getContentPane().setLayout(new GridLayout());  
+        getContentPane().add(splitPane);
 
- public JLabel getUsernameLabel() 
- {
-  return usernameLabel;
- }
+        //SplitPane
+        splitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT); //split horizontally
+        splitPane.setDividerLocation(100);
+        splitPane.setLeftComponent(userDataPanel);             //userDataPanel to the left 
+        splitPane.setBottomComponent(bottomPanel);
+        
+        //Set visible
+        userDataPanel.setVisible(true);
+        bottomPanel.setVisible(true);
+        inputBar.setVisible(true);
 
- public void setUsernameLabel(JLabel usernameLabel) 
- {
-  this.usernameLabel = usernameLabel;
- }
- 
- public JLabel getBirthdayLabel() 
- {
-  return birthdayLabel;
- }
+        //userDataPanel
+        userDataPanel.add(usernameLabel);
+        userDataPanel.add(birthdayLabel);
+        userDataPanel.add(gameLabel);
+        userDataPanel.add(levelLabel);
 
- public void setBirthdayLabel(JLabel birthdayLabel) 
- {
-  this.birthdayLabel = birthdayLabel;
- }
- 
- public JLabel getGameInterestLabel() 
- {
-  return gameLabel;
- }
+        //bottomPanel
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS)); //arranges vertically 
+        bottomPanel.add(scrollPane);                
+        scrollPane.setViewportView(textArea);     //makes textarea scrollable 
+        bottomPanel.add(inputBar);                // add inputBar to bottomPanel so it under the scrollPane / textArea
 
- public void setGameInterestLabel(JLabel gameLabel) 
- {
-  this.gameLabel = gameLabel;
- }
- 
-  public JLabel getLevelLabel() 
- {
-  return levelLabel;
- }
+        //Set maximum value on inputBar
+        inputBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));     //set  max height to 75 and the max width to unlimited
+        inputBar.setLayout(new BoxLayout(inputBar, BoxLayout.X_AXIS));     //arranges horizontally
 
- public void setLevelLabel(JLabel levelLabel) 
- {
-  this.levelLabel = levelLabel;
- }
+        inputBar.add(textField);        // textfield on left
+        inputBar.add(sendButton);       // >> button on right
+        
+        pack();
+    }
+    
+    public JLabel getUsernameLabel() 
+    {
+        return usernameLabel;
+    }
 
+    public void setUsernameLabel(JLabel usernameLabel) 
+    {
+        this.usernameLabel = usernameLabel;
+    }
+
+    public JLabel getBirthdayLabel() 
+    {
+        return birthdayLabel;
+    }
+
+    public void setBirthdayLabel(JLabel birthdayLabel) 
+    {
+        this.birthdayLabel = birthdayLabel;
+    }
+
+    public JLabel getGameInterestLabel() 
+    {
+        return gameLabel;
+    }
+
+    public void setGameInterestLabel(JLabel gameLabel) 
+    {
+        this.gameLabel = gameLabel;
+    }
+
+     public JLabel getLevelLabel() 
+    {
+        return levelLabel;
+    }
+
+    public void setLevelLabel(JLabel levelLabel) 
+    {
+        this.levelLabel = levelLabel;
+    }
+    
+      
 }

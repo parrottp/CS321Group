@@ -1,5 +1,6 @@
 package Model;
 
+
 import javax.swing.JOptionPane;
 
 /**
@@ -117,6 +118,7 @@ public class LoginController {
     private void launchClient() {
         this.hm = new Model(model.getUsername(), model.getAge(), model.getGameInterest());
         this.hv = new HomePageView("Profile");
+        hv.setVisible(true);
         this.hc = new HomePageController(hm, hv);
         //hc.initialController();           UNCOMMENT WHEN initialController
         
