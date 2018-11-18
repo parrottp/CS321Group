@@ -121,7 +121,6 @@ public class LoginController {
         hv.setVisible(true);
         this.hc = new HomePageController(hm, hv);
         //hc.initialController();           UNCOMMENT WHEN initialController
-        
     }
     
     

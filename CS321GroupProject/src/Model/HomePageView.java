@@ -15,6 +15,9 @@ public class HomePageView extends javax.swing.JFrame{
     private final JTextArea textArea;
     private final JTextField textField;   // textfield for inputBar
     private final JTextField friendsSearchBar; //textfield for username search input
+    
+    //Buttons
+    private final JButton addFriendButton;
     private final JButton sendButton; 
     
     //Labels
@@ -22,8 +25,6 @@ public class HomePageView extends javax.swing.JFrame{
     private JLabel birthdayLabel;
     private JLabel gameLabel;
     private JLabel levelLabel;
-    
-    private JFrame frame;
 
     /**
     * View Constructor
@@ -44,6 +45,7 @@ public class HomePageView extends javax.swing.JFrame{
         inputBar = new JPanel();
         textField = new JTextField();  
         friendsSearchBar = new JTextField();
+        addFriendButton = new JButton("Add Friend");
         sendButton = new JButton(">>");
         
         
@@ -76,6 +78,7 @@ public class HomePageView extends javax.swing.JFrame{
         userDataPanel.add(gameLabel);
         userDataPanel.add(levelLabel);
         userDataPanel.add(friendsSearchBar);
+        userDataPanel.add(addFriendButton);
 
         //bottomPanel
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS)); //arranges vertically 
