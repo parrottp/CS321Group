@@ -12,9 +12,11 @@ public class HomePageView extends javax.swing.JFrame{
     
     private final JSplitPane splitPane;
     private final JScrollPane scrollPane;
-    private final JTextArea textArea;
-    private final JTextField textField;   // textfield for inputBar
-    private final JTextField friendsSearchBar; //textfield for username search input
+    private  JTextArea textArea;
+    
+    //Textfields
+    private  JTextField textField;   // textfield for inputBar
+    private  JTextField friendsSearchBar; //textfield for username search input
     
     //Buttons
     private JButton addFriendButton;
@@ -170,6 +172,23 @@ public class HomePageView extends javax.swing.JFrame{
      */
     public void setSendButton(JButton sendButton) {
         this.sendButton = sendButton;
+    }
+    
+    /**
+     * Accessor for friendsSearchBar
+     * @return current friendsSearchBar
+     */
+    public JTextField getfriendsSearchBar() {
+        return friendsSearchBar;
+    }
+
+    
+    /**
+     * Mutator for friendsSearchBar
+     * @param friendsSearchBar new friendsSearchBar
+     */
+    public void setfriendsSearchBar(JTextField friendsSearchBar) {
+        this.friendsSearchBar = friendsSearchBar;
     }
       
 }

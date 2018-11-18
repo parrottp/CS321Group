@@ -57,7 +57,7 @@ public class HomePageController
     //Add Friend function for the String in JTextField
     public void addFriend() {
         //Read the name of potential friend from JTextField
-        //model.setPotentialFriend(view.getFriendTextField().getText());
+        model.setPotentialFriend(view.getfriendsSearchBar().getText());
         
         if(model.verifyUser(model.getPotentialFriend())) {
             model.updateFriendsList(model.getPotentialFriend());
