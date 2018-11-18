@@ -120,7 +120,7 @@ public class LoginController {
         this.hv = new HomePageView("Profile");
         hv.setVisible(true);
         this.hc = new HomePageController(hm, hv);
-        //hc.initialController();           UNCOMMENT WHEN initialController
+        hc.initialController();           //UNCOMMENT WHEN initialController
     }
     
     

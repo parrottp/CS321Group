@@ -21,6 +21,7 @@ public class HomePageView extends javax.swing.JFrame{
     //Buttons
     private JButton addFriendButton;
     private JButton sendButton; 
+    private JButton logoutButton;
     
     //Labels
     private JLabel usernameLabel;
@@ -50,6 +51,7 @@ public class HomePageView extends javax.swing.JFrame{
         friendsSearchBar = new JTextField();
         addFriendButton = new JButton("Add Friend");
         sendButton = new JButton(">>");
+        logoutButton = new JButton("Logout");
         
         //Create font styles
         Font boldFont = new Font("Helvetica", Font.BOLD,20);
@@ -88,6 +90,7 @@ public class HomePageView extends javax.swing.JFrame{
         userDataPanel.add(birthdayLabel);
         userDataPanel.add(gameLabel);
         userDataPanel.add(levelLabel);
+        userDataPanel.add(logoutButton);
         
         userDataPanel.add(chatWithLabel);
         String[] friends = { "Liv", "Noah", "Nick", "Payton" };
@@ -187,6 +190,22 @@ public class HomePageView extends javax.swing.JFrame{
      */
     public void setSendButton(JButton sendButton) {
         this.sendButton = sendButton;
+    }
+    
+    /**
+     * Accessor for logoutButton button
+     * @return current logoutButton button
+     */
+    public JButton getLogoutButton() {
+        return logoutButton;
+    }
+ 
+    /**
+     * Mutator for logoutButton button
+     * @param logoutButton new logoutButton button
+     */
+    public void setLogoutButton(JButton logoutButton) {
+        this.logoutButton = logoutButton;
     }
     
     /**

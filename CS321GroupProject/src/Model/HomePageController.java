@@ -1,5 +1,7 @@
 package Model;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +40,8 @@ public class HomePageController
     
     public void initialController() 
     {
+
+                
         //Action Listener for Add Friend button
         view.getAddFriendButton().addActionListener(e -> {
             addFriend();
@@ -46,6 +50,11 @@ public class HomePageController
         //Action Listener for Send Message button
         view.getSendButton().addActionListener(e -> {
             sendMessage();
+        });
+        
+        //Action Listener for Log Out button
+        view.getLogoutButton().addActionListener(e -> {
+            logOut();
         });
     }
     
@@ -65,6 +74,16 @@ public class HomePageController
         else {
             JOptionPane.showMessageDialog(null, "User does not exist or you are already friends. Please try again.", "Invalid Friend Request", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    
+    //Log out function for logoutButton Button in HomePageView
+    public void logOut(){
+        
+    }
+    
+    //Log out function for logoutButton Button in HomePageView
+    public void buttonClicked(){
+        JOptionPane.showMessageDialog(null, "It was clicked", "Invalid Friend Request", JOptionPane.INFORMATION_MESSAGE);
     }
     
 }

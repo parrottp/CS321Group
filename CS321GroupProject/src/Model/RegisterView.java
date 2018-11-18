@@ -279,7 +279,6 @@ public class RegisterView {
     public void setLevelLabel(JLabel levelLabel) {
         this.levelLabel = levelLabel;
     }
-
     
     /**
      * Accessor for createProfile button
