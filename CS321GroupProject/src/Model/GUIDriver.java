@@ -15,7 +15,6 @@ public class GUIDriver {
     public static void main(String[]args)
     {
         login();
-        //home();
     }
         
     /**
@@ -30,10 +29,10 @@ public class GUIDriver {
         c.initialController();
     }
     
+    //UNUSED. FOR TESTING ONLY
     public static void home() {
         Model m = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
-        HomePageView v = new HomePageView("Profile");
-        //HomePageView v = new HomePageView("Profile", m.getFriendsList());
+        HomePageView v = new HomePageView("Profile", m.getFriendsList());
         HomePageController c = new HomePageController(m,v);
     }
     

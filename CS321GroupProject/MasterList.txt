@@ -2,3 +2,5 @@ insane
 starkiller
 vader
 skywalker
+kylo
+northking

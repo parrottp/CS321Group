@@ -55,10 +55,10 @@ public class Model {
         this.fileName = this.username + ".txt";
         this.friendsList = this.username + "friends.txt";
         
+        //Initializes FileData and Friends singletons, passes current User's username to Friends
         file = FileData.getInstance();
         f = Friends.getInstance();
         f.setUsername(this.username);
-        //loadPotentialFriends();
     }
     
     
@@ -73,10 +73,14 @@ public class Model {
         this.username = username;
         this.password = password;
         
+        //Reads File path for User data file for input username
+        this.fileName = this.username + ".txt";
+        this.friendsList = this.username + "friends.txt";
+        
+        //Initializes FileData and Friends singletons, passes current User's username to Friends
         file = FileData.getInstance();
         f = Friends.getInstance();
         f.setUsername(this.username);
-        //loadPotentialFriends();
     }
 
     /**
@@ -96,11 +100,18 @@ public class Model {
         this.fileName = this.username + ".txt";
         this.friendsList = this.username + "friends.txt";
         
+        //Initializes FileData and Friends singletons, passes current User's username to Friends
         file = FileData.getInstance();
         f = Friends.getInstance();
         f.setUsername(this.username);
-       // loadPotentialFriends();
+        
+        //Loads usernamefriends.txt as an ArrayList Friends
+        f.FriendsListLoad();
+        
+        //Loads an ArrayList of potential friends in the Friends class
+        f.pFriendsLoad();
     }
+    
     
     /**
      * Called by RegisterController when the User inputs DoB into JTextField. 
@@ -153,7 +164,7 @@ public class Model {
     
     
     /**
-     * Checks if password is correct for User input username
+     * Checks if password is correct for User input username.
      * @return true if password is correct, false if wrong password
      * PRECONDITION: this.fileName and this.password initialized.
      * POSTCONDITION: None.
@@ -210,8 +221,10 @@ public class Model {
     
     
     /**
-     * 
+     * Reads age and gameInterest from the current User's Data File. Used in LoginController to get all data fields for HomePage.
      * @throws ParseException 
+     * PRECONDITION: User Data File populated, and this.fileName initialized
+     * POSTCONDITION: age and gameInterest fields read from File and stored in Model
      */
     public void readDataFile() throws ParseException {
         ArrayList<String> userDataFile = file.FileLoadList(this.fileName);
@@ -230,25 +243,21 @@ public class Model {
     
     
     /**
-     * 
+     * Checks if this.potentialFriend is a valid potential friend.
+     * @return true if valid potential friend
+     * PRECONDITION: this.f instantiated, this.potentialFriend instantiated
+     * POSTCONDITION: None.
      */
-    public void loadPotentialFriends() {
-        //Loads usernamefriends.txt as an ArrayList Friends
-        f.FriendsListLoad();
-        
-        //Loads an ArrayList of potential friends
-        f.pFriendsLoad();
-    }
-    
-    
-    //Returns true if pFriend is valid
     public boolean verifyUser() {
         return f.isNewFriendValid(this.potentialFriend);
     }
     
     
-    
-   
+    /**
+     * Adds new User's username to current User's friends list and removes User from list of potential friends.
+     * PRECONDITION: this.potentialFriend and this.friendsList initialized
+     * POSTCONDITION: Username added to current User's friends list, and removed from current User's list of potential friends
+     */
     public void updateFriendsList() {
         //Writes User's new friend's username to friendsList
         file.FileWrite(this.potentialFriend, this.friendsList);
@@ -258,7 +267,25 @@ public class Model {
         f.pFriendsRemove(this.potentialFriend);
     }
     
-  
+    
+     /**
+     * Gets the current User's friends list, converts from ArrayList to Array, and returns it.
+     * @return String array of current User's friends list
+     * PRECONDITION: this.f initialized
+     * POSTCONDITION: None.
+     */
+    public String[] getFriendsList() {
+        ArrayList<String> list = f.getFriendsList();
+        int friendsListSize = list.size();
+        String[] friends = new String[friendsListSize];
+        
+        for (int i = 0; i < friendsListSize; i++) {
+            friends[i] = list.get(i);
+        }
+        
+        return friends;
+    }
+    
     
     /**
      * Accessor for invalidDateInput. Returns true if Date is invalid.
@@ -288,7 +315,7 @@ public class Model {
 
     
     /**
-     * Accessor for firstname
+     * Accessor for firstname.
      * @return current firstname
      */
     public String getFirstname() {
@@ -297,7 +324,7 @@ public class Model {
     
     
     /**
-     * Mutator for firstname
+     * Mutator for firstname.
      * @param first new firstname
      */
     public void setFirstname(String first) {
@@ -306,7 +333,7 @@ public class Model {
 
     
     /**
-     * Accessor for lastname
+     * Accessor for lastname.
      * @return current lastname
      */
     public String getLastname() {
@@ -315,7 +342,7 @@ public class Model {
 
     
     /**
-     * Mutator for lastname
+     * Mutator for lastname.
      * @param last new lastname
      */
     public void setLastname(String last) {
@@ -324,7 +351,7 @@ public class Model {
 
     
     /**
-     * Accessor for username
+     * Accessor for username.
      * @return 
      */
     public String getUsername() {
@@ -333,7 +360,7 @@ public class Model {
     
     
     /**
-     * Mutator for username
+     * Mutator for username.
      * @param newUsername new username
      */
     public void setUsername(String newUsername) {
@@ -342,7 +369,7 @@ public class Model {
    
    
     /**
-     * Accessor for password
+     * Accessor for password.
      * @return current password
      */
     public String getPassword() {
@@ -351,7 +378,7 @@ public class Model {
    
    
     /**
-     * Mutator for password
+     * Mutator for password.
      * @param newPassword new password
      */
     public void setPassword(String newPassword) {
@@ -360,7 +387,7 @@ public class Model {
 
    
     /**
-     * Accessor for gameInterest
+     * Accessor for gameInterest.
      * @return current gameInterest
      */
     public String getGameInterest() {
@@ -369,7 +396,7 @@ public class Model {
    
     
     /**
-     * Mutator for gameInterest
+     * Mutator for gameInterest.
      * @param newGameInterest new gameInterest
      */
     public void setGameInterest(String newGameInterest) {
@@ -378,7 +405,7 @@ public class Model {
    
     
     /**
-     * Accessor for birthday
+     * Accessor for birthday.
      * @return current birthday
      */
     public String getBirthday() {
@@ -387,7 +414,7 @@ public class Model {
     
     
     /**
-     * Mutator for birthday
+     * Mutator for birthday.
      * @param newBirthday new birthday
      */
     public void setBirthday(String newBirthday) {
@@ -396,7 +423,7 @@ public class Model {
    
    
     /**
-     * Accessor for age
+     * Accessor for age.
      * @return current age
      */
     public String getAge() {
@@ -405,7 +432,7 @@ public class Model {
     
     
     /**
-     * Mutator for age
+     * Mutator for age.
      * @param age new age
      */
     public void setAge(String age) {
@@ -413,7 +440,7 @@ public class Model {
     }
     
      /**
-     * Accessor for level
+     * Accessor for level.
      * @return current level
      */
     public int getLevel() {
@@ -422,7 +449,7 @@ public class Model {
     
     
     /**
-     * Mutator for age
+     * Mutator for age.
      * @param level new level
      */
     public void setLevel(int level) {
@@ -430,33 +457,22 @@ public class Model {
     }
     
     
-    
+    /**
+     * Accessor for potentialFriend.
+     * @return username of current potentialFriend
+     */
     public String getPotentialFriend() {
         return this.potentialFriend;
     }
    
     
-    
+    /**
+     * Mutator for potentialFriend.
+     * @param pFriend username of new potentialFriend
+     */
     public void setPotentialFriend(String pFriend) {
         this.potentialFriend = pFriend;
     }
     
-    
-    /**
-     * 
-     * @return 
-     */
-    public String[] getFriendsList() {
-        ArrayList<String> list = f.getFriendsList();
-        int friendsListSize = list.size();
-        String[] friends = new String[friendsListSize];
-        
-        for (int i = 0; i < friendsListSize; i++) {
-            friends[i] = list.get(i);
-            System.out.println(friends[i]);
-        }
-        
-        System.out.println(friends);
-        return friends;
-    }
+   
 }

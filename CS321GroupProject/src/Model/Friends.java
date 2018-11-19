@@ -1,13 +1,10 @@
 package Model;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Friends 
 {
-     //Private instance of FileData
+    //Private instance of FileData
     private static Friends f;
     
     //Constructor is private so FileData can only be initialied from getInstance()
@@ -21,21 +18,22 @@ public class Friends
         return f;
     }
     
+    //Initializes Singleton instance of FileData
     FileData fileData = FileData.getInstance();
+    
+    //User data
     ArrayList<String> potentialFriends;
     ArrayList<String> Friends;
     ArrayList<String> MasterList;
     String username;
-    String User;
     String friendsFile;
   
     
-    
      /**
-     * Stores master list of users into potential friends list
-     * PRECONDITIONS: MasterList is populated
-     * POSTCONDITIONS: potentialFriends is initialized
+     * Stores master list of users into potential friends list.
      * @return potentialFriends
+     * PRECONDITION: MasterList is populated
+     * POSTCONDITION: potentialFriends is initialized
      */
     public ArrayList<String> pFriendsLoad()
     {        
@@ -47,11 +45,10 @@ public class Friends
     
     
     /**
-     * Stores friends list into ArrayList<>
-     * PRECONDITIONS: Friends is populated
-     * POSTCONDITIONS: Friends is initialized
+     * Stores friends list into ArrayList<>.
      * @return Friends
-     * 
+     * PRECONDITION: Friends is populated
+     * POSTCONDITION: Friends is initialized
      */
     public ArrayList<String> FriendsListLoad()
     {
@@ -61,13 +58,11 @@ public class Friends
     
     
     /**
-     * Adds user to Friends ArrayList<> and writes to a file
-     * PRECONDTIONS: selecting user
-     * POSTCONDITIONS: selected user is added to Friends
+     * Adds user to Friends ArrayList<> and writes to a file.
      * @param user String
      * @return Friends 
-     * 
-     * 
+     * PRECONDTION: selecting user
+     * POSTCONDITION: selected user is added to Friends
      */
     public ArrayList<String> FriendListAdd(String user)
     {
@@ -78,11 +73,10 @@ public class Friends
     
     
     /**
-     * Removes user from potential friends list
-     * @param pFriends ArrayList<>
+     * Removes user from potential friends list.
      * @param user String
      * @return potentialFriends
-     * PRECONDITIONS: potentialFriends is populated and user has been added to Friends List
+     * PRECONDITION: potentialFriends is populated and user has been added to Friends List
      * POSTCONDITION: Selected user has been removed from potential friends
      */
     public ArrayList<String> pFriendsRemove(String user)
@@ -92,21 +86,34 @@ public class Friends
     }
     
     
-    //Returns true if the input String is in the list of potential friends
+    /**
+     * Checks if friend is in the list if potential friends.
+     * @param friend name being checked
+     * @return true if friend is in the list of potential friends
+     * PRECONDITION: String friend is initialized
+     * POSTCONDITION: None.
+     */
     public boolean isNewFriendValid(String friend) {
         return this.potentialFriends.contains(friend);
     }
     
     
     /**
-     * 
-     * @param user 
+     * Stores current User's username and the name of their User Data File.
+     * @param user current User's username
+     * PRECONDITION: String user is initialized
+     * POSTCONDITION: this.username and this.friendsFile are initialized
      */
     public void setUsername(String user) {
         this.username = user;
         this.friendsFile = username + "friends.txt";
     }
     
+    
+    /**
+     * Accessor for current User's friends list
+     * @return current User's friends list
+     */
     public ArrayList<String> getFriendsList() {
         return this.Friends;
     }
