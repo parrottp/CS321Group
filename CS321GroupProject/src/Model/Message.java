@@ -26,10 +26,13 @@ public class Message
      * Constructs new Message object
      * @param fileName 
      */
-    public Message(String fileName) 
+    public Message(String user, String message, String fileName) 
     {
-        this.fd = FileData.getInstance();
+        this.user = user;
+        this.message = message;
         this.fileName = fileName;
+        this.fd = FileData.getInstance();
+        writeMessage();
     }
     
     /**
@@ -63,7 +66,7 @@ public class Message
      * Obtains current Date and Time when Message object was created
      * @return date and time as a Date object
      */
-    public Date timeStamp()
+    private Date timeStamp()
     {
         Date timeStamp = new Date();
         return timeStamp;
@@ -74,7 +77,7 @@ public class Message
      * @return formatted Message line
      */
     private String createMessage() {
-        String line = user + ": " + message + "\t\t\t\t\t" + timeStamp();           
+        String line = timeStamp() + " " + user + ": " + message;           
         return line;
     }
     
@@ -82,7 +85,7 @@ public class Message
     /**
      * Uses FileData to write message to File
      */
-    public void writeMessage()  {
+    private void writeMessage()  {
         FileData fd = FileData.getInstance();
         String s = fd.FileWrite(createMessage(), fileName);
     }
