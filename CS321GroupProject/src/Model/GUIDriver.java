@@ -33,6 +33,7 @@ public class GUIDriver {
     public static void home() {
         Model m = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
         HomePageView v = new HomePageView("Profile");
+        //HomePageView v = new HomePageView("Profile", m.getFriendsList());
         HomePageController c = new HomePageController(m,v);
     }
     

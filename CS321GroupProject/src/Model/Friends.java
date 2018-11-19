@@ -106,5 +106,8 @@ public class Friends
         this.username = user;
         this.friendsFile = username + "friends.txt";
     }
-   
+    
+    public ArrayList<String> getFriendsList() {
+        return this.Friends;
+    }
 }

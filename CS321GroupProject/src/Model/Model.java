@@ -2,6 +2,7 @@ package Model;
 
 import java.io.File;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 /**
  * Model for MVC of program
@@ -50,9 +51,14 @@ public class Model {
         gameInterest = aGameInterest;
         level = userLevel;
         
+        //Reads File path for User data file for input username
+        this.fileName = this.username + ".txt";
+        this.friendsList = this.username + "friends.txt";
+        
         file = FileData.getInstance();
         f = Friends.getInstance();
         f.setUsername(this.username);
+        //loadPotentialFriends();
     }
     
     
@@ -70,6 +76,7 @@ public class Model {
         file = FileData.getInstance();
         f = Friends.getInstance();
         f.setUsername(this.username);
+        //loadPotentialFriends();
     }
 
     /**
@@ -85,9 +92,14 @@ public class Model {
         this.age = age;
         gameInterest = aGameInterest;
         
+        //Reads File path for User data file for input username
+        this.fileName = this.username + ".txt";
+        this.friendsList = this.username + "friends.txt";
+        
         file = FileData.getInstance();
         f = Friends.getInstance();
         f.setUsername(this.username);
+       // loadPotentialFriends();
     }
     
     /**
@@ -181,6 +193,9 @@ public class Model {
         //Convert level to string 
         String stringLevel = new Integer(level).toString();
         file.FileWrite(stringLevel, fileName);
+        
+        //Create data file for User's friends list when their profile is created
+        file.FileCreate(friendsList);
     }
     
     
@@ -194,21 +209,53 @@ public class Model {
     }
     
     
-    //Returns true if pFriend is valid
-    public boolean verifyUser(String pFriend) {
-        this.potentialFriend = pFriend;
+    /**
+     * 
+     * @throws ParseException 
+     */
+    public void readDataFile() throws ParseException {
+        ArrayList<String> userDataFile = file.FileLoadList(this.fileName);
         
+        //Reads in the String for User Date of Birth
+        String DoB = userDataFile.get(4);
+        
+        //Calculate and set this.age from Date of Birth
+        CalculateAge input = new CalculateAge(DoB);
+        input.processAge();
+        this.age = input.getAge();
+        
+        //Reads in the String for User Game Interest and sets it to this.gameInterest
+        this.gameInterest = userDataFile.get(5);
+    }
+    
+    
+    /**
+     * 
+     */
+    public void loadPotentialFriends() {
+        //Loads usernamefriends.txt as an ArrayList Friends
+        f.FriendsListLoad();
+        
+        //Loads an ArrayList of potential friends
+        f.pFriendsLoad();
+    }
+    
+    
+    //Returns true if pFriend is valid
+    public boolean verifyUser() {
         return f.isNewFriendValid(this.potentialFriend);
     }
     
     
+    
    
-    public void updateFriendsList(String newFriend) {
-        //Adds new User name to Friends List
-        file.FileWrite(newFriend, friendsList);
+    public void updateFriendsList() {
+        //Writes User's new friend's username to friendsList
+        file.FileWrite(this.potentialFriend, this.friendsList);
+        
 
         //Deletes User name from Potential Friends List
-        f.pFriendsRemove(newFriend);
+        f.pFriendsRemove(this.potentialFriend);
     }
     
   
@@ -392,5 +439,24 @@ public class Model {
     
     public void setPotentialFriend(String pFriend) {
         this.potentialFriend = pFriend;
+    }
+    
+    
+    /**
+     * 
+     * @return 
+     */
+    public String[] getFriendsList() {
+        ArrayList<String> list = f.getFriendsList();
+        int friendsListSize = list.size();
+        String[] friends = new String[friendsListSize];
+        
+        for (int i = 0; i < friendsListSize; i++) {
+            friends[i] = list.get(i);
+            System.out.println(friends[i]);
+        }
+        
+        System.out.println(friends);
+        return friends;
     }
 }

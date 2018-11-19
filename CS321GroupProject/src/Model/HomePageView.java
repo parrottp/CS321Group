@@ -1,6 +1,7 @@
 package Model;
 
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class HomePageView extends javax.swing.JFrame{
@@ -29,6 +30,11 @@ public class HomePageView extends javax.swing.JFrame{
     private JLabel gameLabel;
     private JLabel levelLabel;
     private JLabel chatWithLabel;
+    
+    //List of Friends to populate JComboBox
+    private ArrayList<String> friendsList;
+    private String[] friends;
+    private int friendsListSize;
 
     /**
     * View Constructor
@@ -37,7 +43,6 @@ public class HomePageView extends javax.swing.JFrame{
     *
     */
     public HomePageView(String title) {
-  
         splitPane = new JSplitPane();
         userDataPanel = new JPanel();        
         bottomPanel = new JPanel();
@@ -93,8 +98,14 @@ public class HomePageView extends javax.swing.JFrame{
         userDataPanel.add(logoutButton);
         
         userDataPanel.add(chatWithLabel);
-        String[] friends = { "Liv", "Noah", "Nick", "Payton" };
-        JComboBox currentFriendList = new JComboBox(friends);
+        
+        //createFriendsArray();
+        String[] friendos = { "Liv", "Noah", "Nick", "Payton"};
+        //testArray();
+        //this.friends = new String[friendsListSize];
+        
+        
+        JComboBox currentFriendList = new JComboBox(friendos);
         userDataPanel.add(currentFriendList);
         
         userDataPanel.add(friendsSearchBar);
@@ -118,6 +129,36 @@ public class HomePageView extends javax.swing.JFrame{
         inputBar.add(sendButton);       // >> button on right
         
         pack();
+    }
+    
+    public void testArray() {
+       this.friends = new String[4];
+       this.friends[0] = "Liv";
+       this.friends[1] = "Chewbacca";
+       this.friends[2] = "Nick";
+       this.friends[3] = "Payton";
+    }
+    
+    
+    /**
+     * 
+     */
+    public void createFriendsArray() {
+        this.friends = new String[friendsListSize];
+        
+        for (int i = 0; i < friendsListSize; i++) {
+            this.friends[i] = friendsList.get(i);
+            System.out.println(this.friends[i]);
+            System.out.println("test");
+        }
+    }
+    
+    
+    /**
+     * 
+     */
+    public void close() {
+        this.dispose();
     }
     
     public JLabel getUsernameLabel() 
@@ -254,5 +295,22 @@ public class HomePageView extends javax.swing.JFrame{
      */
     public void setMessageOutput(JTextArea messageOutput) {
         this.messageOutput = messageOutput;
+    }
+    
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<String> getFriendsList() {
+        return this.friendsList;
+    }
+    
+    
+    
+    
+    
+    public void setFriendsList(String[] friends) {
+        this.friends = friends.clone();
     }
 }

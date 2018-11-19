@@ -1,6 +1,9 @@
 package Model;
 
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -81,12 +84,25 @@ public class LoginController {
         model.setUsername(view.getUsernameTextfield().getText());                       
         model.setPassword(new String(view.getPasswordTextfield().getPassword()));       
         
+        
+        
         //Checks if input Username exists in list of Registered Users
         if (model.checkUsername()) {
             //Checks if input Password is correct for input Username
             if (model.checkPassword()) {
+                //Loads age and game interest into Model from User Data File
+                try {
+                    model.readDataFile();
+                } catch (ParseException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                //Displays successful login message and closes Login page
                 JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
                 view.close();      
+                
+                
                 //Opens Main Chat Client GUI here
                 launchClient();
             }
@@ -118,9 +134,10 @@ public class LoginController {
     private void launchClient() {
         this.hm = new Model(model.getUsername(), model.getAge(), model.getGameInterest());
         this.hv = new HomePageView("Profile");
+        //this.hv = new HomePageView("Profile", model.getFriendsList());
         hv.setVisible(true);
         this.hc = new HomePageController(hm, hv);
-        hc.initialController();           //UNCOMMENT WHEN initialController
+        hc.initialController();          
     }
     
     
