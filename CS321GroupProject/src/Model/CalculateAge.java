@@ -73,7 +73,6 @@ public class CalculateAge {
             this.birthDay = birthDay;                       //Sets local variable
         }
         catch (ParseException e) {
-            System.out.println("Input Date is invalid.  (This error is caught in the CalculateAge class.)");
             this.invalidDate = true;
         }
     }

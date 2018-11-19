@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Graveyard;
+package Model;
 
 import Model.FileData;
 import Model.FileData;
@@ -15,11 +15,12 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Message extends FileData
+public class Message
 {
     private String message;
     private String user;
     private final String fileName;
+<<<<<<< HEAD:CS321GroupProject/src/Graveyard/Message.java
     
     //For Test purposes only. Used for CHECKIN 1
     public static void main(String[] args) {
@@ -49,13 +50,21 @@ public class Message extends FileData
     }
     
     
+=======
+    private FileData fd;
+   
+>>>>>>> noah_development:CS321GroupProject/src/Model/Message.java
     /**
      * Constructs new Message object
      * @param fileName 
      */
-    public Message(String fileName) 
+    public Message(String user, String message, String fileName) 
     {
+        this.user = user;
+        this.message = message;
         this.fileName = fileName;
+        this.fd = FileData.getInstance();
+        writeMessage();
     }
     
     /**
@@ -89,7 +98,7 @@ public class Message extends FileData
      * Obtains current Date and Time when Message object was created
      * @return date and time as a Date object
      */
-    public Date timeStamp()
+    private Date timeStamp()
     {
         Date timeStamp = new Date();
         return timeStamp;
@@ -100,7 +109,7 @@ public class Message extends FileData
      * @return formatted Message line
      */
     private String createMessage() {
-        String line = user + ": " + message + "\t\t\t\t\t" + timeStamp();           
+        String line = timeStamp() + " " + user + ": " + message;           
         return line;
     }
     
@@ -108,8 +117,8 @@ public class Message extends FileData
     /**
      * Uses FileData to write message to File
      */
-    public void writeMessage()  {
-        FileData fd = new FileData();
+    private void writeMessage()  {
+        FileData fd = FileData.getInstance();
         String s = fd.FileWrite(createMessage(), fileName);
     }
     
