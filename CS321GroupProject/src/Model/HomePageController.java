@@ -1,7 +1,5 @@
 package Model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,9 +38,6 @@ public class HomePageController
         
         String stringLevel = new Integer(model.getLevel()).toString();
         view.getLevelLabel().setText("Level " + stringLevel);
-        
-        
-        //view.setFriendsList(model.getFriendsList());
     }
     
     public void initialController() 
@@ -76,11 +71,11 @@ public class HomePageController
     public void addFriend() throws ParseException {
         //Read the name of potential friend from JTextField
         model.setPotentialFriend(view.getfriendsSearchBar().getText());
-        model.loadPotentialFriends();
+       
         
         if(model.verifyUser()) {
             model.updateFriendsList();
-            JOptionPane.showMessageDialog(null, "Successfully added " + model.getPotentialFriend() + " as a friend!", "New Friend Added!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Successfully added " + model.getPotentialFriend() + " as a friend! Log out and log back in to confirm.", "New Friend Added!", JOptionPane.INFORMATION_MESSAGE);
         }
         else {
             JOptionPane.showMessageDialog(null, "User does not exist or you are already friends. Please try again.", "Invalid Friend Request", JOptionPane.INFORMATION_MESSAGE);

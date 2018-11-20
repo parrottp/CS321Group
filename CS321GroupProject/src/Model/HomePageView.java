@@ -33,7 +33,7 @@ public class HomePageView extends javax.swing.JFrame{
     
     //List of Friends to populate JComboBox
     private ArrayList<String> friendsList;
-    private String[] friends;
+    //private String[] friends;
     private int friendsListSize;
 
     /**
@@ -42,7 +42,7 @@ public class HomePageView extends javax.swing.JFrame{
     * @param title used for frame title
     *
     */
-    public HomePageView(String title) {
+    public HomePageView(String title, String[] friends) {
         splitPane = new JSplitPane();
         userDataPanel = new JPanel();        
         bottomPanel = new JPanel();
@@ -99,13 +99,7 @@ public class HomePageView extends javax.swing.JFrame{
         
         userDataPanel.add(chatWithLabel);
         
-        //createFriendsArray();
-        String[] friendos = { "Liv", "Noah", "Nick", "Payton"};
-        //testArray();
-        //this.friends = new String[friendsListSize];
-        
-        
-        JComboBox currentFriendList = new JComboBox(friendos);
+        JComboBox currentFriendList = new JComboBox(friends);
         userDataPanel.add(currentFriendList);
         
         userDataPanel.add(friendsSearchBar);
@@ -130,28 +124,9 @@ public class HomePageView extends javax.swing.JFrame{
         
         pack();
     }
-    
-    public void testArray() {
-       this.friends = new String[4];
-       this.friends[0] = "Liv";
-       this.friends[1] = "Chewbacca";
-       this.friends[2] = "Nick";
-       this.friends[3] = "Payton";
-    }
+   
     
     
-    /**
-     * 
-     */
-    public void createFriendsArray() {
-        this.friends = new String[friendsListSize];
-        
-        for (int i = 0; i < friendsListSize; i++) {
-            this.friends[i] = friendsList.get(i);
-            System.out.println(this.friends[i]);
-            System.out.println("test");
-        }
-    }
     
     
     /**
@@ -306,11 +281,4 @@ public class HomePageView extends javax.swing.JFrame{
         return this.friendsList;
     }
     
-    
-    
-    
-    
-    public void setFriendsList(String[] friends) {
-        this.friends = friends.clone();
-    }
 }

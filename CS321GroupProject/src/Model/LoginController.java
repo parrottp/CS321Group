@@ -85,7 +85,6 @@ public class LoginController {
         model.setPassword(new String(view.getPasswordTextfield().getPassword()));       
         
         
-        
         //Checks if input Username exists in list of Registered Users
         if (model.checkUsername()) {
             //Checks if input Password is correct for input Username
@@ -103,8 +102,13 @@ public class LoginController {
                 view.close();      
                 
                 
-                //Opens Main Chat Client GUI here
-                launchClient();
+                try {
+                    //Opens Main Chat Client GUI here
+                    launchClient();
+                } catch (ParseException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
             else {
                 invalidPassword();  //Displays error message if input password is invalid
@@ -131,13 +135,13 @@ public class LoginController {
         rc.initialController();
     }
     
-    private void launchClient() {
+    private void launchClient() throws ParseException {
         this.hm = new Model(model.getUsername(), model.getAge(), model.getGameInterest());
-        this.hv = new HomePageView("Profile");
-        //this.hv = new HomePageView("Profile", model.getFriendsList());
-        hv.setVisible(true);
+        //this.hv = new HomePageView("Profile");
+        this.hv = new HomePageView("Profile", hm.getFriendsList());
+        this.hv.setVisible(true);
         this.hc = new HomePageController(hm, hv);
-        hc.initialController();          
+        this.hc.initialController();          
     }
     
     
