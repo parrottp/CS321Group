@@ -72,8 +72,9 @@ public class HomePageView extends javax.swing.JFrame{
         levelLabel = new JLabel("Level");
         chatWithLabel = new JLabel("Chat with:");
 
-        setPreferredSize(new Dimension(600, 400));
-
+        setPreferredSize(new Dimension(900, 600));      //Size changed to look better
+        setLocation(500, 200);                          //Centered when launched
+        
         getContentPane().setLayout(new GridLayout());  
         getContentPane().add(splitPane);
 

@@ -1,5 +1,7 @@
 package Model;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -38,6 +40,7 @@ public class HomePageController
         view.getBirthdayLabel().setText("Age: " + model.getAge());
         view.getGameInterestLabel().setText("Currently playing " + model.getGameInterest());
         
+        
         String stringLevel = new Integer(model.getLevel()).toString();
         view.getLevelLabel().setText("Level " + stringLevel);
         changeConversation();
@@ -68,6 +71,14 @@ public class HomePageController
         view.getLogoutButton().addActionListener(e -> {
             logOut();
         });
+        
+        //Updates the User Level stored in User Data File
+        view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                model.updateUserLevel();
+            }
+        });
     }
     
     //Send Message function for >> Button in HomePageView
@@ -82,8 +93,9 @@ public class HomePageController
     {
         model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
         
-        if(model.getCurrentConversation() != null)
+        if(model.getCurrentConversation() != null) {
             writeToView();
+        }
     }
     
     //Add Friend function for the String in JTextField
@@ -103,6 +115,7 @@ public class HomePageController
     
     //Log out function for logoutButton Button in HomePageView
     public void logOut(){
+        model.updateUserLevel();
         view.close();
         
         this.lm = new Model("Please enter username", "Please enter password");
@@ -118,7 +131,17 @@ public class HomePageController
     
     private void writeToView()
     {
+        //Calculates the Level by dividing total messages sent by 5
+        String stringLevel = Integer.toString(model.getLevel() / 5);
+        
+        //Updates View to display new Level
+        view.getLevelLabel().setText("Level " + stringLevel);
+        
+        //Clears the JTextField User inputs Messages into
         view.getMessageOutput().setText(null);
+        
+        
+        //Displays conversation to the View
         ArrayList<String> conversation = model.getConvoText();
         
         for(int i = 0; i < conversation.size(); i++)

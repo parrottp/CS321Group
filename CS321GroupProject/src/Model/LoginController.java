@@ -129,15 +129,16 @@ public class LoginController {
     {
         view.close();
         
-        this.rm = new Model("Please enter first name", "Please enter last name", "Please enter username", "Please enter password", "MM/DD/YYYY", "Please enter game", 1);
+        this.rm = new Model("Please enter first name", "Please enter last name", "Please enter username", "Please enter password", "MM/DD/YYYY", "Please enter game");
         this.rv =  new RegisterView("Create Profile");
         this.rc = new RegisterController(rm, rv);
         rc.initialController();
     }
     
+    
+    
     private void launchClient() throws ParseException {
-        this.hm = new Model(model.getUsername(), model.getAge(), model.getGameInterest());
-        //this.hv = new HomePageView("Profile");
+        this.hm = new Model(model.getUsername(), model.getAge(), model.getGameInterest(), model.getLevel());
         this.hv = new HomePageView("Profile", hm.getFriendsList());
         this.hv.setVisible(true);
         this.hc = new HomePageController(hm, hv);

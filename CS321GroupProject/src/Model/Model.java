@@ -3,6 +3,8 @@ package Model;
 import java.io.File;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Model for MVC of program
@@ -45,14 +47,13 @@ public class Model {
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
-    public Model(String firstname, String lastname, String aUsername, String aPassword, String aBirthday, String aGameInterest, int userLevel) {
+    public Model(String firstname, String lastname, String aUsername, String aPassword, String aBirthday, String aGameInterest) {
         this.firstname = firstname;
         this.lastname = lastname;
         username = aUsername;
         password = aPassword;
         birthday = aBirthday;
         gameInterest = aGameInterest;
-        level = userLevel;
         
         //Reads File path for User data file for input username
         this.fileName = this.username + ".txt";
@@ -94,10 +95,11 @@ public class Model {
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
-    public Model(String aUsername, String age, String aGameInterest) {
+    public Model(String aUsername, String age, String aGameInterest, int level) {
         username = aUsername;
         this.age = age;
         gameInterest = aGameInterest;
+        this.level = level;
         
         //Reads File path for User data file for input username
         this.fileName = this.username + ".txt";
@@ -205,11 +207,37 @@ public class Model {
         file.FileWrite(this.gameInterest, fileName);
         
         //Convert level to string 
-        String stringLevel = new Integer(level).toString();
+        this.level = 0;
+        String stringLevel = new Integer(this.level).toString();
         file.FileWrite(stringLevel, fileName);
         
         //Create data file for User's friends list when their profile is created
         file.FileCreate(friendsList);
+    }
+    
+    
+    /**
+     * 
+     */
+    public void updateUserLevel() {
+        //Store User Data file into ArrayList
+        ArrayList<String> userData = file.FileLoadList(this.fileName);
+        
+        //Convert new level to String
+        String stringLevel = Integer.toString(this.level);
+        
+        //Update level in User Data
+        userData.set(6, stringLevel);
+        
+        //Deletes User data File
+        File temp = new File(this.fileName);
+        temp.delete();
+        
+        //Re-writes file with new value
+        file.FileCreate(this.fileName);
+        for (int i = 0; i < userData.size(); i++) {
+            file.FileWrite(userData.get(i), this.fileName);
+        }
     }
     
     
@@ -242,6 +270,9 @@ public class Model {
         
         //Reads in the String for User Game Interest and sets it to this.gameInterest
         this.gameInterest = userDataFile.get(5);
+        
+        //Reads in the String for User Level, turns it into an integer, and sets it to this.level
+        this.level = Integer.parseInt(userDataFile.get(6));
     }
     
     
@@ -265,12 +296,24 @@ public class Model {
         //Writes User's new friend's username to friendsList
         file.FileWrite(this.potentialFriend, this.friendsList);
         
-        //Creates files to contain conversation
-        file.FileCreate(this.username + this.potentialFriend + ".txt");
-        file.FileCreate(this.potentialFriend + this.username + ".txt");
-
         //Deletes User name from Potential Friends List
         f.pFriendsRemove(this.potentialFriend);
+        
+        //Initializes conversation file names
+        this.cCFileNameA = this.username + this.potentialFriend + ".txt";
+        this.cCFileNameB = this.potentialFriend + this.username + ".txt";
+        
+        //Creates File instances to test if the conversation files exist
+        File fA = new File(cCFileNameA);
+        File fB = new File(cCFileNameB);
+        
+        //Creates new conversation files while not overwriting existing conversation files
+        if (!fA.exists()) {
+            file.FileCreate(this.username + this.potentialFriend + ".txt");
+        }
+        if (!fB.exists()) {
+            file.FileCreate(this.potentialFriend + this.username + ".txt");
+        }
     }
     
     
@@ -292,6 +335,19 @@ public class Model {
         return friends;
     }
     
+    
+    /**
+     * Creates Message objects, saving each message
+     * to the perspective of each user involved
+     * @param message 
+     */
+    public void sendMessage(String message)
+    {
+        Message mess = new Message(username, message, this.cCFileNameA);
+        Message messReverse = new Message(username, message, this.cCFileNameB);
+        
+        this.level++;
+    }
     
     /**
      * Accessor for invalidDateInput. Returns true if Date is invalid.
@@ -503,14 +559,5 @@ public class Model {
         this.cCFileNameB = currentConversation + username + ".txt";
     }
     
-    /**
-     * Creates Message objects, saving each message
-     * to the perspective of each user involved
-     * @param message 
-     */
-    public void sendMessage(String message)
-    {
-        Message mess = new Message(username, message, username + currentConversation + ".txt");
-        Message messReverse = new Message(username, message, currentConversation + username + ".txt");
-    }
+    
 }

@@ -77,7 +77,7 @@ public class Message
      * @return formatted Message line
      */
     private String createMessage() {
-        String line = timeStamp() + " " + user + ": " + message;           
+        String line = timeStamp() + "\t" + user + ": " + message;           
         return line;
     }
     

@@ -31,7 +31,7 @@ public class GUIDriver {
     
     //UNUSED. FOR TESTING ONLY
     public static void home() {
-        Model m = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder");
+        Model m = new Model("Username placeholder", "Birthday placeholder", "Game Interest Placeholder", 0);
         HomePageView v = new HomePageView("Profile", m.getFriendsList());
         HomePageController c = new HomePageController(m,v);
     }
