@@ -35,6 +35,8 @@ public class HomePageView extends javax.swing.JFrame{
     private ArrayList<String> friendsList;
     //private String[] friends;
     private int friendsListSize;
+    //private combobox
+    private JComboBox currentFriendList;
 
     /**
     * View Constructor
@@ -99,7 +101,7 @@ public class HomePageView extends javax.swing.JFrame{
         
         userDataPanel.add(chatWithLabel);
         
-        JComboBox currentFriendList = new JComboBox(friends);
+        currentFriendList = new JComboBox(friends);
         userDataPanel.add(currentFriendList);
         
         userDataPanel.add(friendsSearchBar);
@@ -279,6 +281,16 @@ public class HomePageView extends javax.swing.JFrame{
      */
     public ArrayList<String> getFriendsList() {
         return this.friendsList;
+    }
+    
+    public JComboBox getFriendBox()
+    {
+        return currentFriendList;
+    }
+    
+    public void setFriendBox(JComboBox currentFriendList)
+    {
+        this.currentFriendList = currentFriendList;
     }
     
 }

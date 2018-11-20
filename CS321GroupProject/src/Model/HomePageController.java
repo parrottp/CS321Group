@@ -38,6 +38,7 @@ public class HomePageController
         
         String stringLevel = new Integer(model.getLevel()).toString();
         view.getLevelLabel().setText("Level " + stringLevel);
+        model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
     }
     
     public void initialController() 
@@ -49,6 +50,11 @@ public class HomePageController
             } catch (ParseException ex) {
                 Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        });
+        
+        //Action Listener for Switch Conversation
+        view.getFriendBox().addActionListener(e -> {
+            changeConversation();
         });
         
         //Action Listener for Send Message button
@@ -64,7 +70,14 @@ public class HomePageController
     
     //Send Message function for >> Button in HomePageView
     public void sendMessage(){
-        
+        model.sendMessage(view.getMessageInputField().getText());
+        view.getMessageInputField().setText("");
+    }
+    
+    //Change conversation partner
+    public void changeConversation()
+    {
+        model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
     }
     
     //Add Friend function for the String in JTextField

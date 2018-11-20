@@ -475,7 +475,6 @@ public class Model {
         this.potentialFriend = pFriend;
     }
     
-<<<<<<< HEAD
     /**
      * returns the user to which the active user
      * will send messages
@@ -501,25 +500,4 @@ public class Model {
         Message mess = new Message(username, message, username + currentConversation + ".txt");
         Message messReverse = new Message(username, message, currentConversation + username + ".txt");
     }
-    
-    /**
-     * 
-     * @return 
-     */
-    public String[] getFriendsList() {
-        ArrayList<String> list = f.getFriendsList();
-        int friendsListSize = list.size();
-        String[] friends = new String[friendsListSize];
-        
-        for (int i = 0; i < friendsListSize; i++) {
-            friends[i] = list.get(i);
-            System.out.println(friends[i]);
-        }
-        
-        System.out.println(friends);
-        return friends;
-    }
-=======
-   
->>>>>>> noah_development
 }
