@@ -1,0 +1,10 @@
+Mon Nov 19 19:28:30 CST 2018 insane: hello
+Mon Nov 19 19:29:47 CST 2018 insane: How's it going
+Mon Nov 19 19:31:48 CST 2018 insane: Pretty good for me
+Mon Nov 19 19:33:30 CST 2018 insane: Let's try this
+Mon Nov 19 19:33:36 CST 2018 insane: Nice
+Mon Nov 19 19:33:41 CST 2018 insane: s
+Mon Nov 19 19:33:44 CST 2018 insane: s
+Mon Nov 19 19:33:52 CST 2018 insane: l\n
+Mon Nov 19 19:33:57 CST 2018 insane: l
+Mon Nov 19 19:36:51 CST 2018 starkiller: nice to meet you

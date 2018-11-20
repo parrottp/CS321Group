@@ -15,6 +15,8 @@ public class Model {
     private String pFriendsList;
     private String potentialFriend;
     private String currentConversation;
+    private String cCFileNameA;
+    private String cCFileNameB;
     private Friends f;
     
     private String firstname;
@@ -475,6 +477,12 @@ public class Model {
         this.potentialFriend = pFriend;
     }
     
+    public ArrayList<String> getConvoText()
+    {
+        return file.FileLoadList(cCFileNameA);
+    }
+    
+    
     /**
      * returns the user to which the active user
      * will send messages
@@ -488,6 +496,8 @@ public class Model {
     public void setCurrentConversation(String currentConversation)
     {
         this.currentConversation = currentConversation;
+        this.cCFileNameA = username + currentConversation + ".txt";
+        this.cCFileNameB = currentConversation + username + ".txt";
     }
     
     /**

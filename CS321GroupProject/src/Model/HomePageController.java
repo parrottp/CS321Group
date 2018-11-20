@@ -1,6 +1,7 @@
 package Model;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -38,7 +39,7 @@ public class HomePageController
         
         String stringLevel = new Integer(model.getLevel()).toString();
         view.getLevelLabel().setText("Level " + stringLevel);
-        model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
+        changeConversation();
     }
     
     public void initialController() 
@@ -72,12 +73,14 @@ public class HomePageController
     public void sendMessage(){
         model.sendMessage(view.getMessageInputField().getText());
         view.getMessageInputField().setText("");
+        writeToView();
     }
     
     //Change conversation partner
     public void changeConversation()
     {
         model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
+        writeToView();
     }
     
     //Add Friend function for the String in JTextField
@@ -110,4 +113,15 @@ public class HomePageController
         JOptionPane.showMessageDialog(null, "It was clicked", "Invalid Friend Request", JOptionPane.INFORMATION_MESSAGE);
     }
     
+    private void writeToView()
+    {
+        view.getMessageOutput().setText(null);
+        ArrayList<String> conversation = model.getConvoText();
+        
+        for(int i = 0; i < conversation.size(); i++)
+        {
+            view.getMessageOutput().append(conversation.get(i));
+            view.getMessageOutput().append("\n");
+        }
+    }
 }
