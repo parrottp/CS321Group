@@ -1,6 +1,10 @@
-package Model;
+package Controller;
 
 
+import Model.Model;
+import View.RegisterView;
+import View.HomePageView;
+import View.LoginView;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

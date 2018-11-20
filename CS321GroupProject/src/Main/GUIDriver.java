@@ -1,4 +1,10 @@
-package Model;
+package Main;
+
+import Controller.HomePageController;
+import Controller.LoginController;
+import Model.Model;
+import View.HomePageView;
+import View.LoginView;
 
 
 

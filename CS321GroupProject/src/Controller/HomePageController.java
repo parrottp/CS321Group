@@ -1,5 +1,9 @@
-package Model;
+package Controller;
 
+import Controller.LoginController;
+import Model.Model;
+import View.HomePageView;
+import View.LoginView;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
