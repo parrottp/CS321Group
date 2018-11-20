@@ -3,6 +3,7 @@ package Model;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ public class RegisterController
     //Model and View for this instance of RegisterController
     private Model model;
     private RegisterView view;
+    ImageIcon logo = new ImageIcon("logo.png");
     
     //Model, View and Controller for LoginController called by RegisterController
     Model lm;
@@ -104,7 +106,7 @@ public class RegisterController
         //Once all inputs are valid
         else {
             //Displays Welcome message for a successful registration
-            JOptionPane.showMessageDialog(null, "Welcome " + model.getUsername() + "!", "Profile Created", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Welcome " + model.getUsername() + "!", "Profile Created",JOptionPane.PLAIN_MESSAGE, logo);
             
             //Displays Happy Birthday message if current day is User's birthday
             if(this.isBirthday == true) {
@@ -145,7 +147,7 @@ public class RegisterController
      * POSTCONDITIONS: Invalid Date message displayed in Register GUI.
      */
     public void invalidDate() {
-        JOptionPane.showMessageDialog(null, "Please input Date of Birth in the following format: MM/dd/yyyy", "Invalid Date", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Please input Date of Birth in the following format: MM/dd/yyyy", "Invalid Date", JOptionPane.PLAIN_MESSAGE);
     }
     
     
@@ -155,7 +157,7 @@ public class RegisterController
      * POSTCONDITIONS: Happy Birthday message displayed in Register GUI.
      */
     public void happyBirthday() {
-        JOptionPane.showMessageDialog(null, "Happy " + model.getAge() + "th Birthday!", "Happy Birthday!", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Happy " + model.getAge() + "th Birthday!", "Happy Birthday!", JOptionPane.PLAIN_MESSAGE, logo);
     }
     
     
@@ -165,7 +167,7 @@ public class RegisterController
      * POSTCONDITIONS: Invalid Username message displayed in Register GUI.
      */
     public void usernameTaken() {
-        JOptionPane.showMessageDialog(null, "I'm sorry, this username is taken.", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "I'm sorry, this username is taken.", "Invalid Username", JOptionPane.PLAIN_MESSAGE);
     }
     
 }

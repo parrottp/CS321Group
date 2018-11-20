@@ -1,7 +1,13 @@
 package Model;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class HomePageView extends javax.swing.JFrame{
@@ -29,12 +35,15 @@ public class HomePageView extends javax.swing.JFrame{
     private JLabel birthdayLabel;
     private JLabel gameLabel;
     private JLabel levelLabel;
-    private JLabel chatWithLabel;
+    
+    //Logo
+    ImageIcon logo = new ImageIcon("logo.png");
     
     //List of Friends to populate JComboBox
     private ArrayList<String> friendsList;
     //private String[] friends;
     private int friendsListSize;
+    
     //private combobox
     private JComboBox currentFriendList;
 
@@ -58,19 +67,33 @@ public class HomePageView extends javax.swing.JFrame{
         friendsSearchBar = new JTextField();
         addFriendButton = new JButton("Add Friend");
         sendButton = new JButton(">>");
-        logoutButton = new JButton("Logout");
+        logoutButton = new JButton("Logout >>");
         
         //Create font styles
         Font boldFont = new Font("Helvetica", Font.BOLD,20);
+        Font font = new Font("Helvetica", Font.PLAIN,16);
+        
+        //Background color
+        userDataPanel.setBackground(Color.GRAY);
+        inputBar.setBackground(Color.GRAY);
+
         
         // Create labels
         usernameLabel = new JLabel("Username: ");
         usernameLabel.setFont(boldFont);
+        usernameLabel.setForeground(Color.WHITE);
         
         birthdayLabel = new JLabel("Birthday: ");
+        birthdayLabel.setFont(font);
+        birthdayLabel.setForeground(Color.WHITE);
+        
         gameLabel = new JLabel("I'm currently playing: ");
+        gameLabel.setFont(font);
+        gameLabel.setForeground(Color.WHITE);
+        
         levelLabel = new JLabel("Level");
-        chatWithLabel = new JLabel("Chat with:");
+        levelLabel.setFont(font);
+        levelLabel.setForeground(Color.WHITE);
 
         setPreferredSize(new Dimension(900, 600));      //Size changed to look better
         setLocation(500, 200);                          //Centered when launched
@@ -98,15 +121,21 @@ public class HomePageView extends javax.swing.JFrame{
         userDataPanel.add(birthdayLabel);
         userDataPanel.add(gameLabel);
         userDataPanel.add(levelLabel);
-        userDataPanel.add(logoutButton);
-        
-        userDataPanel.add(chatWithLabel);
         
         currentFriendList = new JComboBox(friends);
         userDataPanel.add(currentFriendList);
+        try {
+            BufferedImage myPicture = ImageIO.read(new File("logo.png"));
+            JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+            userDataPanel.add(picLabel);
+        } catch (IOException ex) {
+            Logger.getLogger(HomePageView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         
         userDataPanel.add(friendsSearchBar);
         userDataPanel.add(addFriendButton);
+        userDataPanel.add(logoutButton);
 
         //bottomPanel
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS)); //arranges vertically 

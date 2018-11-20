@@ -4,6 +4,7 @@ package Model;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ public class LoginController {
     //Model and View for this instance of LoginController
     private final Model model;
     private final LoginView view;
+    ImageIcon logo = new ImageIcon("logo.png");
     
     //Model, View, and Controller for RegisterController called by LoginController
     private Model rm;
@@ -98,7 +100,7 @@ public class LoginController {
                 
                 
                 //Displays successful login message and closes Login page
-                JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Welcome "+ model.getUsername()+ "!", "Login Successful", JOptionPane.PLAIN_MESSAGE, logo);
                 view.close();      
                 
                 
@@ -152,7 +154,7 @@ public class LoginController {
      * POSTCONDITIONS: Invalid Username message displayed in Login GUI.
      */
     private void invalidUsername() {
-        JOptionPane.showMessageDialog(null, "I'm sorry, this username does not exist.", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "I'm sorry, this username does not exist.", "Invalid Username", JOptionPane.PLAIN_MESSAGE);
     }
     
     
@@ -162,6 +164,6 @@ public class LoginController {
      * POSTCONDITIONS: Invalid Password message displayed in Login GUI.
      */
     private void invalidPassword() {
-        JOptionPane.showMessageDialog(null, "I'm sorry, the password is incorrect.", "Incorrect Password", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "I'm sorry, the password is incorrect.", "Incorrect Password", JOptionPane.PLAIN_MESSAGE);
     }
 }
