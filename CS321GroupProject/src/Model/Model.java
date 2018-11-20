@@ -14,6 +14,7 @@ public class Model {
     private String friendsList;
     private String pFriendsList;
     private String potentialFriend;
+    private String currentConversation;
     private Friends f;
     
     private String firstname;
@@ -441,6 +442,31 @@ public class Model {
         this.potentialFriend = pFriend;
     }
     
+    /**
+     * returns the user to which the active user
+     * will send messages
+     * @return 
+     */
+    public String getCurrentConversation()
+    {
+        return currentConversation;
+    }
+    
+    public void setCurrentConversation(String currentConversation)
+    {
+        this.currentConversation = currentConversation;
+    }
+    
+    /**
+     * Creates Message objects, saving each message
+     * to the perspective of each user involved
+     * @param message 
+     */
+    public void sendMessage(String message)
+    {
+        Message mess = new Message(username, message, username + currentConversation + ".txt");
+        Message messReverse = new Message(username, message, currentConversation + username + ".txt");
+    }
     
     /**
      * 
