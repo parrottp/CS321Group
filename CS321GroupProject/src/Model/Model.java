@@ -265,6 +265,9 @@ public class Model {
         //Writes User's new friend's username to friendsList
         file.FileWrite(this.potentialFriend, this.friendsList);
         
+        //Creates files to contain conversation
+        file.FileCreate(this.username + this.potentialFriend + ".txt");
+        file.FileCreate(this.potentialFriend + this.username + ".txt");
 
         //Deletes User name from Potential Friends List
         f.pFriendsRemove(this.potentialFriend);

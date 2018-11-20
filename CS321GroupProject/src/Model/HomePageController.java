@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,7 +81,9 @@ public class HomePageController
     public void changeConversation()
     {
         model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
-        writeToView();
+        
+        if(model.getCurrentConversation() != null)
+            writeToView();
     }
     
     //Add Friend function for the String in JTextField
