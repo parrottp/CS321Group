@@ -1,6 +1,5 @@
 package Controller;
 
-import Controller.LoginController;
 import Model.Model;
 import View.HomePageView;
 import View.LoginView;
@@ -10,12 +9,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
+
+
 /**
- * 
- * @author livweaver, noahe
+ * Controller for HomePage process of program.
  */
 public class HomePageController 
 {
@@ -28,16 +27,28 @@ public class HomePageController
     LoginView lv;
     LoginController lc;
     
-    //constructor
+    /**
+     * Constructor
+     * @param m Model for HomePage
+     * @param v View for HomePage
+     * PRECONDITIONS: Model m and HomePageView v must be initialized. 
+     * POSTCONDITIONS: HomePage GUI is displayed with initial values.
+     */
     public HomePageController(Model m, HomePageView v)
     {
         model = m;
         view = v;
         
+        //Initializes RegisterView with initial values of input Model
         initialView();
     }
 
     
+     /**
+     * Initializes the HomePageView with the values of username, age, and game interest in Model.
+     * PRECONDITIONS: Model m and HomePageView v must be initialized.
+     * POSTCONDITIONS: HomePageView updated with correct User values.
+     */
     public void initialView()
     {
         view.getUsernameLabel().setText(model.getUsername());
@@ -50,6 +61,12 @@ public class HomePageController
         changeConversation();
     }
     
+    
+    /**
+     * Initializes the HomePageController to read action listeners for adding a friend, switching conversation, sending a message, logging out and closing the program.
+     * PRECONDITIONS: Model m and HomePageView v must be initialized. 
+     * POSTCONDITIONS: All buttons on GUI functional, and User actions in GUI are read.
+     */
     public void initialController() 
     {
         //Action Listener for Add Friend button
@@ -85,39 +102,69 @@ public class HomePageController
         });
     }
     
-    //Send Message function for >> Button in HomePageView
+    
+    /**
+     * Sends the String typed by User in TextField as a Message to the current conversation.
+     * PRECONDITION: Model and HomePageView initialized. 
+     * POSTCONDITION: TextField reset and writeToView() called.
+     */
     public void sendMessage(){
+        //Reads JTextField text into Model, which sends it as a Message
         model.sendMessage(view.getMessageInputField().getText());
+        
+        //Clears the JTextField
         view.getMessageInputField().setText("");
+        
+        //Writes the updated conversation to the View
         writeToView();
     }
     
-    //Change conversation partner
+    
+    /**
+     * Changes the loaded conversation when the User changes selected friend in JComboBox.
+     * PRECONDITION: Model and HomePageView initialized.
+     * POSTCONDITION: Displayed conversation changed to conversation for newly selected friend.
+     */
     public void changeConversation()
     {
+        //Updates the current conversation in Model
         model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
         
+        //If the conversation exists, writes the updated conversation to the View
         if(model.getCurrentConversation() != null) {
             writeToView();
         }
     }
     
-    //Add Friend function for the String in JTextField
+    
+    /**
+     * Adds a friend from the TextField. Displays whether or not it was successful.
+     * @throws ParseException 
+     * PRECONDITION: Model and HomePageView initialized.
+     * POSTCONDITION: Friend successfully added if valid input, or rejected if not. Success/failure message Displayed to HomePageView.
+     */
     public void addFriend() throws ParseException {
         //Read the name of potential friend from JTextField
         model.setPotentialFriend(view.getfriendsSearchBar().getText());
        
-        
+        //Checks if the input String is an existing User that is a potential friend for the current User
         if(model.verifyUser()) {
+            //Updates the Friends list with the new friend
             model.updateFriendsList();
             JOptionPane.showMessageDialog(null, "Successfully added " + model.getPotentialFriend() + " as a friend! Log out and log back in to confirm.", "New Friend Added!", JOptionPane.PLAIN_MESSAGE);
         }
         else {
+            //Displayed message for invalid friend 
             JOptionPane.showMessageDialog(null, "User does not exist or you are already friends. Please try again.", "Invalid Friend Request", JOptionPane.PLAIN_MESSAGE);
         }
     }
     
-    //Log out function for logoutButton Button in HomePageView
+    
+    /**
+     * Logs User out of their account and closes the HomePage. Updates User's Data File. Launches Login page.
+     * PRECONDITION: None.
+     * POSTCONDITION: User's Data File updated, HomePage closed, Login page re-opened.
+     */
     public void logOut(){
         model.updateUserLevel();
         view.close();
@@ -128,11 +175,12 @@ public class HomePageController
         lc.initialController();
     }
     
-    //Log out function for logoutButton Button in HomePageView
-    public void buttonClicked(){
-        JOptionPane.showMessageDialog(null, "It was clicked", "Invalid Friend Request", JOptionPane.PLAIN_MESSAGE);
-    }
-    
+   
+    /**
+     * Updates the View with all User data from Model.
+     * PRECONDITION: Model and HomePageView initialized.
+     * POSTCONDITION: User's level updated, User's send message TextField cleared, User's conversation updated
+     */
     private void writeToView()
     {
         //Calculates the Level by dividing total messages sent by 5
@@ -154,4 +202,6 @@ public class HomePageController
             view.getMessageOutput().append("\n");
         }
     }
+    
+    
 }

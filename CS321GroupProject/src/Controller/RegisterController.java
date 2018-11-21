@@ -1,6 +1,5 @@
 package Controller;
 
-import Controller.LoginController;
 import Model.Model;
 import View.RegisterView;
 import View.LoginView;
@@ -10,15 +9,18 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+
+
 /**
- * Controller for Register process of program
- * @author livweaver, noahe
+ * Controller for Register process of program.
  */
 public class RegisterController 
 {
     //Model and View for this instance of RegisterController
     private Model model;
     private RegisterView view;
+    
+    //Loads logo image file
     ImageIcon logo = new ImageIcon("logo.png");
     
     //Model, View and Controller for LoginController called by RegisterController
@@ -46,8 +48,8 @@ public class RegisterController
     
     /**
      * Initializes the RegisterView with the initial values of all user data fields in Model, which are prompts for user input.
-     * PRECONDITIONS: this.model and this.view must be initialized.
-     * POSTCONDITIONS: RegisterView updated with initial values.
+     * PRECONDITION: this.model and this.view must be initialized.
+     * POSTCONDITION: RegisterView updated with initial values.
      */
     public void initialView()
     {
@@ -62,8 +64,8 @@ public class RegisterController
     
     /**
      * Initializes the RegisterController to read action listener for Register button.
-     * PRECONDITIONS: this.model and this.view must be initialized. 
-     * POSTCONDITIONS: Register button in Register GUI is functional.
+     * PRECONDITION: this.model and this.view must be initialized. 
+     * POSTCONDITION: Register button in Register GUI is functional.
      */
     public void initialController()
     {
@@ -82,8 +84,8 @@ public class RegisterController
     /**
      * Attempts to Register new User with input Data. Rejects invalid inputs.
      * @throws ParseException 
-     * PRECONDITIONS: this.model and this.view are initialized.
-     * POSTCONDITIONS: New User Data File created, User's username added to MasterList of registered users, Register page closes, Login page opens.
+     * PRECONDITION: this.model and this.view are initialized.
+     * POSTCONDITION: New User Data File created, User's username added to MasterList of registered users, Register page closes, Login page opens.
      */
     private void createProfile() throws ParseException
     {
@@ -110,7 +112,7 @@ public class RegisterController
         //Once all inputs are valid
         else {
             //Displays Welcome message for a successful registration
-            JOptionPane.showMessageDialog(null, "Welcome " + model.getUsername() + "!", "Profile Created",JOptionPane.PLAIN_MESSAGE, logo);
+            JOptionPane.showMessageDialog(null, "Welcome " + model.getUsername() + "!", "Profile Created", JOptionPane.PLAIN_MESSAGE, logo);
             
             //Displays Happy Birthday message if current day is User's birthday
             if(this.isBirthday == true) {
@@ -134,8 +136,8 @@ public class RegisterController
     
     /**
      * Opens Login page.
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Login page is opened. 
+     * PRECONDITION: None.
+     * POSTCONDITION: Login page is opened. 
      */
     public void login() {
         this.lm = new Model("Please enter username", "Please enter password");
@@ -147,8 +149,8 @@ public class RegisterController
     
     /**
      * Displays error message for Invalid Birth Date to Register GUI.
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Invalid Date message displayed in Register GUI.
+     * PRECONDITION: None.
+     * POSTCONDITION: Invalid Date message displayed in Register GUI.
      */
     public void invalidDate() {
         JOptionPane.showMessageDialog(null, "Please input Date of Birth in the following format: MM/dd/yyyy", "Invalid Date", JOptionPane.PLAIN_MESSAGE);
@@ -157,8 +159,8 @@ public class RegisterController
     
     /**
      * Displays Happy Birthday message if User's DoB is the same as current day.
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Happy Birthday message displayed in Register GUI.
+     * PRECONDITION: None.
+     * POSTCONDITION: Happy Birthday message displayed in Register GUI.
      */
     public void happyBirthday() {
         JOptionPane.showMessageDialog(null, "Happy " + model.getAge() + "th Birthday!", "Happy Birthday!", JOptionPane.PLAIN_MESSAGE, logo);
@@ -167,11 +169,12 @@ public class RegisterController
     
     /**
      * Displays error message for Invalid Username to Register GUI.
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Invalid Username message displayed in Register GUI.
+     * PRECONDITION: None.
+     * POSTCONDITION: Invalid Username message displayed in Register GUI.
      */
     public void usernameTaken() {
         JOptionPane.showMessageDialog(null, "I'm sorry, this username is taken.", "Invalid Username", JOptionPane.PLAIN_MESSAGE);
     }
+    
     
 }

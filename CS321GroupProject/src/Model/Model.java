@@ -3,24 +3,14 @@ package Model;
 import java.io.File;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
 
 /**
  * Model for MVC of program
- * @author livweaver, noahe
  */
 public class Model {
     //User data
-    private String fileName;
-    private String friendsList;
-    private String pFriendsList;
-    private String potentialFriend;
-    private String currentConversation;
-    private String cCFileNameA;
-    private String cCFileNameB;
-    private Friends f;
-    
     private String firstname;
     private String lastname;
     private String username;
@@ -28,22 +18,32 @@ public class Model {
     private String birthday;
     private String gameInterest;
     private String age;
-    private int level;
+    private int messagesSent;
+    
+    //User File data
+    private String fileName;
+    private String friendsList;
+    private String pFriendsList;
+    private String potentialFriend;
+    private String currentConversation;
+    private String cCFileNameA;
+    private String cCFileNameB;
     
     //Used by Controller to check input Dates
     private boolean invalidDateInput = false;
     
+    //Singleton variables
     FileData file;
+    private Friends f;
     
     /**
      * Model constructor for a RegisterController.
-     * @param firstname 
-     * @param lastname
-     * @param aUsername
-     * @param aPassword
-     * @param aBirthday
+     * @param firstname User's first name
+     * @param lastname User's last name
+     * @param aUsername User's username
+     * @param aPassword User's password
+     * @param aBirthday User's birth date
      * @param aGameInterest 
-     * @param userLevel
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
@@ -68,8 +68,8 @@ public class Model {
     
     /**
      * Model constructor for a LoginController.
-     * @param username
-     * @param password 
+     * @param username User's username
+     * @param password User's password
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by LoginController.
      */
@@ -87,19 +87,21 @@ public class Model {
         f.setUsername(this.username);
     }
 
+    
     /**
      * Model constructor for a HomePageController.
-     * @param aUsername
-     * @param age
-     * @param aGameInterest 
+     * @param aUsername User's username
+     * @param age User's age
+     * @param aGameInterest User's game interest
+     * @param messagesSent User's total messages sent
      * PRECONDITION: Parameter Strings are initialized.
      * POSTCONDITION: Model object constructed for use by RegisterController.
      */
-    public Model(String aUsername, String age, String aGameInterest, int level) {
+    public Model(String aUsername, String age, String aGameInterest, int messagesSent) {
         username = aUsername;
         this.age = age;
         gameInterest = aGameInterest;
-        this.level = level;
+        this.messagesSent = messagesSent;
         
         //Reads File path for User data file for input username
         this.fileName = this.username + ".txt";
@@ -120,9 +122,10 @@ public class Model {
     
     /**
      * Called by RegisterController when the User inputs DoB into JTextField. 
+     * @return true if User's birthday is on current day, false otherwise
      * @throws ParseException 
      * PRECONDITION: this.data is a valid String for DoB in the format 'MM/dd/yyyy'.
-     * POSTCONDITION: Sets this.userAge = User's age, returns true if it's User's birthday on current day.
+     * POSTCONDITION: Sets this.userAge = User's age.
      */
     public boolean processBirthdate() throws ParseException { 
         //Creates new CalculateAge object with User input DoB
@@ -207,8 +210,8 @@ public class Model {
         file.FileWrite(this.gameInterest, fileName);
         
         //Convert level to string 
-        this.level = 0;
-        String stringLevel = new Integer(this.level).toString();
+        this.messagesSent = 0;
+        String stringLevel = new Integer(this.messagesSent).toString();
         file.FileWrite(stringLevel, fileName);
         
         //Create data file for User's friends list when their profile is created
@@ -217,14 +220,16 @@ public class Model {
     
     
     /**
-     * 
+     * Updates the stored value for User's messagesSent into the User's Data File.
+     * PRECONDITION: User's Data File populated
+     * POSTCONDITION: User's Data File re-written with new messagesSent
      */
     public void updateUserLevel() {
         //Store User Data file into ArrayList
         ArrayList<String> userData = file.FileLoadList(this.fileName);
         
         //Convert new level to String
-        String stringLevel = Integer.toString(this.level);
+        String stringLevel = Integer.toString(this.messagesSent);
         
         //Update level in User Data
         userData.set(6, stringLevel);
@@ -238,16 +243,6 @@ public class Model {
         for (int i = 0; i < userData.size(); i++) {
             file.FileWrite(userData.get(i), this.fileName);
         }
-    }
-    
-    
-    /**
-     * Updates MasterList of Registered Users' usernames.
-     * PRECONDITION: New User successfully registered, new Data File created for User.
-     * POSTCONDITION: MasterList updated with new username.
-     */
-    public void updateMasterList() {
-        file.FileWrite(this.username, "MasterList.txt");
     }
     
     
@@ -272,18 +267,7 @@ public class Model {
         this.gameInterest = userDataFile.get(5);
         
         //Reads in the String for User Level, turns it into an integer, and sets it to this.level
-        this.level = Integer.parseInt(userDataFile.get(6));
-    }
-    
-    
-    /**
-     * Checks if this.potentialFriend is a valid potential friend.
-     * @return true if valid potential friend
-     * PRECONDITION: this.f instantiated, this.potentialFriend instantiated
-     * POSTCONDITION: None.
-     */
-    public boolean verifyUser() {
-        return f.isNewFriendValid(this.potentialFriend);
+        this.messagesSent = Integer.parseInt(userDataFile.get(6));
     }
     
     
@@ -324,30 +308,89 @@ public class Model {
      * POSTCONDITION: None.
      */
     public String[] getFriendsList() {
+        //Reads current User's friends list into ArrayList
         ArrayList<String> list = f.getFriendsList();
+        
+        //Stores size of new ArrayList
         int friendsListSize = list.size();
+        
+        //Initializes String Array with correct size
         String[] friends = new String[friendsListSize];
         
+        //Populated String Array with values of ArrayList
         for (int i = 0; i < friendsListSize; i++) {
             friends[i] = list.get(i);
         }
         
+        //Return String Array
         return friends;
     }
     
     
     /**
-     * Creates Message objects, saving each message
-     * to the perspective of each user involved
-     * @param message 
+     * Checks if this.potentialFriend is a valid potential friend.
+     * @return true if valid potential friend
+     * PRECONDITION: this.f instantiated, this.potentialFriend instantiated
+     * POSTCONDITION: None.
+     */
+    public boolean verifyUser() {
+        return f.isNewFriendValid(this.potentialFriend);
+    }
+    
+    
+    /**
+     * Updates MasterList of Registered Users' usernames.
+     * PRECONDITION: New User successfully registered, new Data File created for User.
+     * POSTCONDITION: MasterList updated with new username.
+     */
+    public void updateMasterList() {
+        file.FileWrite(this.username, "MasterList.txt");
+    }
+    
+    
+    /**
+     * Writes sent Messages to conversation files of both Users involved. Updates messageSent for every sent message.
+     * @param message new sent Message
+     * PRECONDITION: Conversation Files initialized.
+     * POSTCONDITION: Messages written to Conversation Files. messagesSent incremented.
      */
     public void sendMessage(String message)
     {
         Message mess = new Message(username, message, this.cCFileNameA);
         Message messReverse = new Message(username, message, this.cCFileNameB);
         
-        this.level++;
+        this.messagesSent++;
     }
+    
+    
+    /**
+     * Loads the current User's conversation file into an ArrayList and returns it. 
+     * @return ArrayList of current conversation, each index storing a line 
+     * PRECONDITION: Current conversation File initialized.
+     * POSTCONDITION: None.
+     */
+    public ArrayList<String> getConvoText()
+    {
+        return file.FileLoadList(this.cCFileNameA);
+    }
+    
+    
+    /**
+     * Sets this.currentConversation to current User's new conversation partner's username and updates names of conversation files.
+     * @param currentConversation new conversation partner's username
+     * PRECONDITION: String currentConversation contains new conversation partner's username
+     * POSTCONDITION: this.currentConversation updated with new username, and associated conversation files updated
+     */
+    public void setCurrentConversation(String currentConversation)
+    {
+        //Sets new conversation partner's username
+        this.currentConversation = currentConversation;
+        
+        //Updates names of conversation files
+        this.cCFileNameA = username + currentConversation + ".txt";
+        this.cCFileNameB = currentConversation + username + ".txt";
+    }
+    
     
     /**
      * Accessor for invalidDateInput. Returns true if Date is invalid.
@@ -355,6 +398,16 @@ public class Model {
      */
     public boolean getInvalidDateInput() {
         return this.invalidDateInput;
+    }
+    
+    
+    /**
+     * Accessor for current conversation partner's username.
+     * @return current conversation partner's username
+     */
+    public String getCurrentConversation()
+    {
+        return this.currentConversation;
     }
     
     
@@ -414,7 +467,7 @@ public class Model {
     
     /**
      * Accessor for username.
-     * @return 
+     * @return current username
      */
     public String getUsername() {
         return username;
@@ -501,12 +554,13 @@ public class Model {
         this.age = age;
     }
     
+    
      /**
      * Accessor for level.
      * @return current level
      */
     public int getLevel() {
-        return level;
+        return this.messagesSent;
     }
     
     
@@ -515,7 +569,7 @@ public class Model {
      * @param level new level
      */
     public void setLevel(int level) {
-        this.level = level;
+        this.messagesSent = level;
     }
     
     
@@ -534,29 +588,6 @@ public class Model {
      */
     public void setPotentialFriend(String pFriend) {
         this.potentialFriend = pFriend;
-    }
-    
-    public ArrayList<String> getConvoText()
-    {
-        return file.FileLoadList(cCFileNameA);
-    }
-    
-    
-    /**
-     * returns the user to which the active user
-     * will send messages
-     * @return 
-     */
-    public String getCurrentConversation()
-    {
-        return currentConversation;
-    }
-    
-    public void setCurrentConversation(String currentConversation)
-    {
-        this.currentConversation = currentConversation;
-        this.cCFileNameA = username + currentConversation + ".txt";
-        this.cCFileNameB = currentConversation + username + ".txt";
     }
     
     

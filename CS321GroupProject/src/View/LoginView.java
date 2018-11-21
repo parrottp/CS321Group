@@ -9,11 +9,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+
+
 /**
  * View for Login process of program
- * @author livweaver, noahe
  */
 public class LoginView {
+    
     //JFrame
     private JFrame frame;
     
@@ -30,7 +32,7 @@ public class LoginView {
     private JButton registerButton;     //Button to go to Register page
 
     /**
-     * Constructs LoginView with input string
+     * Constructs LoginView with input title.
      * @param title title of GUI window
      */
     public LoginView(String title) {
@@ -93,7 +95,7 @@ public class LoginView {
  
     
     /**
-     * Closes the JFrame this.frame
+     * Closes the JFrame this.frame.
      * PRECONDITION: this.frame must be initialized.
      * POSTCONDITION: this.frame is destroyed.
      */
@@ -103,7 +105,7 @@ public class LoginView {
 
     
     /**
-     * Accessor for frame
+     * Accessor for frame.
      * @return current frame
      */
     public JFrame getFrame() {
@@ -112,7 +114,7 @@ public class LoginView {
 
     
     /**
-     * Mutator for frame
+     * Mutator for frame.
      * @param frame new JFrame
      */
     public void setFrame(JFrame frame) {
@@ -120,7 +122,7 @@ public class LoginView {
     }
 
     /**
-     * Accessor for usernameTextfield
+     * Accessor for usernameTextfield.
      * @return current usernameTextfield
      */
     public JTextField getUsernameTextfield() {
@@ -129,7 +131,7 @@ public class LoginView {
 
     
     /**
-     * Mutator for usernameTextfield
+     * Mutator for usernameTextfield.
      * @param usernameTextfield new usernameTextfield
      */
     public void setUsernameTextfield(JTextField usernameTextfield) {
@@ -138,7 +140,7 @@ public class LoginView {
  
     
     /**
-     * Accessor for passwordTextfield
+     * Accessor for passwordTextfield.
      * @return current passwordTextfield
      */
     public JPasswordField getPasswordTextfield() {
@@ -147,7 +149,7 @@ public class LoginView {
 
     
     /**
-     * Mutator for passwordTextfield
+     * Mutator for passwordTextfield.
      * @param passwordTextfield new passwordTextfield
      */
     public void setPasswordTextfield(JPasswordField passwordTextfield) {
@@ -156,7 +158,7 @@ public class LoginView {
  
     
     /**
-     * Accessor for loginButton
+     * Accessor for loginButton.
      * @return current loginButton
      */
     public JButton getLoginButton() {
@@ -165,7 +167,7 @@ public class LoginView {
  
     
     /**
-     * Mutator for loginButton
+     * Mutator for loginButton.
      * @param loginButton new loginButton
      */
     public void setLoginButton(JButton loginButton) {
@@ -174,7 +176,7 @@ public class LoginView {
     
     
     /**
-     * Accessor for registerButton
+     * Accessor for registerButton.
      * @return current registerButton
      */
     public JButton getRegisterButton() {
@@ -183,12 +185,13 @@ public class LoginView {
  
     
     /**
-     * Mutator for registerButton
+     * Mutator for registerButton.
      * @param registerButton new registerButton
      */
     public void setRegisterButton(JButton registerButton) {
         this.registerButton = registerButton;
     }
+    
     
 }
 

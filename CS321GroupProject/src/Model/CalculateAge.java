@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 import java.text.ParseException;
@@ -10,79 +5,68 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+
+
 /**
- *
- * @author noahe
+ * Processes User input birth dates into their age, rejects invalid birth date inputs, and checks if current day is User's birthday.
  */
 public class CalculateAge {
-    private Scanner console;
-    private String inputDate;           //INPUT FROM GUI
-    private Date currentDay;
-    private Date birthDay;
-    private Calendar calendar;
-    private SimpleDateFormat sdf;
-    private long timeDiff;
-    private String age;
     
+    //Calendar and Date variables
+    private Calendar calendar;
+    private SimpleDateFormat sdf;   
+    private Date currentDay;        //Current Date
+    private Date birthDay;          //User's Birth Date
+    
+    //Primitive variables
+    private long timeDiff;          //Time difference between Current Date and Birth Date
+    private String inputDate;       //The User input Birth Date as a String
+    private String age;             //User's age as a String
+    
+    //Checks if input date is valid
     private boolean invalidDate = false;
 
     /**
-     * Constructor
-     * @param inputDate
+     * Constructor.
+     * @param inputDate User input birth date String
      * @throws ParseException 
      */
-    public CalculateAge(String inputDate) throws ParseException {       //INPUT COMES FROM GUI, CALLED BY VIEW WITH INPUT PARAMETER
+    public CalculateAge(String inputDate) throws ParseException {       
         this.inputDate = inputDate;
         this.currentDay = new Date();
         this.calendar = new GregorianCalendar();
-        this.sdf = new SimpleDateFormat("MM/dd/yyyy");
-        this.sdf.setLenient(false);
+        this.sdf = new SimpleDateFormat("MM/dd/yyyy");  //Sets the format for Data objects
+        this.sdf.setLenient(false);                     //Date format has to be strictly followed
        
-        this.setBirthDate();     //Locally calls setBirthDay method
-        //this.processAge();       //Locally calls printTimeDiff method
+        //Converts input String into Date object
+        this.setBirthDate();    
     }
     
-    /**
-     * TESTS USE CASE WITH CONSOLE INPUT
-     * @throws ParseException 
-     */
-    public CalculateAge() throws ParseException {
-        this.console = new Scanner(System.in);     
-        this.currentDay = new Date();
-        this.calendar = new GregorianCalendar();
-        this.sdf = new SimpleDateFormat("MM/dd/yyyy");
-        this.sdf.setLenient(false);
-        
-        System.out.println("Please input your date of birth in this format (mm/dd/yyyy): ");
-        this.inputDate = console.nextLine();
-        
-        this.setBirthDate();     //Locally calls setBirthDay method
-        //this.processAge();       //Locally calls printTimeDiff method
-    }
     
     /**
-     * Turns input birthDate String into Date object
+     * Turns input birthDate String into Date object.
      * @throws ParseException 
+     * PRECONDITION: this.inputDate contains a birthDate String in proper format
+     * POSTCONDITION: this.birthDay updated if valid input, otherwise this.invalidDate set to true
      */
     private void setBirthDate() throws ParseException {
         try {
-            Date birthDay = sdf.parse(inputDate);
-            this.birthDay = birthDay;                       //Sets local variable
+            //Parses String into Data object and updates this.birthDay
+            Date birthDay = sdf.parse(this.inputDate);           
+            this.birthDay = birthDay;                       
         }
         catch (ParseException e) {
             this.invalidDate = true;
         }
     }
     
-    public boolean getInvalidDate() {
-        return this.invalidDate;
-    }
     
     /**
-     * Turns birthDate and currentDate into String age
+     * Turns birthDate and currentDate into String age.
+     * PRECONDITION: this.currentDay and this.birthDay are initialized
+     * POSTCONDITION: this.timeDiff contains time difference in milliseconds, this.age contains time different in years rounded down
      */
     public void processAge() {
         //Calculates time difference between birth date and current date
@@ -95,6 +79,45 @@ public class CalculateAge {
         this.age = Long.toString((TimeUnit.DAYS.convert(this.timeDiff, TimeUnit.MILLISECONDS))/365);
     }
     
+    
+    /**
+     * Outputs message on User's birthday.
+     * @return true if currentDay is User's birthDay
+     * PRECONDITION: this.birthDay and this.currentDay both initialized
+     * POSTCONDITION: None.
+     */
+    public boolean happyBirthday() {
+        boolean check = false;
+        
+        //Creates temp GregorianCalendar objects to store and compare dates
+        Calendar bday = new GregorianCalendar();
+        Calendar cday = new GregorianCalendar();
+        
+        //Stores Dates into Calendars
+        bday.setTime(this.birthDay);
+        cday.setTime(this.currentDay);
+        
+        //Uses Calendar compare to check if day and month of currentDay and birthDay are the same
+        if(bday.get(Calendar.MONTH) == cday.get(Calendar.MONTH)) {         
+            if (bday.get(Calendar.DAY_OF_MONTH) == cday.get(Calendar.DAY_OF_MONTH)) {
+                check = true;                                                                   
+            }
+        }
+        
+        //Returns true if today is User's birthday, returns false if today is NOT User's birthday
+        return check;
+    }
+    
+    
+    /**
+     * Accessor for invalidDate Boolean
+     * @return true if input DoB is invalid, false otherwise
+     */
+    public boolean getInvalidDate() {
+        return this.invalidDate;
+    }
+    
+    
     /**
      * Accessor for User age
      * @return User age
@@ -103,25 +126,5 @@ public class CalculateAge {
         return this.age;
     }
     
-    /**
-     * Outputs message on User's birthday
-     */
-    public boolean happyBirthday() {
-        boolean check = false;
-        
-        Calendar bday = new GregorianCalendar();
-        Calendar cday = new GregorianCalendar();
-        
-        bday.setTime(this.birthDay);
-        cday.setTime(this.currentDay);
-        
-        
-        if(bday.get(Calendar.MONTH) == cday.get(Calendar.MONTH)) {         
-            if (bday.get(Calendar.DAY_OF_MONTH) == cday.get(Calendar.DAY_OF_MONTH)) {
-                check = true;                                                                   //SEND TO GUI
-            }
-        }
-        
-        return check;
-    }
+    
 }

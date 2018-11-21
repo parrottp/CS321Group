@@ -2,6 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
+
+
 public class Friends 
 {
     //Private instance of FileData
@@ -29,7 +31,7 @@ public class Friends
     String friendsFile;
   
     
-     /**
+    /**
      * Stores master list of users into potential friends list.
      * @return potentialFriends
      * PRECONDITION: MasterList is populated
@@ -117,4 +119,6 @@ public class Friends
     public ArrayList<String> getFriendsList() {
         return this.Friends;
     }
+    
+    
 }

@@ -9,11 +9,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+
+
 /**
- *
- * @author livweaver, noahe
+ * View for Register process of program
  */
 public class RegisterView {
+    
     //JFrame
     private JFrame frame;
     
@@ -37,7 +39,7 @@ public class RegisterView {
     private JButton createProfile;
 
     /**
-     * Constructs RegisterView with input String
+     * Constructs RegisterView with input title.
      * @param title title of GUI window
      */
     public RegisterView(String title) {
@@ -122,8 +124,9 @@ public class RegisterView {
         frame.getContentPane().setLayout(layout);
     }
 
+    
     /**
-     * Closes the JFrame this.frame
+     * Closes the JFrame this.frame.
      * PRECONDITION: this.frame must be initialized.
      * POSTCONDITION: this.frame is destroyed.
      */
@@ -133,7 +136,7 @@ public class RegisterView {
  
     
     /**
-     * Accessor for frame
+     * Accessor for frame.
      * @return current frame
      */
     public JFrame getFrame() {
@@ -142,7 +145,7 @@ public class RegisterView {
 
     
     /**
-     * Mutator for frame
+     * Mutator for frame.
      * @param frame new JFrame
      */
     public void setFrame(JFrame frame) {
@@ -151,7 +154,7 @@ public class RegisterView {
 
    
     /**
-     * Accessor for firstnameTextfield
+     * Accessor for firstnameTextfield.
      * @return current firstnameTextfield
      */
     public JTextField getFirstnameTextfield() {
@@ -160,7 +163,7 @@ public class RegisterView {
 
     
     /**
-     * Mutator for firstnameTextfield
+     * Mutator for firstnameTextfield.
      * @param firstnameTextfield new firstnameTextfield
      */
     public void setFirstnameTextfield(JTextField firstnameTextfield) {
@@ -169,7 +172,7 @@ public class RegisterView {
 
     
     /**
-     * Accessor for lastnameTextfield
+     * Accessor for lastnameTextfield.
      * @return current lastnameTextfield
      */
     public JTextField getLastnameTextfield() {
@@ -178,7 +181,7 @@ public class RegisterView {
 
     
     /**
-     * Mutator for lastnameTextfield
+     * Mutator for lastnameTextfield.
      * @param lastnameTextfield new lastnameTextfield
      */
     public void setLastnameTextfield(JTextField lastnameTextfield) {
@@ -187,7 +190,7 @@ public class RegisterView {
  
     
     /**
-     * Accessor for usernameTextfield
+     * Accessor for usernameTextfield.
      * @return current usernameTextfield
      */
     public JTextField getUsernameTextfield() {
@@ -196,7 +199,7 @@ public class RegisterView {
 
     
     /**
-     * Mutator for usernameTextfield
+     * Mutator for usernameTextfield.
      * @param usernameTextfield new usernameTextfield
      */
     public void setUsernameTextfield(JTextField usernameTextfield) {
@@ -205,7 +208,7 @@ public class RegisterView {
  
     
     /**
-     * Accessor for passwordTextfield
+     * Accessor for passwordTextfield.
      * @return current passwordTextfield
      */
     public JPasswordField getPasswordTextfield() {
@@ -214,7 +217,7 @@ public class RegisterView {
 
     
     /**
-     * Mutator for passwordTextField
+     * Mutator for passwordTextField.
      * @param passwordTextField new passwordTextField
      */
     public void setPasswordTextfield(JPasswordField passwordTextField) {
@@ -223,7 +226,7 @@ public class RegisterView {
  
     
     /**
-     * Accessor for birthdayTextfield
+     * Accessor for birthdayTextfield.
      * @return current birthdayTextfield
      */
     public JTextField getBirthdayTextfield() {
@@ -232,7 +235,7 @@ public class RegisterView {
 
     
     /**
-     * Mutator for birthdayTextField
+     * Mutator for birthdayTextField.
      * @param birthdayTextField new birthdayTextField
      */
     public void setBirthdayTextfield(JTextField birthdayTextField) {
@@ -241,7 +244,7 @@ public class RegisterView {
  
     
     /**
-     * Accessor for gameTextField
+     * Accessor for gameTextField.
      * @return current gameTextField
      */
     public JTextField getGameTextfield() {
@@ -250,7 +253,7 @@ public class RegisterView {
 
     
     /**
-     * Mutator for gameTextField
+     * Mutator for gameTextField.
      * @param gameTextField new usernameTextField
      */
     public void setGameTextfield(JTextField gameTextField) {
@@ -259,7 +262,7 @@ public class RegisterView {
     
   
     /**
-     * Accessor for createProfile button
+     * Accessor for createProfile button.
      * @return current createProfile button
      */
     public JButton getCreateProfileButton() {
@@ -268,11 +271,12 @@ public class RegisterView {
  
     
     /**
-     * Mutator for createProfile button
+     * Mutator for createProfile button.
      * @param createProfile new createProfile button
      */
     public void setCreateProfileButton(JButton createProfile) {
         this.createProfile = createProfile;
     }
 
+    
 }

@@ -3,9 +3,10 @@ package Model;
 import java.io.*;
 import java.util.ArrayList;
 
+
+
 /**
- * Creates, writes, and reads a String from a File. Uses Singleton design pattern. 
- * @author livweaver, noahe, pparrott
+ * Creates, writes, and reads from a File. Uses Singleton design pattern. 
  */
 public class FileData extends DataLoader {
     
@@ -25,7 +26,9 @@ public class FileData extends DataLoader {
     
     
     /**  
-    * Create new file, file named with username.
+    * Create new file with input fileName.
+    * @param fileName name of new file
+    * @return null
     * PRECONDITIONS: String fileName initialized.
     * POSTCONDITIONS: Creates new File named fileName. 
     */ 
@@ -48,7 +51,10 @@ public class FileData extends DataLoader {
         
     
     /**  
-    * Write string to file.
+    * Write String to File.
+    * @param sVar String to be written
+    * @param fileName File to be written to
+    * @return null
     * PRECONDITIONS: sVar and fileName initialized.
     * POSTCONDITIONS: String sVar appended to File fileName.
     */ 
@@ -75,8 +81,8 @@ public class FileData extends DataLoader {
      * Read String from File and return.
      * @param fileName input fileName
      * @return userData if read from file, or null otherwise
-     * PRECONDITIONS: fileName initialized.
-     * POSTCONDITIONS: If first line of File read, it is returned. 
+     * PRECONDITION: fileName initialized.
+     * POSTCONDITION: If first line of File read, it is returned. 
      */
     public String FileLoad(String fileName)
     {
@@ -104,11 +110,11 @@ public class FileData extends DataLoader {
     
     
     /**
-     * Loads File and stores each line into an ArrayList<>
+     * Loads File and stores each line into an ArrayList<>.
      * @param fileName name of loaded file
      * @return null if File not read
      * PRECONDITIONS: String fileName is the name of a File
-     * POSTCONDITIONS: ArrayList<String> StringList is populated and returned if File successfully read
+     * POSTCONDITIONS: ArrayList StringList is populated and returned if File successfully read
      */
     public ArrayList<String> FileLoadList(String fileName) {
         ArrayList<String> StringList = new ArrayList<>();
@@ -130,5 +136,6 @@ public class FileData extends DataLoader {
         
         return null;
     }
+    
     
 }

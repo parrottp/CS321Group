@@ -1,6 +1,5 @@
 package Controller;
 
-
 import Model.Model;
 import View.RegisterView;
 import View.HomePageView;
@@ -11,9 +10,10 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+
+
 /**
- * Controller for Login process of program
- * @author livweaver, noahe
+ * Controller for Login process of program.
  */
 public class LoginController {
     //Model and View for this instance of LoginController
@@ -36,8 +36,8 @@ public class LoginController {
      * Constructs LoginController with input Model and LoginView.
      * @param m input Model
      * @param v input LoginView
-     * PRECONDITIONS: Model m and LoginView v must be initialized. 
-     * POSTCONDITIONS: Login GUI is displayed with initial values. 
+     * PRECONDITION: Model m and LoginView v must be initialized. 
+     * POSTCONDITION: Login GUI is displayed with initial values. 
      */
     public LoginController(Model m, LoginView v)
     {
@@ -51,8 +51,8 @@ public class LoginController {
     
     /**
      * Initializes the LoginView with the initial values of username and password in Model, which are prompts for user input.
-     * PRECONDITIONS: this.model and this.view must be initialized.
-     * POSTCONDITIONS: LoginView updated with initial values.
+     * PRECONDITION: this.model and this.view must be initialized.
+     * POSTCONDITION: LoginView updated with initial values.
      */
     private void initialView()
     {
@@ -63,8 +63,8 @@ public class LoginController {
     
     /**
      * Initializes the LoginController to read action listeners for Login button and Register button on Login page.
-     * PRECONDITIONS: this.model and this.view must be initialized. 
-     * POSTCONDITIONS: Login and Register buttons in Login GUI are functional.
+     * PRECONDITION: this.model and this.view must be initialized. 
+     * POSTCONDITION: Login and Register buttons in Login GUI are functional.
      */
     public void initialController()
     {
@@ -82,8 +82,8 @@ public class LoginController {
     
     /**
      * Attempts to Login the User with the input information. Displays error messages until login is successful, then closes Login window.
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Logged in successfully. Main Chat Client opened for logged in User.
+     * PRECONDITION: None.
+     * POSTCONDITION: Logged in successfully. Main Chat Client opened for logged in User.
      */
     private void login() {
         //Loads username and password into Model from User input in GUI
@@ -128,8 +128,8 @@ public class LoginController {
     
     /**
      * Closes Login page and opens Register page.
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Register page is opened, and Login page is closed. 
+     * PRECONDITION: None.
+     * POSTCONDITION: Register page is opened, and Login page is closed. 
      */
     private void register()
     {
@@ -142,20 +142,26 @@ public class LoginController {
     }
     
     
-    
+    /**
+     * Initializes new HomePage using logged in User's information
+     * @throws ParseException 
+     * PRECONDITION: Model model initialized with User data for username, age, game interest, level, and friends list.
+     * POSTCONDITION: HomePage launched and fully functional.
+     */
     private void launchClient() throws ParseException {
         this.hm = new Model(model.getUsername(), model.getAge(), model.getGameInterest(), model.getLevel());
         this.hv = new HomePageView("Profile", hm.getFriendsList());
         this.hv.setVisible(true);
         this.hc = new HomePageController(hm, hv);
+        
         this.hc.initialController();          
     }
     
     
     /**
-     * Displays error message for Invalid Username to Login GUI
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Invalid Username message displayed in Login GUI.
+     * Displays error message for Invalid Username to Login GUI.
+     * PRECONDITION: None.
+     * POSTCONDITION: Invalid Username message displayed in Login GUI.
      */
     private void invalidUsername() {
         JOptionPane.showMessageDialog(null, "I'm sorry, this username does not exist.", "Invalid Username", JOptionPane.PLAIN_MESSAGE);
@@ -163,11 +169,13 @@ public class LoginController {
     
     
     /**
-     * Displays error message for Invalid Password to Login GUI
-     * PRECONDITIONS: None.
-     * POSTCONDITIONS: Invalid Password message displayed in Login GUI.
+     * Displays error message for Invalid Password to Login GUI,
+     * PRECONDITION: None.
+     * POSTCONDITION: Invalid Password message displayed in Login GUI.
      */
     private void invalidPassword() {
         JOptionPane.showMessageDialog(null, "I'm sorry, the password is incorrect.", "Incorrect Password", JOptionPane.PLAIN_MESSAGE);
     }
+    
+    
 }

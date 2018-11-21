@@ -2,7 +2,6 @@ package Model;
 
 /**
  * Holds, sets, gets, and prints a String.
- * @author livweaver
  */
 public class DataLoader
 {
@@ -11,28 +10,32 @@ public class DataLoader
     /**  
     * Set the value of string.  
     * @param sVariable A variable of type string.
-    * PRECONDITIONS: None. 
-    * POSTCONDITIONS: this.sVar = sVariable
+    * PRECONDITION: None. 
+    * POSTCONDITION: this.sVar = sVariable
     */ 
     public void setString(String sVariable) {
         sVar = sVariable;
     }
     
+    
     /**  
     * Get the value of sVar.  
-    * PRECONDITIONS: None.
-    * POSTCONDITIONS: None.
+    * PRECONDITION: None.
+    * POSTCONDITION: None.
     */ 
     public String getString() {
         return sVar;
     }
     
+    
     /**  
     * Print the value of sVar. 
-    * PRECONDITIONS: None.
-    * POSTCONDITIONS: None.
+    * PRECONDITION: None.
+    * POSTCONDITION: None.
     */ 
     public void printString() {
         System.out.println(sVar);
     }
+    
+    
 }
