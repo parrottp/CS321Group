@@ -21,14 +21,14 @@ public class Friends
     }
     
     //Initializes Singleton instance of FileData
-    FileData fileData = FileData.getInstance();
+    private FileData fileData = FileData.getInstance();
     
     //User data
-    ArrayList<String> potentialFriends;
-    ArrayList<String> Friends;
-    ArrayList<String> MasterList;
-    String username;
-    String friendsFile;
+    private ArrayList<String> potentialFriends;
+    private ArrayList<String> Friends;
+    private ArrayList<String> MasterList;
+    private String username;
+    private String friendsFile;
   
     
     /**
