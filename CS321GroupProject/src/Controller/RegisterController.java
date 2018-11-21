@@ -21,12 +21,12 @@ public class RegisterController
     private RegisterView view;
     
     //Loads logo image file
-    ImageIcon logo = new ImageIcon("logo.png");
+    private ImageIcon logo = new ImageIcon("logo.png");
     
     //Model, View and Controller for LoginController called by RegisterController
-    Model lm;
-    LoginView lv;
-    LoginController lc;
+    private Model lm;
+    private LoginView lv;
+    private LoginController lc;
     
     //Used to check if current day is Registered User's birthday
     private boolean isBirthday;

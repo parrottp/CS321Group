@@ -19,7 +19,7 @@ public class LoginController {
     //Model and View for this instance of LoginController
     private final Model model;
     private final LoginView view;
-    ImageIcon logo = new ImageIcon("logo.png");
+    private ImageIcon logo = new ImageIcon("logo.png");
     
     //Model, View, and Controller for RegisterController called by LoginController
     private Model rm;
