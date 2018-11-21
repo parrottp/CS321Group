@@ -49,7 +49,7 @@ public class HomePageController
      * PRECONDITIONS: Model m and HomePageView v must be initialized.
      * POSTCONDITIONS: HomePageView updated with correct User values.
      */
-    public void initialView()
+    private void initialView()
     {
         view.getUsernameLabel().setText(model.getUsername());
         view.getBirthdayLabel().setText("Age: " + model.getAge());
@@ -108,7 +108,7 @@ public class HomePageController
      * PRECONDITION: Model and HomePageView initialized. 
      * POSTCONDITION: TextField reset and writeToView() called.
      */
-    public void sendMessage(){
+    private void sendMessage(){
         //Reads JTextField text into Model, which sends it as a Message
         model.sendMessage(view.getMessageInputField().getText());
         
@@ -125,7 +125,7 @@ public class HomePageController
      * PRECONDITION: Model and HomePageView initialized.
      * POSTCONDITION: Displayed conversation changed to conversation for newly selected friend.
      */
-    public void changeConversation()
+    private void changeConversation()
     {
         //Updates the current conversation in Model
         model.setCurrentConversation((String)view.getFriendBox().getSelectedItem());
@@ -143,7 +143,7 @@ public class HomePageController
      * PRECONDITION: Model and HomePageView initialized.
      * POSTCONDITION: Friend successfully added if valid input, or rejected if not. Success/failure message Displayed to HomePageView.
      */
-    public void addFriend() throws ParseException {
+    private void addFriend() throws ParseException {
         //Read the name of potential friend from JTextField
         model.setPotentialFriend(view.getfriendsSearchBar().getText());
        
@@ -165,7 +165,7 @@ public class HomePageController
      * PRECONDITION: None.
      * POSTCONDITION: User's Data File updated, HomePage closed, Login page re-opened.
      */
-    public void logOut(){
+    private void logOut(){
         model.updateUserLevel();
         view.close();
         
