@@ -33,7 +33,7 @@ public class Model {
     private boolean invalidDateInput = false;
     
     //Singleton variables
-    FileData file;
+    private FileData file;
     private Friends f;
     
     /**
