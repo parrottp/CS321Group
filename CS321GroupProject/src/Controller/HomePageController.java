@@ -23,9 +23,9 @@ public class HomePageController
     private HomePageView view;
     
     //Model, View and Controller for LoginController called by HomePageController
-    Model lm;
-    LoginView lv;
-    LoginController lc;
+    private Model lm;
+    private LoginView lv;
+    private LoginController lc;
     
     /**
      * Constructor

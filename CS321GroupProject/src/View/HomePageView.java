@@ -47,7 +47,7 @@ public class HomePageView extends javax.swing.JFrame{
     private JComboBox currentFriendList;
     
     //Logo
-    ImageIcon logo = new ImageIcon("logo.png");
+    private ImageIcon logo = new ImageIcon("logo.png");
     
     /**
     * Constructs HomePageView with input title and friends list.

@@ -51,7 +51,7 @@ public class RegisterController
      * PRECONDITION: this.model and this.view must be initialized.
      * POSTCONDITION: RegisterView updated with initial values.
      */
-    public void initialView()
+    private void initialView()
     {
         view.getFirstnameTextfield().setText(model.getFirstname());     //Updates RegisterView to display "Please enter first name" in JTextField for firstname
         view.getLastnameTextfield().setText(model.getLastname());       //Updates RegisterView to display "Please enter last name" in JTextField for lastname
@@ -139,7 +139,7 @@ public class RegisterController
      * PRECONDITION: None.
      * POSTCONDITION: Login page is opened. 
      */
-    public void login() {
+    private void login() {
         this.lm = new Model("Please enter username", "Please enter password");
         this.lv = new LoginView("Login");
         this.lc = new LoginController(lm, lv);
@@ -152,7 +152,7 @@ public class RegisterController
      * PRECONDITION: None.
      * POSTCONDITION: Invalid Date message displayed in Register GUI.
      */
-    public void invalidDate() {
+    private void invalidDate() {
         JOptionPane.showMessageDialog(null, "Please input Date of Birth in the following format: MM/dd/yyyy", "Invalid Date", JOptionPane.PLAIN_MESSAGE);
     }
     
@@ -162,7 +162,7 @@ public class RegisterController
      * PRECONDITION: None.
      * POSTCONDITION: Happy Birthday message displayed in Register GUI.
      */
-    public void happyBirthday() {
+    private void happyBirthday() {
         JOptionPane.showMessageDialog(null, "Happy " + model.getAge() + "th Birthday!", "Happy Birthday!", JOptionPane.PLAIN_MESSAGE, logo);
     }
     
@@ -172,7 +172,7 @@ public class RegisterController
      * PRECONDITION: None.
      * POSTCONDITION: Invalid Username message displayed in Register GUI.
      */
-    public void usernameTaken() {
+    private void usernameTaken() {
         JOptionPane.showMessageDialog(null, "I'm sorry, this username is taken.", "Invalid Username", JOptionPane.PLAIN_MESSAGE);
     }
     
