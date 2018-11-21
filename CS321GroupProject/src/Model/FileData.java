@@ -110,7 +110,7 @@ public class FileData extends DataLoader {
     
     
     /**
-     * Loads File and stores each line into an ArrayList<>.
+     * Loads File and stores each line into an ArrayList.
      * @param fileName name of loaded file
      * @return null if File not read
      * PRECONDITIONS: String fileName is the name of a File

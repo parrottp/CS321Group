@@ -47,7 +47,7 @@ public class Friends
     
     
     /**
-     * Stores friends list into ArrayList<>.
+     * Stores friends list into ArrayList.
      * @return Friends
      * PRECONDITION: Friends is populated
      * POSTCONDITION: Friends is initialized
@@ -60,7 +60,7 @@ public class Friends
     
     
     /**
-     * Adds user to Friends ArrayList<> and writes to a file.
+     * Adds user to Friends ArrayList and writes to a file.
      * @param user String
      * @return Friends 
      * PRECONDTION: selecting user

@@ -31,7 +31,7 @@ public class CalculateAge {
     /**
      * Constructor.
      * @param inputDate User input birth date String
-     * @throws ParseException 
+     * @throws ParseException if input date is invalid
      */
     public CalculateAge(String inputDate) throws ParseException {       
         this.inputDate = inputDate;

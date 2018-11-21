@@ -20,6 +20,7 @@ public class DataLoader
     
     /**  
     * Get the value of sVar.  
+    * @return this.sVar
     * PRECONDITION: None.
     * POSTCONDITION: None.
     */ 
