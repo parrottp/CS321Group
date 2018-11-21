@@ -383,12 +383,14 @@ public class Model {
      */
     public void setCurrentConversation(String currentConversation)
     {
-        //Sets new conversation partner's username
-        this.currentConversation = currentConversation;
+        if (currentConversation != null && username != null) {
+            //Sets new conversation partner's username
+            this.currentConversation = currentConversation;
         
-        //Updates names of conversation files
-        this.cCFileNameA = username + currentConversation + ".txt";
-        this.cCFileNameB = currentConversation + username + ".txt";
+            //Updates names of conversation files
+            this.cCFileNameA = username + currentConversation + ".txt";
+            this.cCFileNameB = currentConversation + username + ".txt";
+        }
     }
     
     
